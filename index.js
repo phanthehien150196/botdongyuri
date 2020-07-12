@@ -6,7 +6,7 @@ bot.on('ready', function(){
 })		
 bot.on("message", async message => {
 	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
-		user=getUserFromMention(message.content)
+		const user=getUserFromMention(message.content)
 		console.log(user)
 		message.channel.send(`${user.username} có avatar là: ${user.displayAvatarURL({ dynamic: true })}`)
 	}
