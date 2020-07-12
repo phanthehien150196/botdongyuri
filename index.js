@@ -8,6 +8,10 @@ bot.on("message", async message => {
 	if(message.content.indexOf(".") === 0){
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
       .then( response =>{
+      	if(response.data.success=="") {
+      		message.channel.send("Không hiểu");
+      	}
+      	else
         message.channel.send("<@"+message.author +"> "+response.data.success);
       } )
 
