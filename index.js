@@ -26,7 +26,7 @@ bot.on("message", async message => {
 })
 function getUserFromMention(mention) {
 	// The id is the first and only match found by the RegEx.
-	const matches = mention.match(/^<@!?(\d+)>$/);
+	const matches = mention.match(/<@!?(\d+)>/);
 
 	// If supplied variable was not a mention, matches will be null instead of an array.
 	if (!matches) return;
