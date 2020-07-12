@@ -6,10 +6,10 @@ bot.on('ready', function(){
 })		
 bot.on("message", async message => {
 	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
-		message.author=getUserFromMention(message.content)
-		const user=message.author
+		//message.author=
+		const user=getUserFromMention(message.content)
 		console.log(user)
-		message.channel.send(user.username+"có avatar là:"+ message.author.displayAvatarURL())
+		message.channel.send(user.username+"có avatar là:"+ user.displayAvatarURL)
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
