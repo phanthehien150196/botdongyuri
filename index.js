@@ -6,8 +6,8 @@ bot.on('ready', function(){
 })		
 bot.on("message", async message => {
 	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
-		//message.author=
-		const user=getUserFromMention(message.content)
+		message.author=getUserFromMention(message.content)
+		const user=message.author
 		console.log(user)
 		message.channel.send(user.username+"có avatar là:"+ user.displayAvatarURL)
 	}
