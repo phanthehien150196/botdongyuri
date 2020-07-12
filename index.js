@@ -35,6 +35,6 @@ function getUserFromMention(mention) {
 	// so use index 1.
 	const id = matches[1];
 
-	return client.users.cache.get(id);
+	return id;
 }		
 bot.login(process.env.token);
