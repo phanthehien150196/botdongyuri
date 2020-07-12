@@ -7,7 +7,7 @@ bot.on('ready', function(){
 bot.on("message", async message => {
 	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
-		message.channel.send(user.username+" có ảnh đại diện là: "+ user.AvatarURL({ dynamic:true,format:"png",size:4096 }))
+		message.channel.send(user.username+" có ảnh đại diện là: "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
