@@ -9,7 +9,7 @@ bot.on("message", async message => {
 		const user=getUserFromMention(message.content)
 		//=message.author
 		console.log(user)
-		message.channel.send("<@"+user+"> "+user.username+"có avatar là:"+ user.displayAvatarURL)
+		//message.channel.send("<@"+user+"> "+user.username+"có avatar là:"+ user.displayAvatarURL)
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
