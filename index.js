@@ -9,11 +9,7 @@ bot.on("message", async message => {
 		let user = message.mentions.users.first();
 		message.channel.send(user.username+" có ảnh đại diện là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
-	else if(message.content.toLowerCase().indexOf("emo") === 0){
-		guild.emojis.create(message.content.slice(3).trim(), 'rip')
-			.then(emoji => console.log(`Created new emoji with name ${emoji.name}!`))
-  			.catch("lỗi vkl");
-	}
+	
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
       .then( response =>{
