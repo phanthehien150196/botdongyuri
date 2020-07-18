@@ -56,7 +56,7 @@ function getTime (date)
 	else thu= "Thứ Bảy"
 	ngay=date.getDate().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	thang=date.getMonth().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
-	nam=date.getYear().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	nam=date.getFullYear().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	gio=date.getHours().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	phut=date.getMinutes().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	giay=date.getSeconds().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
