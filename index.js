@@ -9,7 +9,7 @@ bot.on("message", async message => {
 	if(message.content.toLowerCase().indexOf(".th")!=-1&&getUserFromMention(message.content)!=false)
 	{
 		let user = message.mentions.users.first();
-		message.channel.send(user.createdAt.getDay().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' }));
+		message.channel.send(getTime(user.createdAt));
 	}
 	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
@@ -44,4 +44,9 @@ function getUserFromMention(mention) {
 
 	return id;
 }		
+function getTime (date)
+{
+	thu = date.getDay().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	if(thu=="5") return "Thứ sáu"
+}
 bot.login(process.env.token);
