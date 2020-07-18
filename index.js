@@ -58,7 +58,7 @@ function getTime (date)
 	thang=date.getMonth().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	nam=date.getYear().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	gio=date.getHours().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
-	phut==date.getMinutes().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	phut=date.getMinutes().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	giay=date.getSeconds().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	return "Thành viên này lập tài khoản vào "+thu+", "+ngay+"/"+thang+"/"+nam+" "+ gio+":"+phut+":"+giay
 }
