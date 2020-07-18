@@ -6,7 +6,12 @@ bot.on('ready', function(){
 })		
 bot.on("message", async message => {
 	if(!message.author.bot){
-	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
+	if(message.content.toLowerCase().indexOf(".th")!=-1&&getUserFromMention(message.content)!=false)
+	{
+		let user = message.mentions.users.first();
+		message.channel.send(user.discriminator);
+	}
+	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
 		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
