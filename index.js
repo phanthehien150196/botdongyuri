@@ -9,7 +9,7 @@ bot.on("message", async message => {
 	if(message.content.toLowerCase().indexOf(".th")!=-1&&getUserFromMention(message.content)!=false)
 	{
 		let user = message.mentions.users.first();
-		message.channel.send(user.createdAt);
+		message.channel.send(user.createdAt.toUTCString());
 	}
 	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
