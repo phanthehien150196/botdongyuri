@@ -47,6 +47,19 @@ function getUserFromMention(mention) {
 function getTime (date)
 {
 	thu = date.getDay().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
-	if(thu=="5") return "Thứ sáu"
+	if(thu=="0") thu= "Chủ Nhật"
+	else if(thu=="1") thu= "Thứ Hai"
+	else if(thu=="2") thu= "Thứ Ba"
+	else if(thu=="3") thu= "Thứ Tư"
+	else if(thu=="4") thu= "Thứ Năm"
+	else if(thu=="5") thu= "Thứ Sáu"
+	else thu= "Thứ Bảy"
+	ngay=date.getDate().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	thang=date.getMonth().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	nam=date.getYear().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	gio=date.getHours().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	phut==date.getMinutes().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	giay=date.getSeconds().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	return "Thành viên này lập tài khoản vào "+thu+", "+ngay+"/"+thang+"/"+nam+" "+ gio+":"+phut+":"+giay
 }
 bot.login(process.env.token);
