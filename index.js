@@ -46,7 +46,7 @@ function getUserFromMention(mention) {
 }		
 function getTime (date)
 {
-	const thu = date.getDay().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	 thu = date.getDay().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	if(thu=="0") thu= "Chủ Nhật"
 	else if(thu=="1") thu= "Thứ Hai"
 	else if(thu=="2") thu= "Thứ Ba"
@@ -54,12 +54,12 @@ function getTime (date)
 	else if(thu=="4") thu= "Thứ Năm"
 	else if(thu=="5") thu= "Thứ Sáu"
 	else thu= "Thứ Bảy"
-	const ngay=date.getDate().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
-	const thang=date.getMonth().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
-	const nam=date.getYear().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
-	const gio=date.getHours().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
-	const phut=date.getMinutes().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
-	const giay=date.getSeconds().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	ngay=date.getDate().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	thang=date.getMonth().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	nam=date.getYear().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	gio=date.getHours().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	phut=date.getMinutes().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
+	giay=date.getSeconds().toLocaleString('vi', { timeZone: 'Asia/Ho_Chi_Minh' })
 	return "Thành viên này lập tài khoản vào "+thu+", "+ngay+"/"+thang+"/"+nam+" "+ gio+":"+phut+":"+giay
 }
 bot.login(process.env.token);
