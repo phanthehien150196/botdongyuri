@@ -6,12 +6,7 @@ bot.on('ready', function(){
 })		
 bot.on("message", async message => {
 	if(!message.author.bot){
-	if(message.content.toLowerCase().indexOf(".th")!=-1&&getUserFromMention(message.content)!=false)
-	{
-		let user = message.mentions.users.first();
-		message.channel.send(getTime(user.createdAt));
-	}
-	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
+	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
 		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
@@ -44,22 +39,5 @@ function getUserFromMention(mention) {
 
 	return id;
 }		
-function getTime (date)
-{
-	 thu = date.getDay().toLocaleString('en-us', { timeZone: 'Asia/Ho_Chi_Minh' })
-	if(thu=="0") thu= "Chủ Nhật"
-	else if(thu=="1") thu= "Thứ Hai"
-	else if(thu=="2") thu= "Thứ Ba"
-	else if(thu=="3") thu= "Thứ Tư"
-	else if(thu=="4") thu= "Thứ Năm"
-	else if(thu=="5") thu= "Thứ Sáu"
-	else thu= "Thứ Bảy"
-	ngay=date.getDate().toLocaleString('en-us', { timeZone: 'Asia/Ho_Chi_Minh' })
-	thang=date.getMonth().toLocaleString('en-us', { timeZone: 'Asia/Ho_Chi_Minh' })
-	nam=date.getFullYear().toLocaleString('en-us', { timeZone: 'Asia/Ho_Chi_Minh' })
-	gio=date.getHours().toLocaleString('en-us', { timeZone: 'Asia/Ho_Chi_Minh' })
-	phut=date.getMinutes().toLocaleString('en-us', { timeZone: 'Asia/Ho_Chi_Minh' })
-	giay=date.getSeconds().toLocaleString('en-us', { timeZone: 'Asia/Ho_Chi_Minh' })
-	return "Thành viên này lập tài khoản vào "+thu+", "+ngay+"/"+thang+"/"+nam+" "+ gio+":"+phut+":"+giay
-}
+
 bot.login(process.env.token);
