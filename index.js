@@ -8,7 +8,7 @@ bot.on("message", async message => {
 	if(!message.author.bot){
 	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
-		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
+		message.channel.send("<@"+user+"> có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
 	
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
