@@ -47,13 +47,13 @@ function getGame(mention) {
 	const matches = mention.match(/g!?(\S+)e/);
 
 	// If supplied variable was not a mention, matches will be null instead of an array.
-	if (!matches) return;
+	if (!matches) {return false;}
 
 	// However the first element in the matches array will be the entire mention, not just the ID,
 	// so use index 1.
-	const id = matches[1];
+	else {const id = matches[1];
 
-	return id;
+	return id;}
 }		
 
 bot.login(process.env.token);
