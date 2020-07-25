@@ -11,7 +11,7 @@ bot.on("message", async message => {
 		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
 	else if(message.content.toLowerCase().indexOf("game") >= 0&&message.member.roles.cache.some(r => r.name === "Mod")==false){
-		message.delete(1000);
+		message.delete({ timeout: 1 });
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
