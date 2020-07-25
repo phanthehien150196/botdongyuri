@@ -10,7 +10,7 @@ bot.on("message", async message => {
 		let user = message.mentions.users.first();
 		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
-	else if(getGame(change_alias(message.content)) !=false&&message.author.id!="574602677929902080"&&message.channel.id =="533170013129932801"&&message.member.roles.cache.some(r => r.name === "Admin")==false){
+	else if(getGame(change_alias(message.content)) !=false&&message.author.id!="574602677929902080"&&message.channel.id =="533170013129932801"&&message.member.roles.cache.some(r => r.name === "Mod")==false){
 		message.delete({ timeout: 1 });
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
