@@ -10,7 +10,7 @@ bot.on("message", async message => {
 		let user = message.mentions.users.first();
 		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
-	else if(message.content.toLowerCase().indexOf("game") >= 0&&message.member.roles.some(r => r.name === "Mod")==false){
+	else if(message.content.toLowerCase().indexOf("game") >= 0&&member.roles.cache.some(r => r.name === "Mod")==false){
 		message.delete(1000);
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
