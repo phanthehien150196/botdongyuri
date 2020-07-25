@@ -10,7 +10,7 @@ bot.on("message", async message => {
 		let user = message.mentions.users.first();
 		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
-	else if(message.content.toLowerCase().indexOf("game") >= 0&&message.author.id!="574602677929902080"&&message.channel.id =="533170013129932801"&&message.member.roles.cache.some(r => r.name === "Mod")==false){
+	else if(getGame(message.content.toLowerCase()) !=false&&message.author.id!="574602677929902080"&&message.channel.id !="533170013129932801"&&message.member.roles.cache.some(r => r.name === "Mod")==false){
 		message.delete({ timeout: 1 });
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
@@ -31,6 +31,20 @@ bot.on("message", async message => {
 function getUserFromMention(mention) {
 	// The id is the first and only match found by the RegEx.
 	const matches = mention.match(/<@!?(\d+)>/);
+
+	// If supplied variable was not a mention, matches will be null instead of an array.
+	if (!matches) return;
+
+	// However the first element in the matches array will be the entire mention, not just the ID,
+	// so use index 1.
+	const id = matches[1];
+
+	return id;
+}	
+
+function getGame(mention) {
+	// The id is the first and only match found by the RegEx.
+	const matches = mention.match(/g!?(\S+)e/);
 
 	// If supplied variable was not a mention, matches will be null instead of an array.
 	if (!matches) return;
