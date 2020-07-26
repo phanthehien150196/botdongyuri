@@ -61,6 +61,7 @@ function change_alias(alias) {
     str = str.toLowerCase();
     str = str.replace("google","")
     str = str.replace("gende","")
+    str = str.replace("ghe","")
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
     str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
     str = str.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
