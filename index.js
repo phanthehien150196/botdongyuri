@@ -72,6 +72,7 @@ function change_alias(alias) {
     str = str.replace("google","")
     str = str.replace("gende","")
     str = str.replace("ghe","")
+    str = str.replace("gem","game")
     
     str = str.trim(); 
     return str;
