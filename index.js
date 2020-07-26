@@ -44,7 +44,7 @@ function getUserFromMention(mention) {
 
 function getGame(mention) {
 	// The id is the first and only match found by the RegEx.
-	const matches = mention.match(/g!?(\S+)e/);
+	const matches = mention.match(/\bg!?(\S+)e/);
 
 	// If supplied variable was not a mention, matches will be null instead of an array.
 	if (!matches) {return false;}
@@ -68,13 +68,9 @@ function change_alias(alias) {
     str = str.replace(/đ/g,"d");
     str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
     str = str.replace(/ + /g," ");
-    str = str.replace("ghie","")
+    
     str = str.replace("google","")
-    str = str.replace("gende","")
-    str = str.replace("ghe","")
     str = str.replace("gem","game")
-    str = str.replace("gtruye","")
-    str = str.replace("guye","")
     
     str = str.trim(); 
     return str;
