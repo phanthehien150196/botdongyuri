@@ -74,6 +74,7 @@ function change_alias(alias) {
     str = str.replace("give","")
     str = str.replace("ghe","")
     str = str.replace(":g","")
+    str = str.replace("gw","")
     
     str = str.trim(); 
     return str;
