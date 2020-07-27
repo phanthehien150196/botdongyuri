@@ -76,6 +76,7 @@ function change_alias(alias) {
     str = str.replace(":g","")
     str = str.replace("gw","")
     str = str.replace("gilgame","")
+    str = str.replace("g4m3","game")
     
     str = str.trim(); 
     return str;
