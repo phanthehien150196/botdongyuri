@@ -14,7 +14,7 @@ bot.on("message", async message => {
 		message.delete({ timeout: 1 });
 	}
 	else if(message.content.indexOf("/") === 0){
-		//message.delete({ timeout: 10000 });
+		message.delete({ timeout: 2000 });
 		bot.channels.cache.get(`694785358746877970`).send("<@"+message.author +"> Đã xoá")
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
