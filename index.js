@@ -13,6 +13,10 @@ bot.on("message", async message => {
 	else if(getGame(change_alias(message.content)) !=false&&message.author.id!="574602677929902080"&&message.channel.id =="533170013129932801"&&message.member.roles.cache.some(r => r.name === "Mod")==false){
 		message.delete({ timeout: 1 });
 	}
+	else if(message.content.indexOf("/") === 0){
+		message.delete({ timeout: 10000 });
+		
+	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
       .then( response =>{
