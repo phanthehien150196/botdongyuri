@@ -15,7 +15,7 @@ bot.on("message", async message => {
 	}
 	else if(message.content.indexOf("/") === 0){
 		message.delete({ timeout: 10000 });
-		
+		bot.channels.get(`694785358746877970`).send("<@"+message.author +"> Đã xoá")
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
