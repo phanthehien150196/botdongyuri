@@ -84,6 +84,7 @@ function change_alias(alias) {
     str = str.replace("gem","game")
     str = str.replace("give","")
     str = str.replace("ghe","")
+    str = str.replace("ghet","")
     str = str.replace(":g","")
     str = str.replace("gw","")
     str = str.replace("gilgame","")
