@@ -6,6 +6,18 @@ bot.on('ready', function(){
 })		
 bot.on("message", async message => {
 	if(!message.author.bot){
+
+		bot.on('messageUpdate', (oldMessage, newMessage) => {
+    
+		if(getGame(change_alias(newMessage.content)) !=false&&newMessage.author.id!="574602677929902080"&&newMessage.channel.id !="533170013129932801"&&newMessage.member.roles.cache.some(r => r.name === "Mod")==false){
+		 console.log(change_alias(newMessage.content))
+		 newMessage.delete({ timeout: 1 });
+		//await bot.channels.cache.get(`543459440691642408`).send("<@"+message.author +"> Nếu bạn đang nói về game thì xin hãy thảo luận ở phòng này")
+
+			}
+
+		});
+
 	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
 		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
