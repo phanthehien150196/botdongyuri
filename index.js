@@ -94,7 +94,7 @@ function change_alias(alias) {
     str = str.replace("ga me","game")
     str = str.replace("gie","")
     str = str.trim();
-    str.replace(/\:!?(\S+)\:/, '');  
+    str.replace(/\:!?(\S+)\:/, '0');  
     return str;
 }
 bot.login(process.env.token);
