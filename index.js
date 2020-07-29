@@ -80,7 +80,7 @@ function change_alias(alias) {
     str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
     str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
     str = str.replace(/đ/g,"d");
-    str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
+    //str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
     str = str.replace(/ + /g," ");
     
     str =str.replace(/\:!?(\S+)\:/gi, '0');  
@@ -89,7 +89,7 @@ function change_alias(alias) {
     str = str.replace("give","")
     str = str.replace("ghe","")
     str = str.replace("ghet","")
-    str = str.replace(":g","")
+    //str = str.replace(":g","")
     str = str.replace("gw","")
     str = str.replace("gilgame","")
     str = str.replace("ga me","game")
