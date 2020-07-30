@@ -1,4 +1,5 @@
 const request = require('request');
+const fs = require('fs');
 const Discord = require("discord.js");	
 const axios = require("axios");		
 var bot = new Discord.Client();		
