@@ -1,3 +1,4 @@
+const request = require('request');
 const Discord = require("discord.js");	
 const axios = require("axios");		
 var bot = new Discord.Client();		
@@ -17,8 +18,29 @@ bot.on("message", async message => {
 			}
 
 		});
+	if(message.content.toLowerCase().indexOf("//up")!=-1) 
+	{
 
-	if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
+	axios.get('https://apiv2.gofile.io/getServer')
+      .then( res =>{
+        const sv=res.data.data.server
+        console.log(sv)
+        var url = 'https://'+sv+'.gofile.io/upload';
+	var options = {
+    contentType: 'application/json',
+    file: fs.createReadStream(__dirname + "/u.svg")
+	}
+
+	request.post({url: url, formData: options}, function (err, httpResponse, body) {
+	message.channel.send(body)
+  	console.log(body)
+	});
+	})
+
+
+
+	}
+	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
 		message.channel.send(user.username+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
