@@ -11,11 +11,11 @@ const exampleEmbed = {
 	fields: [
 		{
 			name: 'PHOTOSHOP CS6 FULL CRACK',
-			value: "[Link tải](https://drive.google.com/open?id=1wF3G1pXiNvREJyiE1K2ru0Sa99kz3n2l 'optional hovertext')",
+			value: "[Link tải](https://drive.google.com/open?id=1wF3G1pXiNvREJyiE1K2ru0Sa99kz3n2l 'optional hovertext') | [Hướng dẫn cài đặt](https://hocthietkenoithat.org/huong-dan-cai-dat-download-photoshop-cs6-full-crack-mien-phi/ 'optional hovertext')",
 		},
 		{
-			name: 'FONT MTO',
-			value: "[Link tải](https://drive.google.com/open?id=1bj45GimReNulRjNWLnxERWUgTxuXC3RV 'optional hovertext')",
+			name: 'FONT DÀNH CHO EDIT TRUYỆN TRANH',
+			value: "[FONT MTO](https://drive.google.com/open?id=1bj45GimReNulRjNWLnxERWUgTxuXC3RV 'optional hovertext')",
 		},
 		
 		
