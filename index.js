@@ -12,12 +12,13 @@ const exampleEmbed = {
 		{
 			name: 'Regular field title',
 			value: 'Some value here',
-			url: "https://blogtruyen.vn"
+
 		},
 		{
 			name: '\u200b',
 			value: '\u200b',
 			inline: false,
+			url: "https://blogtruyen.vn"
 		},
 		{
 			name: 'Regular field title',
