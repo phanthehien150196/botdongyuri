@@ -11,14 +11,14 @@ const exampleEmbed = {
 	fields: [
 		{
 			name: 'Regular field title',
-			value: 'Some value here',
+			value: "[Guide](https://discordjs.guide/ 'optional hovertext')",
 
 		},
 		{
 			name: '\u200b',
 			value: '\u200b',
 			inline: false,
-			url: "https://blogtruyen.vn"
+			//url: "https://blogtruyen.vn"
 		},
 		{
 			name: 'Regular field title',
