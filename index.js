@@ -15,10 +15,28 @@ const exampleEmbed = {
 		},
 		{
 			name: 'FONT DÀNH CHO EDIT TRUYỆN TRANH',
-			value: "[FONT MTO](https://drive.google.com/open?id=1bj45GimReNulRjNWLnxERWUgTxuXC3RV 'optional hovertext')",
+			value: "[FONT MTO](https://drive.google.com/open?id=1bj45GimReNulRjNWLnxERWUgTxuXC3RV 'optional hovertext') | [FONT TEDDY](https://drive.google.com/open?id=1mQFBxD2yFvwi7lzRsw4Hr13T_bsdls2B 'optional hovertext')",
 		},
-		
-		
+		{
+			name: 'ACTION XOÁ THOẠI',
+			value: "[Link tải](https://drive.google.com/open?id=1b5GzfECDro7Xvq7onK_C0A1TiH3wSO8W 'optional hovertext')",
+		},
+		{
+			name: 'TOOL HỖ TRỢ TYPE NHANH',
+			value: "[Link xem](https://www.youtube.com/watch?v=GwCdTkd1qdo 'optional hovertext')",
+		},
+		{
+			name: 'VIDEO HƯỚNG DẪN EDIT',
+			value: "[Link xem](https://www.youtube.com/watch?v=TYhXS6Xw1W8 'optional hovertext')",
+		},
+		{
+			name: 'CÁCH TRÌNH BÀY BẢN DỊCH',
+			value: "[Link xem](https://docs.google.com/document/d/1DyrdAYrK296BoJqgZsSQs6OsS3PpSB8AIEO5WnZj770/edit 'optional hovertext')",
+		},
+		{
+			name: 'HƯỚNG DẪN TÔ MÀU',
+			value: "[Link xem](https://forum.blogtruyen.vn/huong-dan/mod-huong-dan-to-mau-manga-48596 'optional hovertext')",
+		},
 	],
 	//timestamp: new Date(),
 	
