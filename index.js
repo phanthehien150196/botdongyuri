@@ -19,6 +19,15 @@ const exampleEmbed = {
 			inline: false,
 		},
 		{
+			name: 'Regular field title',
+			value: 'Some value here',
+		},
+		{
+			name: '\u200b',
+			value: '\u200b',
+			inline: false,
+		},
+		{
 			name: 'Inline field title',
 			value: 'Some value here',
 			inline: true,
@@ -26,10 +35,7 @@ const exampleEmbed = {
 		
 	],
 	//timestamp: new Date(),
-	footer: {
-		text: 'Some footer text here',
-		icon_url: 'https://i.imgur.com/wSTFkRM.png',
-	},
+	
 };
 
 bot.on('ready', function(){		  
