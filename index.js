@@ -10,30 +10,14 @@ const exampleEmbed = {
 	
 	fields: [
 		{
-			name: 'Regular field title',
-			value: "[Guide](https://discordjs.guide/ 'optional hovertext')",
-
+			name: 'PHOTOSHOP CS6 FULL CRACK',
+			value: "[Link tải](https://drive.google.com/open?id=1wF3G1pXiNvREJyiE1K2ru0Sa99kz3n2l 'optional hovertext')",
 		},
 		{
-			name: '\u200b',
-			value: '\u200b',
-			inline: false,
-			//url: "https://blogtruyen.vn"
+			name: 'FONT MTO',
+			value: "[Link tải](https://drive.google.com/open?id=1bj45GimReNulRjNWLnxERWUgTxuXC3RV 'optional hovertext')",
 		},
-		{
-			name: 'Regular field title',
-			value: 'Some value here',
-		},
-		{
-			name: '\u200b',
-			value: '\u200b',
-			inline: false,
-		},
-		{
-			name: 'Inline field title',
-			value: 'Some value here',
-			inline: true,
-		},
+		
 		
 	],
 	//timestamp: new Date(),
