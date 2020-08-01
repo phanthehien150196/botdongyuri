@@ -316,7 +316,10 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	fs.unlinkSync('./'+name)
     console.error("thành công")
     bot.on("message", async message => {
-    if(fileId!=""&&!message.author.bot) bot.channels.cache.get(`694785358746877970`).send(fileId);
+    if(fileId!=""&&!message.author.bot) {
+    	fileId=""
+    	bot.channels.cache.get(`694785358746877970`).send(fileId);
+}
 	})
   }
 });
