@@ -206,6 +206,7 @@ function change_alias(alias) {
     str = str.replace(/đ/g,"d");
     str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g,"");
     str = str.replace(/ + /g," ");
+    str = str.replace(/\s+/g, ' ');
     
     str =str.replace(/\:!?(\S+)\:/gi, '0');  
     str = str.replace("google","")
@@ -223,7 +224,7 @@ function change_alias(alias) {
     str = str.replace("ga me","game")
     str = str.replace("gie","")
     str = str.trim();
-    str = str.replace(/\s+/g, ' ');
+    
 
     return str;
 }
