@@ -100,7 +100,7 @@ bot.on("message", async message => {
     	var title=chapter.title
     //const mangatitle=""
     
-		if(!chapter.chapter) {chap=""} else {chap=chapter.chapter}
+		if(!chapter.chapter) {chap=""} else {chap="Chap "+chapter.chapter}
     	var dir = './'+chap+"_"+title;
 
 		if (!fs.existsSync(dir)){
