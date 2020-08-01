@@ -116,7 +116,7 @@ bot.on("message", async message => {
    		authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
       //console.log(token);
-      	message.channel.send(uploadFile(chap+"_"+title+".zip",token))
+      	uploadFile(chap+"_"+title+".zip",token)
       
     	});
     	});
@@ -315,7 +315,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	rimraf('./'+name.replace(".zip",''), function () { console.log('done'); });
   	fs.unlinkSync('./'+name)
     console.error("thành công")
-    return fileId;
+    message.channel.send(fileId);
   }
 });
 
