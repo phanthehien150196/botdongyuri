@@ -3,6 +3,7 @@ const api = require("mangadex-full-api");
 const axios = require('axios');
 var archiver = require('archiver');
 var rimraf = require('rimraf');
+var ms = require('ms');
 const { google } = require('googleapis');
 const async = require("async");
 const Discord = require("discord.js");	
