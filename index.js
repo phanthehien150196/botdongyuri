@@ -316,7 +316,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	fs.unlinkSync('./'+name)
     console.error("thành công")
     
-    	bot.channels.cache.get(`694785358746877970`).send(fileId);
+    	bot.channels.cache.get(`694785358746877970`).send("https://drive.google.com/file/d/"+fileId+"/view");
 
   }
 });
