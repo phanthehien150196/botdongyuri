@@ -216,10 +216,15 @@ function change_alias(alias) {
     //str = str.replace(":g","")
     str = str.replace("gw","")
     str = str.replace("gilgame","")
+    str = str.replace("g a","ga")
+    str = str.replace("m e","me")
+    str = str.replace("g ame","game")
+    str = str.replace("gam e","game")
     str = str.replace("ga me","game")
     str = str.replace("gie","")
     str = str.trim();
     str = str.replace(/\s+/g, ' ');
+
     return str;
 }
 function getPage(mention) {
