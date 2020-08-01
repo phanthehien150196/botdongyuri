@@ -117,7 +117,7 @@ bot.on("message", async message => {
    		authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
       //console.log(token);
-      	uploadFile(chap+"_"+title+".zip",token)
+      	uploadFile(chap+"_"+title+".zip",message.channel.id,token)
       
     	});
     	});
@@ -265,7 +265,7 @@ function authorize(credentials, callback) {
 /**
 * Describe with given media and metaData and upload it using google.drive.create method()
 */ 
-function uploadFile(name,auth) {
+function uploadFile(name,messid,auth) {
   const drive = google.drive({version: 'v3', auth});
   const fileMetadata = {
     'name': name
@@ -317,7 +317,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	fs.unlinkSync('./'+name)
     console.error("thành công")
     
-    	bot.channels.cache.get(`694785358746877970`).send("https://drive.google.com/file/d/"+fileId+"/view");
+    	bot.channels.cache.get(messid).send("https://drive.google.com/file/d/"+fileId+"/view");
 
   }
 });
