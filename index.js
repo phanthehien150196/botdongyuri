@@ -1,8 +1,33 @@
-const request = require('request');
 const fs = require('fs');
+const api = require("mangadex-full-api");
+const axios = require('axios');
+var archiver = require('archiver');
+var rimraf = require('rimraf');
+const { google } = require('googleapis');
+const async = require("async");
 const Discord = require("discord.js");	
-const axios = require("axios");		
-var bot = new Discord.Client();		
+	
+var bot = new Discord.Client();	
+// If modifying these scopes, delete token.json.
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
+const TOKEN_PATH = 'token.json';	
+const download_image = (url, image_path) =>
+  axios({
+    url,
+    responseType: 'stream',
+  }).then(
+    response =>
+      new Promise((resolve, reject) => {
+        response.data
+          .pipe(fs.createWriteStream(image_path))
+          .on('finish', () => resolve())
+          .on('error', e => reject(e));
+      }),
+  );
+
+api.agent.domainOverride = "mangadex.org";
+
+
 const exampleEmbed = {
 	color: 0x0099ff,
 	title: 'Những điều cần biết',
@@ -62,6 +87,43 @@ bot.on("message", async message => {
 	{
 
 		message.channel.send({ embed: exampleEmbed });
+
+	}
+	else if(message.content.toLowerCase().indexOf(".download")==0) 
+	{
+		var str=message.content.toLowerCase()
+		str=str.replace(".download",'').trim();
+		(async function() {
+    	const chapter = await new api.Chapter(getId(str), true);
+    	var arr=chapter.pages
+    	var title=chapter.title
+    //const mangatitle=""
+    
+		if(!chapter.chapter) {chap=""} else {chap=chapter.chapter}
+    	var dir = './'+chap+"_"+title;
+
+		if (!fs.existsSync(dir)){
+    	fs.mkdirSync(dir);
+		}
+    //console.log(getPage(arr[0]))
+    	for(let i = 0; i < arr.length; i++) {
+  			await download_image(arr[i], dir+'/'+getPage(arr[i]));
+		}
+    	await zipDirectory(dir, dir+".zip")
+    	await fs.readFile('credentials.json', (err, content) => {
+  		if (err) return console.log('Error loading client secret file:', err);
+  // Authorize a client with credentials, then call the Google Drive API.
+   		authorize(JSON.parse(content), function(token) {
+      //console.log("Got Token"); 
+      //console.log(token);
+      	message.channel.send(uploadFile(chap+"_"+title+".zip",token))
+      
+    	});
+    	});
+
+	})();
+
+
 
 	}
 	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
@@ -159,4 +221,111 @@ function change_alias(alias) {
     str = str.replace(/\s+/g, ' ');
     return str;
 }
+function getPage(mention) {
+	// The id is the first and only match found by the RegEx.
+	const matches = mention.match(/[\w-]+\.(jpg|png)/g);
+	return matches[0]
+}	
+
+function getId(mention) {
+	// The id is the first and only match found by the RegEx.
+	const matches = mention.match(/chapter\/!?([0-9]\d+)/g);
+	return matches[0].replace("chapter/",'')
+}	
+
+function zipDirectory(source, out) {
+  const archive = archiver('zip', { zlib: { level: 9 }});
+  const stream = fs.createWriteStream(out);
+ 
+  return new Promise((resolve, reject) => {
+    archive
+      .directory(source, false)
+      .on('error', err => reject(err))
+      .pipe(stream)
+    ;
+ 
+    stream.on('close', () => resolve());
+    archive.finalize();
+  });
+}
+
+function authorize(credentials, callback) {
+  const {client_secret, client_id, redirect_uris} = credentials.installed;
+  const oAuth2Client = new google.auth.OAuth2(
+      client_id, client_secret, redirect_uris[0]);
+
+  // Check if we have previously stored a token.
+  fs.readFile(TOKEN_PATH, (err, token) => {
+    if (err) return getAccessToken(oAuth2Client, callback);
+    oAuth2Client.setCredentials(JSON.parse(token));
+    callback(oAuth2Client);
+  });
+}
+/**
+* Describe with given media and metaData and upload it using google.drive.create method()
+*/ 
+function uploadFile(name,auth) {
+  const drive = google.drive({version: 'v3', auth});
+  const fileMetadata = {
+    'name': name
+  };
+  const media = {
+    mimeType: 'application/zip',
+    body: fs.createReadStream('./'+name)
+  };
+  drive.files.create({
+    resource: fileMetadata,
+    media: media,
+    fields: 'id'
+  }, (err, file) => {
+    if (err) {
+      // Handle error
+      console.error(err);
+    } else {
+      var fileId = file.data.id;  
+      console.log(fileId)
+        var permissions = [
+  {
+    'type': 'anyone',
+    'role': 'reader'
+    
+  }
+];
+// Using the NPM module 'async'
+async.eachSeries(permissions, function (permission, permissionCallback) {
+  drive.permissions.create({
+    resource: permission,
+    fileId: fileId,
+    fields: 'id',
+  }, function (err, res) {
+    if (err) {
+      // Handle error...
+      console.error(err);
+      permissionCallback(err);
+    } else {
+      //console.log('Permission ID: ', res.id)
+      permissionCallback();
+    }
+  });
+}, function (err) {
+  if (err) {
+    // Handle error
+    console.error(err);
+  } else {
+  	rimraf('./'+name.replace(".zip",''), function () { console.log('done'); });
+  	fs.unlinkSync('./'+name)
+    console.error("thành công")
+    return fileId;
+  }
+});
+
+
+
+    }
+  });
+}
+
+
+
+
 bot.login(process.env.token);

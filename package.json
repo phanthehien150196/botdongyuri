@@ -9,8 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "archiver": "^5.0.0",
+    "async": "^3.2.0",
     "axios": "^0.19.2",
     "discord.js": "^12.2.0",
-    "request": "^2.88.2"
+    "googleapis": "^39.2.0",
+    "mangadex-full-api": "^3.10.0",
+    "request": "^2.88.2",
+    "rimraf": "^3.0.2"
   }
 }
