@@ -324,7 +324,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	fs.unlinkSync('./'+name)
     //console.error("thành công")
     
-    bot.channels.cache.get(messid).send(author+" https://drive.google.com/file/d/"+fileId+"/view");
+    bot.channels.cache.get(messid).send(author+" file tồn tại tối đa 24 giờ https://drive.google.com/file/d/"+fileId+"/view");
     setTimeout(function(){
     drive.files.delete({
     	fileId: fileId
@@ -337,7 +337,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
       console.log("thành công")
     }
   })
-	}, ms("1m"));
+	}, ms("1d"));
 
   }
 });
