@@ -116,8 +116,67 @@ bot.on("message", async message => {
    		authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
       //console.log(token);
-      	uploadFile(chap+"_"+title+".zip",token)
-      
+      	//uploadFile(chap+"_"+title+".zip",token)
+      	var name=chap+"_"+title+".zip"
+      	const drive = google.drive({version: 'v3', token});
+  const fileMetadata = {
+    'name': name
+  };
+  const media = {
+    mimeType: 'application/zip',
+    body: fs.createReadStream('./'+name)
+  };
+  drive.files.create({
+    resource: fileMetadata,
+    media: media,
+    fields: 'id'
+  }, (err, file) => {
+    if (err) {
+      // Handle error
+      console.error(err);
+    } else {
+      var fileId = file.data.id;  
+      console.log(fileId)
+        var permissions = [
+  {
+    'type': 'anyone',
+    'role': 'reader'
+    
+  }
+];
+// Using the NPM module 'async'
+async.eachSeries(permissions, function (permission, permissionCallback) {
+  drive.permissions.create({
+    resource: permission,
+    fileId: fileId,
+    fields: 'id',
+  }, function (err, res) {
+    if (err) {
+      // Handle error...
+      console.error(err);
+      permissionCallback(err);
+    } else {
+      //console.log('Permission ID: ', res.id)
+      permissionCallback();
+    }
+  });
+}, function (err) {
+  if (err) {
+    // Handle error
+    console.error(err);
+  } else {
+  	rimraf('./'+name.replace(".zip",''), function () { console.log('done'); });
+  	fs.unlinkSync('./'+name)
+    console.error("thành công")
+    message.channel.send(fileId);
+  }
+});
+
+
+
+    }
+  });
+      //..........
     	});
     	});
 
