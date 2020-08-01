@@ -321,9 +321,22 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   } else {
   	rimraf('./'+name.replace(".zip",''), function () { console.log('done'); });
   	fs.unlinkSync('./'+name)
-    console.error("thành công")
+    //console.error("thành công")
     
-    	bot.channels.cache.get(messid).send(author+" https://drive.google.com/file/d/"+fileId+"/view");
+    bot.channels.cache.get(messid).send(author+" https://drive.google.com/file/d/"+fileId+"/view");
+    setTimeout(function(){
+    drive.files.delete({
+    	fileId: fileId
+    }, function (err, res) {
+    if (err) {
+      // Handle error...
+      console.error(err);
+      //permissionCallback(err);
+    } else {
+      console.log("thành công")
+    }
+  })
+	}, ms("1m"));
 
   }
 });
