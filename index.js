@@ -315,12 +315,9 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	rimraf('./'+name.replace(".zip",''), function () { console.log('done'); });
   	fs.unlinkSync('./'+name)
     console.error("thành công")
-    bot.on("message", async message => {
-    if(fileId!=""&&!message.author.bot) {
-    	fileId=""
+    
     	bot.channels.cache.get(`694785358746877970`).send(fileId);
-}
-	})
+
   }
 });
 
