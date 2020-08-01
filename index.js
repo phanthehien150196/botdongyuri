@@ -6,6 +6,7 @@ var rimraf = require('rimraf');
 const { google } = require('googleapis');
 const async = require("async");
 const Discord = require("discord.js");	
+process.setMaxListeners(0);
 	
 var bot = new Discord.Client();	
 // If modifying these scopes, delete token.json.
