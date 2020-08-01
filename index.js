@@ -106,7 +106,7 @@ bot.on("message", async message => {
 		if (!fs.existsSync(dir)){
     	fs.mkdirSync(dir);
 		}
-    //console.log(getPage(arr[0]))
+    console.log("Đang tải")
     	for(let i = 0; i < arr.length; i++) {
   			await download_image(arr[i], dir+'/'+getPage(arr[i]));
 		}
