@@ -153,6 +153,9 @@ bot.on("message", async message => {
       		message.channel.send("<@"+message.author +"> Không hiểu");
       	}
       	else{
+      		var str=response.data.success
+      		str=str.replace("sim","Mami")
+      		str=str.replace("simsimi","Mami")
       		message.channel.send("<@"+message.author +"> "+response.data.success);
       	}
       } )
