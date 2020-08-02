@@ -154,8 +154,9 @@ bot.on("message", async message => {
       	}
       	else{
       		var str=response.data.success
-      		str=str.replace("sim","Mami")
       		str=str.replace("simsimi","Mami")
+      		str=str.replace("sim","Mami")
+
       		message.channel.send("<@"+message.author +"> "+response.data.success);
       	}
       } )
