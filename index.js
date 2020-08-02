@@ -276,7 +276,8 @@ function uploadFile(name,messid,author,auth) {
   const drive = google.drive({version: 'v3', auth});
   var folderId = '1vWv1_tpO1O6dHmZ5ynRtn35iQAWitZ5U';
   const fileMetadata = {
-    'name': name
+    'name': name,
+    parents: [folderId]
   };
   const media = {
     mimeType: 'application/zip',
