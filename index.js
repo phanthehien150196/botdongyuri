@@ -155,6 +155,9 @@ bot.on("message", async message => {
       	else{
       		var str=response.data.success
       		str=str.replace("simsimi","Mami")
+      		str=str.replace("Simsimi","Mami")
+      		str=str.replace("SimSimi","Mami")
+      		str=str.replace("Sim","Mami")
       		str=str.replace("sim","Mami")
 
       		message.channel.send("<@"+message.author +"> "+str);
