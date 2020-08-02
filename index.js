@@ -274,6 +274,7 @@ function authorize(credentials, callback) {
 */ 
 function uploadFile(name,messid,author,auth) {
   const drive = google.drive({version: 'v3', auth});
+  var folderId = '1vWv1_tpO1O6dHmZ5ynRtn35iQAWitZ5U';
   const fileMetadata = {
     'name': name
   };
@@ -282,6 +283,7 @@ function uploadFile(name,messid,author,auth) {
     body: fs.createReadStream('./'+name)
   };
   drive.files.create({
+  	supportsAllDrives: true,
     resource: fileMetadata,
     media: media,
     fields: 'id'
@@ -302,6 +304,7 @@ function uploadFile(name,messid,author,auth) {
 // Using the NPM module 'async'
 async.eachSeries(permissions, function (permission, permissionCallback) {
   drive.permissions.create({
+  	supportsAllDrives: true,
     resource: permission,
     fileId: fileId,
     fields: 'id',
@@ -324,9 +327,10 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	fs.unlinkSync('./'+name)
     //console.error("thành công")
     
-    bot.channels.cache.get(messid).send(author+" file tồn tại tối đa 24 giờ https://drive.google.com/file/d/"+fileId+"/view");
-    setTimeout(function(){
+    bot.channels.cache.get(messid).send(author+" Link tải truyện https://drive.google.com/file/d/"+fileId+"/view");
+   /* setTimeout(function(){
     drive.files.delete({
+    	supportsAllDrives: true,
     	fileId: fileId
     }, function (err, res) {
     if (err) {
@@ -337,7 +341,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
       console.log("thành công")
     }
   })
-	}, ms("1d"));
+	}, ms("1d"));*/
 
   }
 });
