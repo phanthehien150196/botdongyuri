@@ -109,7 +109,7 @@ bot.on("message", async message => {
 		}
     console.log("Đang tải")
     	for(let i = 0; i < arr.length; i++) {
-  			await download_image(arr[i], dir+'/'+getPage(arr[i]));
+  			await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
 		}
     	await zipDirectory(dir, dir+".zip")
     	await fs.readFile('credentials.json', (err, content) => {
@@ -231,7 +231,7 @@ function change_alias(alias) {
 }
 function getPage(mention) {
 	// The id is the first and only match found by the RegEx.
-	const matches = mention.match(/[\w-]+\.(jpg|png)/g);
+	const matches = mention.match(/.(jpg|png|jpeg|gif)/g);
 	return matches[0]
 }	
 
