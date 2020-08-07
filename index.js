@@ -96,7 +96,7 @@ bot.on("message", async message => {
 		var str=message.content.toLowerCase()
 		str=str.replace(".download",'').trim();
 		(async function() {
-		msg = await message.channel.send("Đang lấy thông tin chap truyện")
+		msg = await message.channel.send("<@"+message.author +"> Đang lấy thông tin chap truyện")
     	const chapter = await new api.Chapter(getId(str), true);
     	var arr=chapter.pages
     	var title=chapter.title
@@ -108,18 +108,18 @@ bot.on("message", async message => {
 		if (!fs.existsSync(dir)){
     	fs.mkdirSync(dir);
 		}
-    msg.edit("Đang tải ảnh về máy chủ")
+    msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
     	for(let i = 0; i < arr.length; i++) {
   			await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
 		}
-		msg.edit("Đang nén ảnh tại máy chủ")
+		msg.edit("<@"+message.author +"> Đang nén ảnh tại máy chủ")
     	await zipDirectory(dir, dir+".zip")
     	await fs.readFile('credentials.json', (err, content) => {
   		if (err) return console.log('Error loading client secret file:', err);
   // Authorize a client with credentials, then call the Google Drive API.
    		authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
-      msg.edit("Đang upload lên google drive")
+      msg.edit("<@"+message.author +"> Đang upload lên google drive")
       	uploadFile(chap+"_"+title+".zip",message.channel.id,"<@"+message.author +">",token)
       
     	});
