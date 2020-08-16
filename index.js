@@ -70,7 +70,9 @@ const exampleEmbed = {
 };
 // Initialize the invite cache
 const invites = {};
-
+bot.on('ready', function(){		  
+	console.log("bot is now online");		
+})		
 // A pretty useful method to create a delay without blocking the whole script.
 const wait = require('util').promisify(setTimeout);
 
@@ -106,9 +108,7 @@ bot.on('guildMemberAdd', member => {
 
 
 
-bot.on('ready', function(){		  
-	console.log("bot is now online");		
-})		
+
 bot.on("message", async message => {
 	if(!message.author.bot){
 
