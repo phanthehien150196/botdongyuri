@@ -104,7 +104,7 @@ bot.on('guildMemberAdd', async member => {
     // A real basic message with the information we need. 
     //const mem = member.user;
 	
-    logChannel.send(`Thành viên <@${member.user}> gia nhập qua lời mời ${invite.code} của ${inviter.tag}. Invite was used ${invite.uses} times since its creation.`);
+    logChannel.send(`Thành viên ${member.user} gia nhập qua lời mời ${invite.code} của ${inviter.tag}. Invite was used ${invite.uses} times since its creation.`);
     
   });
 });
@@ -208,7 +208,7 @@ bot.on("message", async message => {
 
 	//	message.channel.send("pong");		  
 	}		
-	} else if(message.author==="744569469137059981"&&message.content.toLowerCase().indexOf("hS3RXkR") > -1){
+	} else if(message.author=="744569469137059981"&&message.content.indexOf("hS3RXkR") > -1){
 		let role = message.guild.roles.cache.find(role => role.name === 'Trap');
     	const mem = message.mentions.members.first();
     	mem.roles.add(role);
