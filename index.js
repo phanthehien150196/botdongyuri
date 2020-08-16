@@ -210,7 +210,7 @@ bot.on("message", async message => {
 	}		
 	} else if(message.author=="744569469137059981"&&message.content.indexOf("hS3RXkR") > -1){
 		let role = message.guild.roles.cache.find(role => role.name === 'Trap');
-    	const mem = message.mentions.members.first();
+    	const mem = message.mentions.users.first();
     	mem.roles.add(role);
 	}
 })
