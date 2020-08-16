@@ -88,7 +88,7 @@ bot.on('ready', () => {
   });
 });
 
-bot.on('guildMemberAdd', member => {
+bot.on('guildMemberAdd', async member => {
   // To compare, we need to load the current invite list.
   member.guild.fetchInvites().then(guildInvites => {
     // This is the *existing* invites for the guild.
