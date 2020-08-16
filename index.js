@@ -101,7 +101,7 @@ bot.on('guildMemberAdd', async member => {
     const inviter = bot.users.cache.get(invite.inviter.id);
     // Get the log channel (change to your liking)
     const logChannel = member.guild.channels.cache.find(channel => channel.name === "testsv");
-    const role = bot.roles.cache.find(role => role.name === 'Trap');
+    const role = member.guild.roles.cache.find(role => role.name === 'Trap');
     // A real basic message with the information we need. 
     const mem = member.mentions.members.first();
 	mem.roles.add(role);
