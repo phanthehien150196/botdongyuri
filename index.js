@@ -105,8 +105,8 @@ bot.on('guildMemberAdd', async member => {
     //const mem = member.user;
 	
     logChannel.send(`${member.user.tag} joined using invite code ${invite.code} from ${inviter.tag}. Invite was used ${invite.uses} times since its creation.`);
-    const role = member.guild.roles.cache.find(role => role.name === 'Trap');
-    member.member.roles.add(role);
+    let role = member.guild.roles.cache.find(role => role.name === 'Trap');
+    if(role) member.member.roles.add(role);
   });
 });
 
