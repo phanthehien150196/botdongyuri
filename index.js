@@ -100,7 +100,7 @@ bot.on('guildMemberAdd', async member => {
     // This is just to simplify the message being sent below (inviter doesn't have a tag property)
     const inviter = bot.users.cache.get(invite.inviter.id);
     // Get the log channel (change to your liking)
-    const logChannel = member.guild.channels.cache.find(channel => channel.name === "testsv");
+    const logChannel = member.guild.channels.cache.find(channel => channel.name === "spam");
     // A real basic message with the information we need. 
     //const mem = member.user;
 	
@@ -208,9 +208,9 @@ bot.on("message", async message => {
 
 	//	message.channel.send("pong");		  
 	}		
-	} else if(message.author=="578560798205673482"&&message.content.indexOf("hS3RXkR") > -1){
+	} else if(message.author=="578560798205673482"&&message.content.indexOf("cDyvnXw") > -1){
 		console.log("add role");
-		let role = message.guild.roles.cache.find(role => role.name === 'Trap');
+		let role = message.guild.roles.cache.find(role => role.name === 'blogsoloers');
     	const mem = message.mentions.members.first();
     	mem.roles.add(role);
 	}
