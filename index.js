@@ -221,7 +221,7 @@ bot.on("message", async message => {
     	const mem = message.mentions.members.first();
     	mem.roles.add(role);
     	let guild = await message.guild.fetchMembers();
-    	let memberCount = guild.roles.get(role).members.size;
+    	let memberCount = guild.roles.cache.get(role).members.size;
     	//message.channel.send(memberCount + " members have this role!");
 		await bot.channels.cache.get(`745158887551795291`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	}
