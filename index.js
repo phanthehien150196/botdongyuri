@@ -220,7 +220,7 @@ bot.on("message", async message => {
 		let role = message.guild.roles.cache.find(role => role.name === 'Rau Cải Đắng');
     	const mem = message.mentions.members.first();
     	mem.roles.add(role);
-    	let guild = await message.guild.fetchMembers();
+    	let guild = await message.guild.members.fetch();
     	let memberCount = guild.roles.cache.get(role).members.size;
     	//message.channel.send(memberCount + " members have this role!");
 		await bot.channels.cache.get(`745158887551795291`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
