@@ -100,11 +100,11 @@ bot.on('guildMemberAdd', async member => {
     // This is just to simplify the message being sent below (inviter doesn't have a tag property)
     const inviter = bot.users.cache.get(invite.inviter.id);
     // Get the log channel (change to your liking)
-    const logChannel = member.guild.channels.cache.find(channel => channel.name === "spam");
+    const logChannel = member.guild.channels.cache.find(channel => channel.name === "log");
     // A real basic message with the information we need. 
     //const mem = member.user;
 	
-    logChannel.send(`Thành viên ${member.user} gia nhập qua lời mời ${invite.code} của ${inviter.tag}. Invite was used ${invite.uses} times since its creation.`);
+    logChannel.send(`Thành viên ${member.user} gia nhập qua lời mời ${invite.code} của ${inviter.tag}. thành viên thứ ${invite.uses} vào từ lời mời đó.`);
     
   });
 });
@@ -208,11 +208,16 @@ bot.on("message", async message => {
 
 	//	message.channel.send("pong");		  
 	}		
-	} else if(message.author=="578560798205673482"&&message.content.indexOf("cDyvnXw") > -1){
+	} else if(message.author=="578560798205673482"){
 		console.log("add role");
-		let role = message.guild.roles.cache.find(role => role.name === 'blogsoloers');
+
+		//rau cải đắng
+		if(message.content.indexOf("cKhwHV3") > -1)
+		{
+		let role = message.guild.roles.cache.find(role => role.name === 'Rau Cải Đắng');
     	const mem = message.mentions.members.first();
     	mem.roles.add(role);
+    	}
 	}
 })
 function getUserFromMention(mention) {
