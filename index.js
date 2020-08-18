@@ -220,18 +220,19 @@ bot.on("message", async message => {
 		let role = message.guild.roles.cache.find(role => role.name === 'Rau Cải Đắng');
     	const mem = message.mentions.members.first();
     	mem.roles.add(role);
-    	let guild = await message.guild.members.fetch();
-    	let memberCount = guild.roles.get(role).members.size;
+    	//let guild = await message.guild.members.fetch();
+    	let memberCount = message.guild.roles.cache.get("745158403399221278").members.size+1;
     	//message.channel.send(memberCount + " members have this role!");
 		await bot.channels.cache.get(`745158887551795291`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	}
+    	
     	else if(message.content.indexOf("hS3RXkR") > -1)
 		{
 		let role = message.guild.roles.cache.find(role => role.name === 'Trap');
     	const mem = message.mentions.members.first();
     	mem.roles.add(role);
     	//let guild = await message.guild.members.fetch();
-    	let memberCount = await message.guild.roles.cache.get("694785358742945816").members.size;
+    	let memberCount = message.guild.roles.cache.get("694785358742945816").members.size+1;
     	//message.channel.send(memberCount + " members have this role!");
 		await bot.channels.cache.get(`694785358952660998`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	}
