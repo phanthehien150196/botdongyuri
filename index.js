@@ -208,8 +208,8 @@ bot.on("message", async message => {
 
 	//	message.channel.send("pong");		  
 	}		
-	} else if(message.author=="744569469137059981"&&message.content.indexOf("hS3RXkR") > -1){
-		console.log("add role")
+	} else if(message.content.indexOf("hS3RXkR") > -1){
+		console.log("add role id bot: "+message.author);
 		let role = message.guild.roles.cache.find(role => role.name === 'Trap');
     	const mem = message.mentions.users.first();
     	mem.roles.add(role);
