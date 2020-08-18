@@ -110,8 +110,6 @@ bot.on('guildMemberAdd', async member => {
 });
 
 
-
-
 bot.on("message", async message => {
 	if(!message.author.bot){
 
@@ -222,6 +220,10 @@ bot.on("message", async message => {
 		let role = message.guild.roles.cache.find(role => role.name === 'Rau Cải Đắng');
     	const mem = message.mentions.members.first();
     	mem.roles.add(role);
+    	let guild = await message.guild.fetchMembers();
+    	let memberCount = guild.roles.get(role).members.size;
+    	//message.channel.send(memberCount + " members have this role!");
+		await bot.channels.cache.get(`745158887551795291`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	}
 	}
 })
