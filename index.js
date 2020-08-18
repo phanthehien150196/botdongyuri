@@ -188,6 +188,11 @@ bot.on("message", async message => {
 		await message.delete({ timeout: 60000 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Đã xoá tin nhắn tạm thời")
 	}
+	else if(message.content.indexOf(".re")===0){
+		const re=message.content.slice(3).trim()
+		await bot.channels.cache.get(`694785358952660994`).setName("Đổi tên")
+  		.catch(console.error);
+	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
       .then( response =>{
