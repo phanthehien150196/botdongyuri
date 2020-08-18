@@ -7,7 +7,7 @@ var ms = require('ms');
 const { google } = require('googleapis');
 const async = require("async");
 const Discord = require("discord.js");	
-require('events').EventEmitter.prototype._maxListeners = 100;
+require('events').EventEmitter.prototype._maxListeners = 1000;
 	
 var bot = new Discord.Client();	
 // If modifying these scopes, delete token.json.
