@@ -241,6 +241,7 @@ bot.on("message", async message => {
 		await bot.channels.cache.get(`694785358952660998`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	})
     	}
+    	else if(message.content.indexOf("drive.google") === -1) await message.delete({ timeout: 20000 });
 	}
 })
 function getUserFromMention(mention) {
