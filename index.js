@@ -225,6 +225,10 @@ bot.on("message", async message => {
     	//message.channel.send(memberCount + " members have this role!");
 		await bot.channels.cache.get(`745158887551795291`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	}
+    	else if(message.content.toLowerCase().indexOf("discord.gg") > -1)
+		{
+			message.delete({ timeout: 1 });
+		}
     	
     	else if(message.content.indexOf("hS3RXkR") > -1)
 		{
