@@ -210,8 +210,8 @@ bot.on("message", async message => {
       } )
 
 	//	message.channel.send("pong");		  
-	}		
-	} else if(message.author=="578560798205673482"){
+	}		//578560798205673482
+	} else if(message.author=="746069396170211358"){
 		console.log("add role");
 
 		//rau cải đắng
