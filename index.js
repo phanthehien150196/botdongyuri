@@ -195,6 +195,12 @@ bot.on("message", async message => {
   		.catch(console.error);*/
   	bot.once('ready', async () => {
 	const channel = bot.channels.cache.get('694785358952660992');
+	channel.createWebhook('Mami', {
+ 	avatar: 'https://i.imgur.com/mI8XcpG.jpg',
+  	reason: 'Needed a cool new Webhook'
+	})
+  	.then(console.log)
+  	.catch(console.error)
 	try {
 		const webhooks = await channel.fetchWebhooks();
 		const webhook = webhooks.first();
