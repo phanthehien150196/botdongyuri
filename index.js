@@ -190,6 +190,7 @@ bot.on("message", async message => {
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Đã xoá tin nhắn tạm thời")
 	}
 	else if(message.content.indexOf(".re")===0){
+		console.log(".re")
 		/*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
   		.catch(console.error);*/
@@ -211,7 +212,7 @@ bot.on("message", async message => {
 			embeds: [embed],
 		});
 	} catch (error) {
-		console.error('Error trying to send: ', error);
+		console.log('Error trying to send: ', error);
 	}
 	});
 
