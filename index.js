@@ -237,7 +237,7 @@ bot.on("message", async message => {
 		const webhooks = await channel.fetchWebhooks();
 		const webhook = webhooks.first();
 
-		await webhook.send('Gei', {
+		await webhook.send("I'm Gei", {
 			username: nick,
 			avatarURL: avatar,
 			
