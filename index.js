@@ -29,6 +29,9 @@ const download_image = (url, image_path) =>
 
 api.agent.domainOverride = "mangadex.org";
 
+const embed = new Discord.MessageEmbed()
+	.setTitle('Some Title')
+	.setColor('#0099ff');
 
 const exampleEmbed = {
 	color: 0x0099ff,
@@ -187,9 +190,26 @@ bot.on("message", async message => {
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Đã xoá tin nhắn tạm thời")
 	}
 	else if(message.content.indexOf(".re")===0){
-		const re=message.content.slice(3).trim()
+		/*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
-  		.catch(console.error);
+  		.catch(console.error);*/
+  	bot.once('ready', async () => {
+	const channel = bot.channels.cache.get('694785358952660992');
+	try {
+		const webhooks = await channel.fetchWebhooks();
+		const webhook = webhooks.first();
+
+		await webhook.send('Webhook test', {
+			username: 'afang',
+			avatarURL: 'https://cdn.discordapp.com/attachments/694785358952660992/745085971917439017/unknown.png',
+			embeds: [embed],
+		});
+	} catch (error) {
+		console.error('Error trying to send: ', error);
+	}
+	});
+
+
 	}
 	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
