@@ -173,7 +173,7 @@ bot.on("message", async message => {
 	}
 	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
-		message.channel.send(message.guild.members.get(message.author.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
+		message.channel.send(message.guild.members.cache.get(message.author.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 	}
 	else if(getGame(change_alias(message.content)) !=false&&message.author.id!="574602677929902080"&&message.channel.id =="533170013129932801"&&message.member.roles.cache.some(r => r.name === "Mod")==false){
 		 //console.log(change_alias(message.content))
