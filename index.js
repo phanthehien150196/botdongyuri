@@ -227,12 +227,12 @@ bot.on("message", async message => {
 		let avatar = user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })
 		//message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
 		const channel = bot.channels.cache.get(message.channel.id);
-	channel.createWebhook('Mami', {
+	/*channel.createWebhook('Mami', {
  	avatar: 'https://i.imgur.com/mI8XcpG.jpg',
   	reason: 'Webhook of Afang'
 	})
   	.then(console.log)
-  	.catch(console.error)
+  	.catch(console.error)*/
 	try {
 		const webhooks = await channel.fetchWebhooks();
 		const webhook = webhooks.first();
