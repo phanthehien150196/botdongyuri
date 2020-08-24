@@ -114,7 +114,7 @@ bot.on('guildMemberAdd', async member => {
 
 
 bot.on("message", async message => {
-	if (message.webhookID) {message.delete({ timeout: 3000 })};
+	//if (message.webhookID) {message.delete({ timeout: 3000 })};
 	if(!message.author.bot){
 
 		bot.on('messageUpdate', (oldMessage, newMessage) => {
