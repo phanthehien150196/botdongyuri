@@ -191,25 +191,7 @@ bot.on("message", async message => {
 	}
 	else if(message.content.indexOf(".re")===0){
 		console.log(".re")
-		const channel = bot.channels.cache.get('694785358952660992');
-	channel.createWebhook('Mami', {
- 	avatar: 'https://i.imgur.com/mI8XcpG.jpg',
-  	reason: 'Needed a cool new Webhook'
-	})
-  	.then(console.log)
-  	.catch(console.error)
-	try {
-		const webhooks = await channel.fetchWebhooks();
-		const webhook = webhooks.first();
-
-		await webhook.send('Webhook test', {
-			username: 'afang',
-			avatarURL: 'https://cdn.discordapp.com/attachments/694785358952660992/745085971917439017/unknown.png',
-			embeds: [embed],
-		});
-	} catch (error) {
-		console.log('Error trying to send: ', error);
-	}
+		
 		/*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
   		.catch(console.error);*/
@@ -219,7 +201,7 @@ bot.on("message", async message => {
 
 
 	}
-	else if(message.content.indexOf(".") === 0){ console.log(message.content.slice(1).trim())
+	else if(message.content.indexOf(".") === 0){ 
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
       .then( response =>{
       	if(response.data.success=="") {
@@ -238,8 +220,34 @@ bot.on("message", async message => {
       } )
 
 	//	message.channel.send("pong");		  
-	}		//578560798205673482
-	} else if(message.author=="746069396170211358"){
+	}		
+	else if(getUserFromMention(message.content)!=false) {
+		let user = message.mentions.users.first();
+		let nick=message.guild.members.cache.get(user.id).displayName
+		let avatar = user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })
+		//message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
+		const channel = bot.channels.cache.get(message.channel.id);
+	channel.createWebhook('Mami', {
+ 	avatar: 'https://i.imgur.com/mI8XcpG.jpg',
+  	reason: 'Webhook of Afang'
+	})
+  	.then(console.log)
+  	.catch(console.error)
+	try {
+		const webhooks = await channel.fetchWebhooks();
+		const webhook = webhooks.first();
+
+		await webhook.send('Gei', {
+			username: nick,
+			avatarURL: avatar,
+			
+		});
+	} catch (error) {
+		console.log('Error trying to send: ', error);
+	}
+
+	}
+	} else if(message.author=="578560798205673482"){
 		console.log("add role");
 
 		//rau cải đắng
@@ -274,16 +282,16 @@ bot.on("message", async message => {
 })
 function getUserFromMention(mention) {
 	// The id is the first and only match found by the RegEx.
-	const matches = mention.match(/<@!?(\d+)>/);
+	const matches = mention.match(/<@!?(\d+)>/gi);
 
 	// If supplied variable was not a mention, matches will be null instead of an array.
-	if (!matches) return;
+	if (!matches) return false;
 
 	// However the first element in the matches array will be the entire mention, not just the ID,
 	// so use index 1.
-	const id = matches[1];
+	//const id = matches[1];
 
-	return id;
+	else return matches[1];
 }	
 
 function getGame(mention) {
