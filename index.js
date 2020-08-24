@@ -202,6 +202,12 @@ bot.on("message", async message => {
 
 	}
 	else if(message.content.indexOf(".") === 0){ 
+	let user = message.mentions.users.first();
+		let nick=message.guild.members.cache.get(user.id).displayName
+		let avatar = user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })
+		//message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
+		const channel = bot.channels.cache.get(message.channel.id);
+		
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
       .then( response =>{
       	if(response.data.success=="") {
@@ -222,29 +228,58 @@ bot.on("message", async message => {
 	//	message.channel.send("pong");		  
 	}		
 	else if(getUserFromMention(message.content)!=false) {
-		let user = message.mentions.users.first();
-		let nick=message.guild.members.cache.get(user.id).displayName
-		let avatar = user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })
-		//message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
-		const channel = bot.channels.cache.get(message.channel.id);
-		channel.createWebhook('Mami', {
- 		avatar: 'https://i.imgur.com/mI8XcpG.jpg',
-  		reason: 'Webhook of Afang'
-		})
-  		.then(console.log)
-  		.catch(console.error)
-	try {
-		const webhooks = await channel.fetchWebhooks();
-		const webhook = webhooks.first();
+	stro =message.content.replace(/<@!?(\d+)>/gi, '');
+	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(stro.trim())+'&lang=vi')
+      .then( response =>{
+      	if(response.data.success=="") {
+      		channel.createWebhook('Mami', {
+ 			avatar: 'https://i.imgur.com/mI8XcpG.jpg',
+  			reason: 'Webhook of Afang'
+			})
+  			.then(console.log)
+  			.catch(console.error)
+			try {
+			const webhooks = await channel.fetchWebhooks();
+			const webhook = webhooks.first();
 
-		await webhook.send("I'm Gei", {
+			await webhook.send("I'm Gei", {
 			username: nick,
 			avatarURL: avatar,
 			
-		});
-	} catch (error) {
+			});
+		} catch (error) {
 		console.log('Error trying to send: ', error);
-	}
+		}	
+      	}
+      	else{
+      		var str=response.data.success
+      		str=str.replace("simsimi",nick)
+      		str=str.replace("Simsimi",nick)
+      		str=str.replace("SimSimi",nick)
+      		str=str.replace("Sim",nick)
+      		str=str.replace("sim",nick)
+
+      			channel.createWebhook('Mami', {
+ 			avatar: 'https://i.imgur.com/mI8XcpG.jpg',
+  			reason: 'Webhook of Afang'
+			})
+  			.then(console.log)
+  			.catch(console.error)
+			try {
+			const webhooks = await channel.fetchWebhooks();
+			const webhook = webhooks.first();
+
+			await webhook.send(str, {
+			username: nick,
+			avatarURL: avatar,
+			
+			});
+			} catch (error) {
+			console.log('Error trying to send: ', error);
+			}
+      	}//
+      	} )
+		
 
 	}
 	} else if(message.author=="578560798205673482"){
