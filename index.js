@@ -191,11 +191,7 @@ bot.on("message", async message => {
 	}
 	else if(message.content.indexOf(".re")===0){
 		console.log(".re")
-		/*const re=message.content.slice(3).trim()
-		await bot.channels.cache.get(`694785358952660998`).setName(re)
-  		.catch(console.error);*/
-  	bot.once('ready', async () => {
-	const channel = bot.channels.cache.get('694785358952660992');
+		const channel = bot.channels.cache.get('694785358952660992');
 	channel.createWebhook('Mami', {
  	avatar: 'https://i.imgur.com/mI8XcpG.jpg',
   	reason: 'Needed a cool new Webhook'
@@ -214,6 +210,11 @@ bot.on("message", async message => {
 	} catch (error) {
 		console.log('Error trying to send: ', error);
 	}
+		/*const re=message.content.slice(3).trim()
+		await bot.channels.cache.get(`694785358952660998`).setName(re)
+  		.catch(console.error);*/
+  	bot.once('ready', async () => {
+	
 	});
 
 
