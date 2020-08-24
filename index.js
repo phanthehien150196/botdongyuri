@@ -202,12 +202,7 @@ bot.on("message", async message => {
 
 	}
 	else if(message.content.indexOf(".") === 0){ 
-	let user = message.mentions.users.first();
-		let nick=message.guild.members.cache.get(user.id).displayName
-		let avatar = user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })
-		//message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
-		const channel = bot.channels.cache.get(message.channel.id);
-		
+	
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
       .then( response =>{
       	if(response.data.success=="") {
@@ -228,6 +223,12 @@ bot.on("message", async message => {
 	//	message.channel.send("pong");		  
 	}		
 	else if(getUserFromMention(message.content)!=false) {
+		let user = message.mentions.users.first();
+		let nick=message.guild.members.cache.get(user.id).displayName
+		let avatar = user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })
+		//message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
+		const channel = bot.channels.cache.get(message.channel.id);
+		
 	stro =message.content.replace(/<@!?(\d+)>/gi, '');
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(stro.trim())+'&lang=vi')
       .then( async response =>{
