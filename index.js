@@ -230,7 +230,7 @@ bot.on("message", async message => {
 	else if(getUserFromMention(message.content)!=false) {
 	stro =message.content.replace(/<@!?(\d+)>/gi, '');
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(stro.trim())+'&lang=vi')
-      .then( response =>{
+      .then( async response =>{
       	if(response.data.success=="") {
       		channel.createWebhook('Mami', {
  			avatar: 'https://i.imgur.com/mI8XcpG.jpg',
