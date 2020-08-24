@@ -223,7 +223,7 @@ bot.on("message", async message => {
 
 	//	message.channel.send("pong");		  
 	}		
-	else if(getUserFromMention(message.content)!=false) {
+	/*else if(getUserFromMention(message.content)!=false) {
 		let user = message.mentions.users.first();
 		let nick=message.guild.members.cache.get(user.id).displayName
 		let avatar = user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })
@@ -283,7 +283,7 @@ bot.on("message", async message => {
       	} )
 		
 
-	}
+	}*/
 	} else if(message.author=="578560798205673482"){
 		console.log("add role");
 
