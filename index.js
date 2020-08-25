@@ -196,11 +196,7 @@ bot.on("message", async message => {
 		/*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
   		.catch(console.error);*/
-  	bot.once('ready', async () => {
-	
-	});
-
-
+  	
 	}
 	else if(message.content.indexOf(".") === 0){ 
 	
