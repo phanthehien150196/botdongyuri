@@ -163,7 +163,7 @@ bot.on("message", async message => {
       //console.log("Got Token"); 
       msg.edit("<@"+message.author +"> Đang upload lên google drive")
       	uploadFile(chap+"_"+title+".zip",message.channel.id,"<@"+message.author +">",token)
-      	message.delete({ timeout: 1 });
+      	msg.delete({ timeout: 1 });
     	});
     	});
 
