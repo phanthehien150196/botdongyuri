@@ -162,8 +162,8 @@ bot.on("message", async message => {
    		authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
       msg.edit("<@"+message.author +"> Đang upload lên google drive")
-      	uploadFile(chap+"_"+title+".zip",message.channel.id,"<@"+message.author +">",token)
-      	msg.delete({ timeout: 1 });
+      	uploadFile(msg,chap+"_"+title+".zip",message.channel.id,"<@"+message.author +">",token)
+      	
     	});
     	});
 
@@ -428,7 +428,7 @@ function authorize(credentials, callback) {
 /**
 * Describe with given media and metaData and upload it using google.drive.create method()
 */ 
-function uploadFile(name,messid,author,auth) {
+function uploadFile(msg,name,messid,author,auth) {
   const drive = google.drive({version: 'v3', auth});
   var folderId = '1vWv1_tpO1O6dHmZ5ynRtn35iQAWitZ5U';
   const fileMetadata = {
@@ -485,6 +485,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
     //console.error("thành công")
     
     bot.channels.cache.get(messid).send(author+" Link tải truyện https://drive.google.com/file/d/"+fileId+"/view");
+   	msg.delete({ timeout: 1 });
    /* setTimeout(function(){
     drive.files.delete({
     	supportsAllDrives: true,
