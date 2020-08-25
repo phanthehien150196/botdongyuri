@@ -447,7 +447,7 @@ function uploadFile(msg,name,messid,author,auth) {
   }, (err, file) => {
     if (err) {
       // Handle error
-      console.error(err);
+      msg.edit("<@"+message.author +"> Lỗi! Xin hãy thử lại")
     } else {
       var fileId = file.data.id;  
       console.log(fileId)
@@ -468,7 +468,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   }, function (err, res) {
     if (err) {
       // Handle error...
-      console.error(err);
+      msg.edit("<@"+message.author +"> Lỗi! Xin hãy thử lại")
       permissionCallback(err);
     } else {
       //console.log('Permission ID: ', res.id)
@@ -478,7 +478,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
 }, function (err) {
   if (err) {
     // Handle error
-    console.error(err);
+    msg.edit("<@"+message.author +"> Lỗi! Xin hãy thử lại")
   } else {
   	rimraf('./'+name.replace(".zip",''), function () { console.log('done'); });
   	fs.unlinkSync('./'+name)
