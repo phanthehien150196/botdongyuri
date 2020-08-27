@@ -239,7 +239,8 @@ axios.get(link)
             }
         })
         console.log(diem)
-        message.channel.send("<@"+message.author +"> ĐIỂM THI TỐT NGHIỆP THPT 2020\n"+diem);
+        if(diem!="") message.channel.send("<@"+message.author +"> ĐIỂM THI TỐT NGHIỆP THPT 2020\n"+diem);
+        else message.channel.send("<@"+message.author +"> Số báo danh không hợp lệ")
     })
     
   }
