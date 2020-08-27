@@ -363,7 +363,7 @@ axios.get(link)
 		await bot.channels.cache.get(`694785358952660998`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	})
     	}
-    	else if(message.content.indexOf("drive.google") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 20000 });
+    	else if(message.content.indexOf("drive.google") === -1&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 20000 });
 	}
 })
 function getUserFromMention(mention) {
