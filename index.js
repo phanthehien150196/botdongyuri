@@ -217,7 +217,7 @@ axios.get(link)
                 diem=diem+"Văn: "+scores[i]+"\n"
             }
             else if (each === 'Ngoại_ngữ') {
-                diem=diem+"Ngoại ngữ: "+scores[i]+"\n"
+               if(scores[i]!="0") diem=diem+"Ngoại ngữ: "+scores[i]+"\n"
             }
             else if (each === 'Lí') {
                 if(scores[i]!="0") diem=diem+"Lí: "+scores[i]+"\n"
