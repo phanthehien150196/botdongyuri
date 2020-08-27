@@ -192,6 +192,7 @@ bot.on("message", async message => {
 	}
   else if(message.content.toLowerCase().indexOf(".diem") ===0){
     let diem=""
+    msgdiem=message.channel.send("<@"+message.author +"> Đang xử lý dữ liệu...")
     maSo=message.content.slice(5).trim()
 let link=`https://diemthi.tuoitre.vn/kythi2020.html?FiledValue=`+maSo+`&MaTruong=diemthi`
 const regSubject = /<td class="red">([^\/]*)<\/td>/gm
@@ -238,9 +239,9 @@ axios.get(link)
                 if(scores[i]!="0") diem=diem+"GDCD: "+scores[i]+"\n"
             }
         })
-        console.log(diem)
-        if(diem!="") message.channel.send("<@"+message.author +"> ĐIỂM THI TỐT NGHIỆP THPT 2020\n"+diem);
-        else message.channel.send("<@"+message.author +"> Số báo danh không hợp lệ")
+        //console.log(diem)
+        if(diem!="") msgdiem.edit("<@"+message.author +"> ĐIỂM THI TỐT NGHIỆP THPT 2020\n"+diem);
+        else msgdiem.edit("<@"+message.author +"> Số báo danh không hợp lệ")
     })
     
   }
