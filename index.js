@@ -192,7 +192,7 @@ bot.on("message", async message => {
 	}
   else if(message.content.toLowerCase().indexOf(".diem") ===0){
     diem=diemThi(message.content.slice(5).trim())
-    message.channel.send("<@"+message.author +">\n"+diem);
+    await message.channel.send("<@"+message.author +">\n"+diem);
   }
 	else if(message.content.indexOf(".re")===0){
 		console.log(".re")
