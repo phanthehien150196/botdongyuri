@@ -190,6 +190,10 @@ bot.on("message", async message => {
 		await message.delete({ timeout: 60000 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Đã xoá tin nhắn tạm thời")
 	}
+  else if(message.content.toLowerCase().indexOf(".diem") ===0){
+    diem=diemThi(message.content.slice(5).trim())
+    message.channel.send("<@"+message.author +">\n"+diem);
+  }
 	else if(message.content.indexOf(".re")===0){
 		console.log(".re")
 		
@@ -380,6 +384,57 @@ function change_alias(alias) {
     
 
     return str;
+}
+function diemThi(maSo){
+let diem=""
+let link=`https://diemthi.tuoitre.vn/kythi2020.html?FiledValue=`+maSo+`&MaTruong=diemthi`
+const regSubject = /<td class="red">([^\/]*)<\/td>/gm
+const regScore = /<td class="color-red">([^\/]*)<\/td>/gm
+const headers = ['SBD', 'Toán', 'Văn', 'Ngoại Ngữ', 'Lí', 'Hoá', 'Sinh', 'Sử', 'Địa', 'GDCD']
+
+axios.get(link)
+    .then(res => {
+        const data = res.data
+        const subjects = []
+        const scores = []
+        let result = Array(9).fill(0)
+        data.replace(regSubject, (match, group) => subjects.push(group))
+        data.replace(regScore, (match, group) => {
+            if(group === '-') scores.push(0)
+            else scores.push(parseFloat(group))
+        })
+        subjects.forEach((each, i) => {
+            if (each === 'Toán') {
+                diem="Toán: "+scores[i]+"\n"
+            }
+            else if (each === 'Văn') {
+                diem=diem+"Văn: "+scores[i]+"\n"
+            }
+            else if (each === 'Ngoại_ngữ') {
+                diem=diem+"Ngoại ngữ: "+scores[i]+"\n"
+            }
+            else if (each === 'Lí') {
+                if(scores[i]!="0") diem=diem+"Lí: "+scores[i]+"\n"
+            }
+            else if (each === 'Hóa')  {
+                if(scores[i]!="0") diem=diem+"Hoá: "+scores[i]+"\n"
+            }
+            else if (each === 'Sinh')  {
+                if(scores[i]!="0") diem=diem+"Sinh: "+scores[i]+"\n"
+            }
+            else if (each === 'Sử')  {
+                if(scores[i]!="0") diem=diem+"Sử: "+scores[i]+"\n"
+            }
+            else if (each === 'Địa')  {
+                if(scores[i]!="0") diem=diem+"Địa: "+scores[i]+"\n"
+            }
+            else if (each === 'GDCD')  {
+                if(scores[i]!="0") diem=diem+"GDCD: "+scores[i]+"\n"
+            }
+        })
+        console.log(diem)
+        return diem
+    })
 }
 function getPage(mention) {
 	// The id is the first and only match found by the RegEx.
