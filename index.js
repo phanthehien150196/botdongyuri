@@ -239,7 +239,7 @@ axios.get(link)
             }
         })
         console.log(diem)
-        message.channel.send("<@"+message.author +">\n"+diem);
+        message.channel.send("<@"+message.author +"> ĐIỂM THI TỐT NGHIỆP THPT 2020\n"+diem);
     })
     
   }
