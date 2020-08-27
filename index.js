@@ -191,8 +191,8 @@ bot.on("message", async message => {
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Đã xoá tin nhắn tạm thời")
 	}
   else if(message.content.toLowerCase().indexOf(".diem") ===0){
-    diem=diemThi(message.content.slice(5).trim())
-    await message.channel.send("<@"+message.author +">\n"+diem);
+    const diem=diemThi(message.content.slice(5).trim())
+    await message.channel.send("<@"+message.author +">\n"+String(diem));
   }
 	else if(message.content.indexOf(".re")===0){
 		console.log(".re")
