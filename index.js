@@ -192,7 +192,7 @@ bot.on("message", async message => {
 	}
   else if(message.content.toLowerCase().indexOf(".diem") ===0){
     let diem=""
-    msgdiem=message.channel.send("<@"+message.author +"> Đang xử lý dữ liệu...")
+    msgdiem=await message.channel.send("<@"+message.author +"> Đang xử lý dữ liệu...")
     maSo=message.content.slice(5).trim()
 let link=`https://diemthi.tuoitre.vn/kythi2020.html?FiledValue=`+maSo+`&MaTruong=diemthi`
 const regSubject = /<td class="red">([^\/]*)<\/td>/gm
