@@ -174,7 +174,7 @@ bot.on("message", async message => {
     await axios.get(str)
     .then(async res => {
         const data = res.data
-        var arr=getArrMangakakalot(data)
+        arr=getArrMangakakalot(data)
         var name=getNameChapterMangakakalot(str)
         console.log("tên chapter là: "+name)
         console.log("Chapter có số trang là: "+arr[0].value)
