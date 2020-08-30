@@ -210,7 +210,7 @@ bot.on("message", async message => {
         }
     })
 
-  } else return false
+  } else {msg.edit("<@"+message.author +"> Sai link truyện. Nhập đúng đường dẫn chapter của 1 trong những web truyện sau\nMangadex.org\nMangakakalot.com\nManganelo.com");return false}
     
 
 		msg.edit("<@"+message.author +"> Đang nén ảnh tại máy chủ")
