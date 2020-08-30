@@ -17,6 +17,9 @@ const download_image = (url, image_path) =>
   axios({
     url,
     responseType: 'stream',
+    headers : {
+      'Referer': 'https://mangakakalot.com'
+    }
   }).then(
     response =>
       new Promise((resolve, reject) => {
@@ -144,6 +147,7 @@ bot.on("message", async message => {
     var arr
     var title="_"
     var chap=""
+    //mangadex
     if(str.indexOf("mangadex.org")>=0){
     	const chapter = await new api.Chapter(getId(str), true);
     	arr=chapter.pages
@@ -156,13 +160,35 @@ bot.on("message", async message => {
 		if (!fs.existsSync(dir)){
     	fs.mkdirSync(dir);
 		}
-  }
     msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
-    console.log(arr)
-    	for(let i = 0; i < arr.length; i++) {
+    //console.log(arr)
+      for(let i = 0; i < arr.length; i++) {
 
-  			await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
-		}
+        await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
+    }
+  } 
+  //mangakakalot
+  else if(str.indexOf("mangakakalot.com")>=0){
+    await axios.get(str)
+    .then(async res => {
+        const data = res.data
+        var arr=getArrMangakakalot(data)
+        var name=getNameChapterMangakakalot(link)
+        console.log("tên chapter là: "+name)
+        console.log("Chapter có số trang là: "+arr[0].value)
+        dir = './'+name;
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+        msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
+        for(let i = 0; i < arr.length; i++) {
+        await download_image(arr[i].value, dir+'/'+i+getPage(arr[i].value));
+        }
+    })
+
+  }
+    
 
 		msg.edit("<@"+message.author +"> Đang nén ảnh tại máy chủ")
     	await zipDirectory(dir, dir+".zip")
@@ -172,7 +198,7 @@ bot.on("message", async message => {
    		authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
       msg.edit("<@"+message.author +"> Đang upload lên google drive")
-      	uploadFile(msg,chap+"_"+title+".zip",message.channel.id,"<@"+message.author +">",token)
+      	uploadFile(msg,dir.replace("./","")+".zip",message.channel.id,"<@"+message.author +">",token)
       	
     	});
     	});
@@ -508,11 +534,22 @@ function getId(mention) {
 	const matches = mention.match(/chapter\/!?([0-9]\d+)/g);
 	return matches[0].replace("chapter/",'')
 }	
-function getNameChapteMangakakalot(mention) {
-  // The id is the first and only match found by the RegEx.
-  const matches = mention.match(/chapter_([0-9]*)/gi);
+function getNameChapterMangakakalot(link){
+  const matches = link.match(/chapter_([0-9]*)/gi);
   return matches[0]
-} 
+}
+function getArrMangakakalot(data){
+  var doc = new dom({
+        locator: {},
+        errorHandler: { warning: function (w) { }, 
+        error: function (e) { }, 
+        fatalError: function (e) { console.error(e) } }
+        }).parseFromString(data);
+
+        var nodes = xpath.select(`/html/body/div[1]/div[3]/img/@src`, doc)
+        return nodes
+}
+
 
 function zipDirectory(source, out) {
   const archive = archiver('zip', { zlib: { level: 9 }});
