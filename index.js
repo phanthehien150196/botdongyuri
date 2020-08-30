@@ -7,6 +7,8 @@ var ms = require('ms');
 const { google } = require('googleapis');
 const async = require("async");
 const Discord = require("discord.js");	
+var xpath = require('xpath')
+  , dom = require('xmldom').DOMParser
 require('events').EventEmitter.prototype._maxListeners = 1000;
 	
 var bot = new Discord.Client();	
