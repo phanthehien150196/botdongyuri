@@ -141,12 +141,12 @@ bot.on("message", async message => {
 		
     msg = await message.channel.send("<@"+message.author +"> Đang lấy thông tin chap truyện")
     var dir="Chapter"
-    var arr=[]
+    var arr
     var title="_"
     var chap=""
     if(str.indexOf("mangadex.org")>=0){
     	const chapter = await new api.Chapter(getId(str), true);
-    	arr.push(chapter.pages)
+    	arr=chapter.pages
     	console.log(arr)
       title=chapter.title
     
