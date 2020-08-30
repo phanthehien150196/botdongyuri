@@ -147,7 +147,8 @@ bot.on("message", async message => {
     if(str.indexOf("mangadex.org")>=0){
     	const chapter = await new api.Chapter(getId(str), true);
     	arr.push(chapter.pages)
-    	title=chapter.title
+    	console.log(arr)
+      title=chapter.title
     
 		if(!chapter.chapter) {chap=""} else {chap="Chap "+chapter.chapter}
     	dir = './'+chap+"_"+title;
@@ -158,6 +159,7 @@ bot.on("message", async message => {
   }
     msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
     	for(let i = 0; i < arr.length; i++) {
+
   			await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
 		}
 
