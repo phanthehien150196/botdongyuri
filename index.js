@@ -190,6 +190,27 @@ bot.on("message", async message => {
     })
 
   }
+  //manganelo.com
+  else if(str.indexOf("manganelo.com")>=0){
+    await axios.get(str)
+    .then(async res => {
+        const data = res.data
+        var arr=getArrManganelo(data)
+        var name=getNameChapterMangakakalot(str)
+        console.log("tên chapter là: "+name)
+        console.log("Chapter có số trang là: "+arr[0].value)
+        dir = './'+name;
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+        msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
+        for(let i = 0; i < arr.length; i++) {
+        await download_image(arr[i].value, dir+'/'+i+getPage(arr[i].value));
+        }
+    })
+
+  }
     
 
 		msg.edit("<@"+message.author +"> Đang nén ảnh tại máy chủ")
@@ -551,7 +572,17 @@ function getArrMangakakalot(data){
         var nodes = xpath.select(`//*[@id="vungdoc"]/img/@src`, doc)
         return nodes
 }
+function getArrManganelo(data){
+  var doc = new dom({
+        locator: {},
+        errorHandler: { warning: function (w) { }, 
+        error: function (e) { }, 
+        fatalError: function (e) { console.error(e) } }
+        }).parseFromString(data);
 
+        var nodes = xpath.select(`/html/body/div[1]/div[3]/img/@src`, doc)
+        return nodes
+}
 
 function zipDirectory(source, out) {
   const archive = archiver('zip', { zlib: { level: 9 }});
