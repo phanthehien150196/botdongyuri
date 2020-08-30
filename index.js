@@ -138,22 +138,29 @@ bot.on("message", async message => {
 		var str=message.content.toLowerCase()
 		str=str.replace(".download",'').trim();
 		(async function() {
-		msg = await message.channel.send("<@"+message.author +"> Đang lấy thông tin chap truyện")
+		
+    msg = await message.channel.send("<@"+message.author +"> Đang lấy thông tin chap truyện")
+    var dir="Chapter"
+    var arr=[]
+    var title="_"
+    var chap=""
+    if(str.indexOf("mangadex.org")>=0){
     	const chapter = await new api.Chapter(getId(str), true);
-    	var arr=chapter.pages
-    	var title=chapter.title
-    //const mangatitle=""
+    	arr.push(chapter.pages)
+    	title=chapter.title
     
 		if(!chapter.chapter) {chap=""} else {chap="Chap "+chapter.chapter}
-    	var dir = './'+chap+"_"+title;
+    	dir = './'+chap+"_"+title;
 
 		if (!fs.existsSync(dir)){
     	fs.mkdirSync(dir);
 		}
+  }
     msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
     	for(let i = 0; i < arr.length; i++) {
   			await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
 		}
+
 		msg.edit("<@"+message.author +"> Đang nén ảnh tại máy chủ")
     	await zipDirectory(dir, dir+".zip")
     	await fs.readFile('credentials.json', (err, content) => {
@@ -498,6 +505,11 @@ function getId(mention) {
 	const matches = mention.match(/chapter\/!?([0-9]\d+)/g);
 	return matches[0].replace("chapter/",'')
 }	
+function getNameChapteMangakakalot(mention) {
+  // The id is the first and only match found by the RegEx.
+  const matches = mention.match(/chapter_([0-9]*)/gi);
+  return matches[0]
+} 
 
 function zipDirectory(source, out) {
   const archive = archiver('zip', { zlib: { level: 9 }});
