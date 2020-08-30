@@ -146,13 +146,13 @@ bot.on("message", async message => {
 		
     msg = await message.channel.send("<@"+message.author +"> Đang lấy thông tin chap truyện")
     var dir="Chapter"
-    var arr
+    //var arr
     var title="_"
     var chap=""
     //mangadex
     if(str.indexOf("mangadex.org")>=0){
     	const chapter = await new api.Chapter(getId(str), true);
-    	arr=chapter.pages
+    	var arr=chapter.pages
     	console.log(arr)
       title=chapter.title
     
@@ -174,7 +174,7 @@ bot.on("message", async message => {
     await axios.get(str)
     .then(async res => {
         const data = res.data
-        arr=getArrMangakakalot(data)
+        var arr=getArrMangakakalot(data)
         var name=getNameChapterMangakakalot(str)
         console.log("tên chapter là: "+name)
         console.log("Chapter có số trang là: "+arr[0].value)
@@ -548,7 +548,7 @@ function getArrMangakakalot(data){
         fatalError: function (e) { console.error(e) } }
         }).parseFromString(data);
 
-        var nodes = xpath.select(`/html/body/div[1]/div[3]/img/@src`, doc)
+        var nodes = xpath.select(`//*[@id="vungdoc"]/img/@src`, doc)
         return nodes
 }
 
