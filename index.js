@@ -175,7 +175,7 @@ bot.on("message", async message => {
     .then(async res => {
         const data = res.data
         var arr=getArrMangakakalot(data)
-        var name=getNameChapterMangakakalot(link)
+        var name=getNameChapterMangakakalot(str)
         console.log("tên chapter là: "+name)
         console.log("Chapter có số trang là: "+arr[0].value)
         dir = './'+name;
