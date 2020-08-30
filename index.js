@@ -158,6 +158,7 @@ bot.on("message", async message => {
 		}
   }
     msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
+    console.log(arr)
     	for(let i = 0; i < arr.length; i++) {
 
   			await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
