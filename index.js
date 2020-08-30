@@ -210,7 +210,7 @@ bot.on("message", async message => {
         }
     })
 
-  }
+  } else return false
     
 
 		msg.edit("<@"+message.author +"> Đang nén ảnh tại máy chủ")
