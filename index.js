@@ -229,7 +229,7 @@ bot.on("message", async message => {
         for(let i = 0; i < arr.length; i++) {
         var v=arr[i].value.replace("t.nhentai","i.nhentai")
         v=v.replace("t.",".")
-        
+        console.log(v)
         await download_image(v, dir+'/'+i+getPage(arr[i].value));
         }
     })
