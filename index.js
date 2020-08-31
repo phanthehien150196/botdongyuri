@@ -199,8 +199,8 @@ bot.on("message", async message => {
 
         await download_dex(arr[i], dir+'/'+i+getPage(arr[i]));
         if(i%5==0) {
-            var tientrinh=i/arr.length*100
-            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
+            //var tientrinh=i/arr.length*100
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
 
           }
     }
@@ -249,8 +249,8 @@ bot.on("message", async message => {
         for(let i = 0; i < arr.length; i++) {
         await download_image(arr[i].value, dir+'/'+i+getPage(arr[i].value));
         if(i%5==0) {
-            var tientrinh=i/arr.length*100
-            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
+            //var tientrinh=i/arr.length*100
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
 
           }
         }
@@ -278,7 +278,7 @@ bot.on("message", async message => {
         
         await download_nhentai(v, dir+'/'+i+getPage(arr[i].value));
           if(i%5==0) {
-            var tientrinh=i/arr.length*100
+            //var tientrinh=i/arr.length*100
             msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
 
           }
@@ -674,7 +674,7 @@ function getArrNhentai(data){
         return nodes
 }
 global.progressBar = (value, maxValue) => {
-  size=10
+  size=15
   const percentage = value / maxValue; // Calculate the percentage of the bar
   const progress = Math.round((size * percentage)); // Calculate the number of square caracters to fill the progress side.
   const emptyProgress = size - progress; // Calculate the number of dash caracters to fill the empty progress side.
