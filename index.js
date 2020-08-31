@@ -216,8 +216,8 @@ bot.on("message", async message => {
     await axios.get(str)
     .then(async res => {
         const data = res.data
-        var arr=getArrManganelo(data)
-        var name=getNameChapterMangakakalot(str)
+        var arr=getArrNhentai(data)
+        var name=getNameNhentai(str)
         console.log("tên chapter là: "+name)
         console.log("Chapter có số trang là: "+arr[0].value)
         dir = './nhentai_'+name;
