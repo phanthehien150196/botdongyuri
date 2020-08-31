@@ -248,7 +248,7 @@ bot.on("message", async message => {
         await download_nhentai(v, dir+'/'+i+getPage(arr[i].value));
           if(i%5==0) {
             var tientrinh=i/arr.length*100
-            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+tientrinh+"%")
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
 
           }
         }
@@ -755,6 +755,53 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   });
 }
 
+(function() {
+  /**
+   * Tinh chỉ số thập phân của một con số.
+   *
+   * @param {String}  type  Loại điều chỉnh.
+   * @param {Number}  value Số liệu.
+   * @param {Integer} exp   Số mũ (the 10 logarithm of the adjustment base).
+   * @returns {Number} Giá trị đã chỉnh sửa.
+   */
+  function decimalAdjust(type, value, exp) {
+    // Nếu exp có giá trị undefined hoặc bằng không thì...
+    if (typeof exp === 'undefined' || +exp === 0) {
+      return Math[type](value);
+    }
+    value = +value;
+    exp = +exp;
+    // Nếu value không phải là ố hoặc exp không phải là số nguyên thì...
+    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+      return NaN;
+    }
+    // Shift
+    value = value.toString().split('e');
+    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+    // Shift back
+    value = value.toString().split('e');
+    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+  }
+
+  // Làm tròn số thập phân (theo mốc số 5)
+  if (!Math.round10) {
+    Math.round10 = function(value, exp) {
+      return decimalAdjust('round', value, exp);
+    };
+  }
+  // Làm tròn số thập phân (về gần giá trị 0)
+  if (!Math.floor10) {
+    Math.floor10 = function(value, exp) {
+      return decimalAdjust('floor', value, exp);
+    };
+  }
+  // Làm tròn số thập phân (ra xa giá trị 0)
+  if (!Math.ceil10) {
+    Math.ceil10 = function(value, exp) {
+      return decimalAdjust('ceil', value, exp);
+    };
+  }
+})();
 
 
 
