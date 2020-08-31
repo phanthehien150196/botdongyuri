@@ -47,6 +47,22 @@ const download_nhentai = (url, image_path) =>
           .on('error', e => reject(e));
       }),
   );
+const download_dex = (url, image_path) =>
+  axios({
+    url,
+    responseType: 'stream',
+    headers : {
+      'Referer': 'https://mangadex.org'
+    }
+  }).then(
+    response =>
+      new Promise((resolve, reject) => {
+        response.data
+          .pipe(fs.createWriteStream(image_path))
+          .on('finish', () => resolve())
+          .on('error', e => reject(e));
+      }),
+  );
 api.agent.domainOverride = "mangadex.org";
 
 const embed = new Discord.MessageEmbed()
@@ -168,7 +184,7 @@ bot.on("message", async message => {
     if(str.indexOf("mangadex.org")>=0){
     	const chapter = await new api.Chapter(getId(str), true);
     	var arr=chapter.pages
-    	console.log(arr)
+    	
       title=chapter.title
     
 		if(!chapter.chapter) {chap=""} else {chap="Chap "+chapter.chapter}
@@ -181,7 +197,7 @@ bot.on("message", async message => {
     //console.log(arr)
       for(let i = 0; i < arr.length; i++) {
 
-        await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
+        await download_dex(arr[i], dir+'/'+i+getPage(arr[i]));
         if(i%5==0) {
             var tientrinh=i/arr.length*100
             msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
