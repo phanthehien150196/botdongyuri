@@ -623,8 +623,8 @@ function getArrManganelo(data){
         return nodes
 }
 function getNameNhentai(link){
-  const matches = link.match(/[0-9]*/g);
-  return matches[0]
+  const matches = link.match(/g\/([0-9])*/gi);
+  return matches[0].replace("g/","")
 }
 function getArrNhentai(data){
   var doc = new dom({
