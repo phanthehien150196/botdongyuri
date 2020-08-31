@@ -210,6 +210,30 @@ bot.on("message", async message => {
         }
     })
 
+  }
+  //nhentai.net
+  else if(str.indexOf("nhentai.net")>=0){
+    await axios.get(str)
+    .then(async res => {
+        const data = res.data
+        var arr=getArrManganelo(data)
+        var name=getNameChapterMangakakalot(str)
+        console.log("tên chapter là: "+name)
+        console.log("Chapter có số trang là: "+arr[0].value)
+        dir = './nhentai_'+name;
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+        msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
+        for(let i = 0; i < arr.length; i++) {
+        var v=arr[i].value.replace("t.nhentai","i.nhentai")
+        v=v.replace("t.",".")
+        
+        await download_image(v, dir+'/'+i+getPage(arr[i].value));
+        }
+    })
+
   } else {msg.edit("<@"+message.author +"> Sai link truyện. Nhập đúng đường dẫn chapter của 1 trong những web truyện sau\nMangadex.org\nMangakakalot.com\nManganelo.com");return false}
     
 
@@ -583,7 +607,21 @@ function getArrManganelo(data){
         var nodes = xpath.select(`/html/body/div[1]/div[3]/img/@src`, doc)
         return nodes
 }
+function getNameNhentai(link){
+  const matches = link.match(/[0-9]*/gi);
+  return matches[0]
+}
+function getArrNhentai(data){
+  var doc = new dom({
+        locator: {},
+        errorHandler: { warning: function (w) { }, 
+        error: function (e) { }, 
+        fatalError: function (e) { console.error(e) } }
+        }).parseFromString(data);
 
+        var nodes = xpath.select(`//*[@id="thumbnail-container"]/div[1]/div/a/img/@data-src`, doc)
+        return nodes
+}
 function zipDirectory(source, out) {
   const archive = archiver('zip', { zlib: { level: 9 }});
   const stream = fs.createWriteStream(out);
