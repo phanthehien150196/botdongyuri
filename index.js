@@ -279,7 +279,7 @@ bot.on("message", async message => {
         await download_nhentai(v, dir+'/'+i+getPage(arr[i].value));
           if(i%5==0) {
             var tientrinh=i/arr.length*100
-            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\m"+progressBar(i, arr.length))
 
           }
         }
@@ -673,6 +673,19 @@ function getArrNhentai(data){
         var nodes = xpath.select(`//*[@id="thumbnail-container"]/div[1]/div/a/img/@data-src`, doc)
         return nodes
 }
+global.progressBar = (value, maxValue) => {
+  size=10
+  const percentage = value / maxValue; // Calculate the percentage of the bar
+  const progress = Math.round((size * percentage)); // Calculate the number of square caracters to fill the progress side.
+  const emptyProgress = size - progress; // Calculate the number of dash caracters to fill the empty progress side.
+
+  const progressText = '▇'.repeat(progress); // Repeat is creating a string with progress * caracters in it
+  const emptyProgressText = '—'.repeat(emptyProgress); // Repeat is creating a string with empty progress * caracters in it
+  const percentageText = Math.round(percentage * 100) + '%'; // Displaying the percentage of the bar
+
+  const bar = '[' + progressText + emptyProgressText + ']' + percentageText + ''; // Creating the bar
+  return bar;
+};
 function zipDirectory(source, out) {
   const archive = archiver('zip', { zlib: { level: 9 }});
   const stream = fs.createWriteStream(out);
