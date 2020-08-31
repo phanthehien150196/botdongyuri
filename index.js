@@ -202,6 +202,8 @@ bot.on("message", async message => {
             //var tientrinh=i/arr.length*100
             msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
 
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
           }
     }
   } 
@@ -226,6 +228,8 @@ bot.on("message", async message => {
             var tientrinh=i/arr.length*100
             msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
 
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
           }
         }
     })
@@ -252,6 +256,8 @@ bot.on("message", async message => {
             //var tientrinh=i/arr.length*100
             msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
 
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
           }
         }
     })
@@ -281,6 +287,8 @@ bot.on("message", async message => {
             //var tientrinh=i/arr.length*100
             msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
 
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
           }
         }
     })
