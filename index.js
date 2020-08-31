@@ -279,7 +279,7 @@ bot.on("message", async message => {
         await download_nhentai(v, dir+'/'+i+getPage(arr[i].value));
           if(i%5==0) {
             var tientrinh=i/arr.length*100
-            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\m"+progressBar(i, arr.length))
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
 
           }
         }
