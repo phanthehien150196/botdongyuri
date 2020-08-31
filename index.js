@@ -182,6 +182,11 @@ bot.on("message", async message => {
       for(let i = 0; i < arr.length; i++) {
 
         await download_image(arr[i], dir+'/'+i+getPage(arr[i]));
+        if(i%5==0) {
+            var tientrinh=i/arr.length*100
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
+
+          }
     }
   } 
   //mangakakalot
@@ -201,6 +206,11 @@ bot.on("message", async message => {
         msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
         for(let i = 0; i < arr.length; i++) {
         await download_image(arr[i].value, dir+'/'+i+getPage(arr[i].value));
+        if(i%5==0) {
+            var tientrinh=i/arr.length*100
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
+
+          }
         }
     })
 
@@ -222,6 +232,11 @@ bot.on("message", async message => {
         msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
         for(let i = 0; i < arr.length; i++) {
         await download_image(arr[i].value, dir+'/'+i+getPage(arr[i].value));
+        if(i%5==0) {
+            var tientrinh=i/arr.length*100
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ: "+Math.round10(tientrinh, -1)+"%")
+
+          }
         }
     })
 
@@ -254,7 +269,7 @@ bot.on("message", async message => {
         }
     })
 
-  } else {msg.edit("<@"+message.author +"> Sai link truyện. Nhập đúng đường dẫn chapter của 1 trong những web truyện sau\nMangadex.org\nMangakakalot.com\nManganelo.com");return false}
+  } else {msg.edit("<@"+message.author +"> Sai link truyện. Nhập đúng đường dẫn chapter của 1 trong những web truyện sau\nMangadex.org\nMangakakalot.com\nManganelo.com\nNhentai.net");return false}
     
 
 		msg.edit("<@"+message.author +"> Đang nén ảnh tại máy chủ")
