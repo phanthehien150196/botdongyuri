@@ -31,7 +31,22 @@ const download_image = (url, image_path) =>
           .on('error', e => reject(e));
       }),
   );
-
+const download_nhentai = (url, image_path) =>
+  axios({
+    url,
+    responseType: 'stream',
+    headers : {
+      'Referer': 'https://nhentai.net'
+    }
+  }).then(
+    response =>
+      new Promise((resolve, reject) => {
+        response.data
+          .pipe(fs.createWriteStream(image_path))
+          .on('finish', () => resolve())
+          .on('error', e => reject(e));
+      }),
+  );
 api.agent.domainOverride = "mangadex.org";
 
 const embed = new Discord.MessageEmbed()
@@ -230,7 +245,7 @@ bot.on("message", async message => {
         var v=arr[i].value.replace("t.nhentai","i.nhentai")
         v=v.replace("t.",".")
         console.log(v)
-        await download_image(v, dir+'/'+i+getPage(arr[i].value));
+        await download_nhentai(v, dir+'/'+i+getPage(arr[i].value));
         }
     })
 
