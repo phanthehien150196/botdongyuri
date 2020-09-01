@@ -682,7 +682,7 @@ function getArrNhentai(data){
         return nodes
 }
 global.progressBar = (value, maxValue) => {
-  size=20
+  size=15
   const percentage = value / maxValue; // Calculate the percentage of the bar
   const progress = Math.round((size * percentage)); // Calculate the number of square caracters to fill the progress side.
   const emptyProgress = size - progress; // Calculate the number of dash caracters to fill the empty progress side.
