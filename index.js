@@ -434,9 +434,9 @@ axios.get(link)
         //console.log("tên chapter là: "+name)
         var cover=getCoverBlogtruyen(data)
         console.log("Tên truyện: "+name)
-        console.log("Ảnh bìa: "+cover)
+        console.log("Ảnh bìa: "+cover.replace("thumb/400/",""))
        
-        await download_blt(cover,'./cover'+getPage(cover));
+        await download_blt(cover.replace("thumb/400/",""),'./cover'+getPage(cover));
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(name)
