@@ -448,7 +448,7 @@ axios.get(link)
         .addField('Thể loại', getTheloaiBlt(data)+"\n", false)
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", false);
         await message.channel.send(exampleEmbed)
-        fs.unlinkSync('./cover'+getPage(cover))
+        await fs.unlinkSync('./cover'+getPage(cover))
     })
   	
 	}
