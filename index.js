@@ -423,7 +423,7 @@ axios.get(link)
       })
     .then(async res => {
         const data = res.data
-        //console.log(data)
+        console.log(link)
         var name=getNameBlogtruyen(data)
         //var name=getNameChapterMangakakalot(data)
         //console.log("tên chapter là: "+name)
