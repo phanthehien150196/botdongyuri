@@ -691,7 +691,7 @@ global.progressBar = (value, maxValue) => {
   const emptyProgressText = '—'.repeat(emptyProgress); // Repeat is creating a string with empty progress * caracters in it
   const percentageText = Math.round10(percentage * 100,-1) + '%'; // Displaying the percentage of the bar
 
-  const bar = '```bash [' + progressText + emptyProgressText + '] ' + percentageText + '```'; // Creating the bar
+  const bar = '```ini [' + progressText + emptyProgressText + '] ' + percentageText + '```'; // Creating the bar
   return bar;
 };
 function zipDirectory(source, out) {
