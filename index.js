@@ -404,13 +404,14 @@ axios.get(link)
     })
     
   }
-	else if(message.content.toLowerCase().indexOf(/blogtruyen.vn\/([0-9])\w+/g)>=0){
+	else if(message.content.toLowerCase().indexOf("blogtruyen.vn/")>=0){
 		console.log(".re")
-		
+		if(checkLinkBlt(message.content)==false) return false
+    link="htpps://m."+checkLinkBlt(message.content)
 		/*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
   		.catch(console.error);*/
-      link="https://m.blogtruyen.vn/24443"
+      //link="https://m.blogtruyen.vn/24443"
 
        await axios.get(link, {
       headers: {
@@ -690,6 +691,16 @@ function getId(mention) {
 function getNameChapterMangakakalot(link){
   const matches = link.match(/chapter_([0-9]*)/gi);
   return matches[0]
+}
+function checkLinkBlt(link){
+  const matches = link.match(/blogtruyen\.vn\/([0-9])\w+/g);
+  if (!matches) {return false;}
+
+  // However the first element in the matches array will be the entire mention, not just the ID,
+  // so use index 1.
+  else {const id = matches[0];
+
+  return id;}
 }
 function getArrMangakakalot(data){
   var doc = new dom({
