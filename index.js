@@ -432,17 +432,17 @@ axios.get(link)
         console.log("Tên truyện: "+name)
         console.log("Ảnh bìa: "+cover)
        
-        //await download_blt(cover,'./cover'+getPage(cover));
+        await download_blt(cover,'./cover'+getPage(cover));
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(name)
         .setURL(linkgoc)
-        
-        .setImage("https://img.blogtruyen.com/manga/20/20609/img20191105002539.jpg")
+        .attachFiles(['./cover'+getPage(cover)])
+        .setImage('attachment://cover'+getPage(cover))
         .addField('Thể loại', getTheloaiBlt(data)+"\n", false)
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", false);
         await message.channel.send(exampleEmbed)
-        //fs.unlinkSync('./cover'+getPage(cover))
+        fs.unlinkSync('./cover'+getPage(cover))
     })
   	
 	}
