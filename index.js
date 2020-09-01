@@ -404,7 +404,7 @@ axios.get(link)
     })
     
   }
-	else if(message.content.indexOf(".re")===0){
+	else if(message.content.toLowerCase().indexOf(/blogtruyen.vn\/([0-9])\w+/g)>=0){
 		console.log(".re")
 		
 		/*const re=message.content.slice(3).trim()
@@ -431,7 +431,9 @@ axios.get(link)
        
         await download_blt(cover,'./cover'+getPage(cover));
         const exampleEmbed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
         .setTitle(name)
+        .setURL(link)
         .attachFiles(['./cover'+getPage(cover)])
         .setImage('attachment://cover'+getPage(cover))
         .addField('Sơ lược', getDesBlogtruyen(data), true);
