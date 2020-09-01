@@ -434,7 +434,7 @@ axios.get(link)
         .setTitle(name)
         .attachFiles(['./cover'+getPage(cover)])
         .setImage('attachment://cover'+getPage(cover))
-        .setDescription(getDesBlogtruyen(data));
+        .addField('Sơ lược', getDesBlogtruyen(data), true);
         await message.channel.send(exampleEmbed)
         fs.unlinkSync('./cover'+getPage(cover))
     })
