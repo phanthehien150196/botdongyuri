@@ -690,7 +690,7 @@ global.progressBar = (value, maxValue) => {
   const progressText = '▇'.repeat(progress); // Repeat is creating a string with progress * caracters in it
   const emptyProgressText = '--'.repeat(emptyProgress); // Repeat is creating a string with empty progress * caracters in it
   const percentageText = Math.round10(percentage * 100,-1) + '%'; // Displaying the percentage of the bar
-  if(percentageText==100) return '```asciidoc\n[' + progressText + emptyProgressText + '] ' + '99.9%\n```';
+  if(percentage==1) return '```asciidoc\n[' + progressText + emptyProgressText + '] ' + '99.9%\n```';
   else return '```ini\n[' + progressText + emptyProgressText + '] ' + percentageText + '\n```'; // Creating the bar
   //return bar;
 };
