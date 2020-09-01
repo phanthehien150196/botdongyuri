@@ -439,6 +439,7 @@ axios.get(link)
         .setURL(linkgoc)
         .attachFiles(['./cover'+getPage(cover)])
         .setImage('attachment://cover'+getPage(cover))
+        .addField('Thể loại', getTheloaiBlt(data)+"\n", true);
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", true);
         await message.channel.send(exampleEmbed)
         fs.unlinkSync('./cover'+getPage(cover))
@@ -773,6 +774,24 @@ function getDesBlogtruyen(data){
 
         var nodes = xpath.select(`string(/html/body/div[2]/section/article[2])`, doc)
         return nodes.trim()
+}
+function getTheloaiBlt(data){
+  var doc = new dom({
+        locator: {},
+        errorHandler: { warning: function (w) { }, 
+        error: function (e) { }, 
+        fatalError: function (e) { console.error(e) } }
+        }).parseFromString(data);
+        var str=""
+        var nodes = xpath.select(`/html/body/div[2]/section/article[4]/ul/li/a`, doc)
+        for(let i = 0; i < nodes.length; i++){
+            if(i==nodes.length-1){
+                str=str+nodes[i].firstChild.data    
+            }
+            else str=str+nodes[i].firstChild.data+", "
+
+        }
+        return str
 }
 global.progressBar = (value, maxValue) => {
   size=15
