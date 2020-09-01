@@ -777,7 +777,8 @@ function getDesBlogtruyen(data){
         }).parseFromString(data);
 
         var nodes = xpath.select(`string(/html/body/div[2]/section/article[2])`, doc)
-        return nodes.trim()
+        if (nodes.trim()=="") return "Không có"
+        else return nodes.trim()
 }
 function getTheloaiBlt(data){
   var doc = new dom({
