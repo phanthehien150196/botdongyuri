@@ -419,7 +419,7 @@ axios.get(link)
       'Referer': 'https://blogtruyen.vn'
       }
       })
-      .then(async res => {
+    .then(async res => {
         const data = res.data
         //console.log(data)
         var name=getNameBlogtruyen(data)
@@ -432,7 +432,7 @@ axios.get(link)
         await download_blt(cover,'./cover'+getPage(cover));
         const exampleEmbed = new Discord.MessageEmbed()
         .setTitle(name)
-        
+        .attachFiles(['./cover'+getPage(cover)])
         .setImage('attachment://cover'+getPage(cover));
         await message.channel.send(exampleEmbed)
         fs.unlinkSync('./cover'+getPage(cover))
