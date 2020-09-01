@@ -435,7 +435,7 @@ axios.get(link)
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(name)
-        .setURL(link)
+        .setURL("https://blogtruyen.vn")
         .attachFiles(['./cover'+getPage(cover)])
         .setImage('attachment://cover'+getPage(cover))
         .addField('Sơ lược', getDesBlogtruyen(data), true);
