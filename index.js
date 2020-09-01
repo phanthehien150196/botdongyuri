@@ -438,8 +438,8 @@ axios.get(link)
         .setColor('#0099ff')
         .setTitle(name)
         .setURL(linkgoc)
-        
-        .setImage('https://drive.google.com/thumbnail?id=1gwINdNB7idIzdNNzts2eBtRBY2hvpfXG&sz=w400')
+        .attachFiles(['./cover'+getPage(cover)])
+        .setImage('attachment://cover'+getPage(cover))
         .addField('Thể loại', getTheloaiBlt(data)+"\n", false)
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", false);
         await message.channel.send(exampleEmbed)
