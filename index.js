@@ -439,7 +439,7 @@ axios.get(link)
         .setURL(linkgoc)
         .attachFiles(['./cover'+getPage(cover)])
         .setImage('attachment://cover'+getPage(cover))
-        .addField('Sơ lược', getDesBlogtruyen(data), true);
+        .addField('Sơ lược', getDesBlogtruyen(data)+"\n", true);
         await message.channel.send(exampleEmbed)
         fs.unlinkSync('./cover'+getPage(cover))
     })
@@ -529,7 +529,7 @@ axios.get(link)
 	}*/
 	} else if(message.author=="578560798205673482"){
 		
-
+    console.log(message.content)
 		//rau cải đắng
 		if(message.content.indexOf("cKhwHV3") > -1)
 		{
