@@ -529,7 +529,7 @@ axios.get(link)
 	}*/
 	} else if(message.author=="578560798205673482"){
 		
-    console.log(message.content)
+    //console.log(message.content)
 		//rau cải đắng
 		if(message.content.indexOf("cKhwHV3") > -1)
 		{
@@ -557,7 +557,7 @@ axios.get(link)
 		await bot.channels.cache.get(`694785358952660998`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	})
     	}
-    	else if(message.content.indexOf("drive.google") === -1&&message.content.indexOf("blogtruyen") === -1&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 20000 });
+    	else if(message.content.indexOf("drive.google") === -1&&message.content!=""&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 20000 });
 	}
 })
 function getUserFromMention(mention) {
