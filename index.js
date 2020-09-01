@@ -296,14 +296,14 @@ bot.on("message", async message => {
   } else {msg.edit("<@"+message.author +"> Sai link truyện. Nhập đúng đường dẫn chapter của 1 trong những web truyện sau\nMangadex.org\nMangakakalot.com\nManganelo.com\nNhentai.net");return false}
     
 
-		msg.edit("<@"+message.author +"> Đang nén ảnh tại máy chủ")
+		msg.edit("<@"+message.author +"> Đang nén ảnh\n"+progressBar(1, 1))
     	await zipDirectory(dir, dir+".zip")
     	await fs.readFile('credentials.json', (err, content) => {
   		if (err) return console.log('Error loading client secret file:', err);
   // Authorize a client with credentials, then call the Google Drive API.
    		authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
-      msg.edit("<@"+message.author +"> Đang upload lên google drive")
+      msg.edit("<@"+message.author +"> Đang upload lên google drive\n"+progressBar(1, 1))
       	uploadFile(msg,dir.replace("./","")+".zip",message.channel.id,"<@"+message.author +">",token)
       	
     	});
@@ -478,7 +478,7 @@ axios.get(link)
 
 	}*/
 	} else if(message.author=="578560798205673482"){
-		console.log("add role");
+		
 
 		//rau cải đắng
 		if(message.content.indexOf("cKhwHV3") > -1)
@@ -690,9 +690,9 @@ global.progressBar = (value, maxValue) => {
   const progressText = '▇'.repeat(progress); // Repeat is creating a string with progress * caracters in it
   const emptyProgressText = '--'.repeat(emptyProgress); // Repeat is creating a string with empty progress * caracters in it
   const percentageText = Math.round10(percentage * 100,-1) + '%'; // Displaying the percentage of the bar
-
-  const bar = '```ini\n[' + progressText + emptyProgressText + '] ' + percentageText + '\n```'; // Creating the bar
-  return bar;
+  if(percentageText==100) return '```asciidoc\n[' + progressText + emptyProgressText + '] ' + '99.9%\n```';
+  else return '```ini\n[' + progressText + emptyProgressText + '] ' + percentageText + '\n```'; // Creating the bar
+  //return bar;
 };
 function zipDirectory(source, out) {
   const archive = archiver('zip', { zlib: { level: 9 }});
