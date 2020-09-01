@@ -407,7 +407,8 @@ axios.get(link)
 	else if(message.content.toLowerCase().indexOf("blogtruyen.vn/")>=0){
 		console.log(".re")
 		if(checkLinkBlt(message.content)==false) return false
-    const link="htpps://m."+checkLinkBlt(message.content)
+    const link="https://m."+checkLinkBlt(message.content)
+    const linkgoc="https://"+checkLinkBlt(message.content)
 		
     /*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
@@ -435,7 +436,7 @@ axios.get(link)
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle(name)
-        .setURL("https://blogtruyen.vn")
+        .setURL(linkgoc)
         .attachFiles(['./cover'+getPage(cover)])
         .setImage('attachment://cover'+getPage(cover))
         .addField('Sơ lược', getDesBlogtruyen(data), true);
@@ -556,7 +557,7 @@ axios.get(link)
 		await bot.channels.cache.get(`694785358952660998`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	})
     	}
-    	else if(message.content.indexOf("drive.google") === -1&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 20000 });
+    	else if(message.content.indexOf("drive.google") === -1&&message.content.indexOf("blogtruyen") === -1&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 20000 });
 	}
 })
 function getUserFromMention(mention) {
