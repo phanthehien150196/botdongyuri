@@ -47,6 +47,23 @@ const download_nhentai = (url, image_path) =>
           .on('error', e => reject(e));
       }),
   );
+const download_blt = (url, image_path) =>
+  axios({
+    url,
+    responseType: 'stream',
+    headers : {
+      'Referer': 'https://blogtruyen.vn'
+    }
+  }).then(
+    response =>
+      new Promise((resolve, reject) => {
+        response.data
+          .pipe(fs.createWriteStream(image_path))
+          .on('finish', () => resolve())
+          .on('error', e => reject(e));
+      }),
+  );
+
 const download_dex = (url, image_path) =>
   axios({
     url,
@@ -393,6 +410,33 @@ axios.get(link)
 		/*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
   		.catch(console.error);*/
+      link="https://m.blogtruyen.vn/24443"
+
+       await axios.get(link, {
+      headers: {
+    
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
+      'Referer': 'https://blogtruyen.vn'
+      }
+      })
+      .then(async res => {
+        const data = res.data
+        //console.log(data)
+        var name=getNameBlogtruyen(data)
+        //var name=getNameChapterMangakakalot(data)
+        //console.log("tên chapter là: "+name)
+        var cover=getCoverBlogtruyen(data)
+        console.log("Tên truyện: "+name)
+        console.log("Ảnh bìa: "+cover)
+        var dir="./test"
+        await download_blt(cover,'./cover'+getPage(cover));
+        const exampleEmbed = new Discord.MessageEmbed()
+        .setTitle(name)
+        
+        .setImage('attachment://cover'+getPage(cover));
+        await message.channel.send(exampleEmbed)
+        fs.unlinkSync('./cover'+getPage(cover))
+    })
   	
 	}
 	else if(message.content.indexOf(".") === 0){ 
@@ -681,6 +725,29 @@ function getArrNhentai(data){
         var nodes = xpath.select(`//*[@id="thumbnail-container"]/div[1]/div/a/img/@data-src`, doc)
         return nodes
 }
+function getNameBlogtruyen(data){
+  var doc = new dom({
+        locator: {},
+        errorHandler: { warning: function (w) { }, 
+        error: function (e) { }, 
+        fatalError: function (e) { console.error(e) } }
+        }).parseFromString(data);
+
+        var nodes = xpath.select(`/html/body/div[2]/section/h1`, doc)
+        return nodes[0].firstChild.data
+}
+function getCoverBlogtruyen(data){
+  var doc = new dom({
+        locator: {},
+        errorHandler: { warning: function (w) { }, 
+        error: function (e) { }, 
+        fatalError: function (e) { console.error(e) } }
+        }).parseFromString(data);
+
+        var nodes = xpath.select(`/html/body/div[2]/section/article[1]/img/@src`, doc)
+        return nodes[0].value
+}
+
 global.progressBar = (value, maxValue) => {
   size=15
   const percentage = value / maxValue; // Calculate the percentage of the bar
