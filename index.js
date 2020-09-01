@@ -439,7 +439,7 @@ axios.get(link)
         .setURL(linkgoc)
         .attachFiles(['./cover'+getPage(cover)])
         .setImage('attachment://cover'+getPage(cover))
-        .addField('Thể loại', getTheloaiBlt(data)+"\n", true);
+        .addField('Thể loại', getTheloaiBlt(data)+"\n", true)
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", true);
         await message.channel.send(exampleEmbed)
         fs.unlinkSync('./cover'+getPage(cover))
