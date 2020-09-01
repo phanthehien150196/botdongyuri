@@ -428,12 +428,13 @@ axios.get(link)
         var cover=getCoverBlogtruyen(data)
         console.log("Tên truyện: "+name)
         console.log("Ảnh bìa: "+cover)
-        var dir="./test"
+       
         await download_blt(cover,'./cover'+getPage(cover));
         const exampleEmbed = new Discord.MessageEmbed()
         .setTitle(name)
         .attachFiles(['./cover'+getPage(cover)])
-        .setImage('attachment://cover'+getPage(cover));
+        .setImage('attachment://cover'+getPage(cover))
+        .setDescription(getDesBlogtruyen(data));
         await message.channel.send(exampleEmbed)
         fs.unlinkSync('./cover'+getPage(cover))
     })
@@ -747,7 +748,17 @@ function getCoverBlogtruyen(data){
         var nodes = xpath.select(`/html/body/div[2]/section/article[1]/img/@src`, doc)
         return nodes[0].value
 }
+function getDesBlogtruyen(data){
+  var doc = new dom({
+        locator: {},
+        errorHandler: { warning: function (w) { }, 
+        error: function (e) { }, 
+        fatalError: function (e) { console.error(e) } }
+        }).parseFromString(data);
 
+        var nodes = xpath.select(`string(/html/body/div[2]/section/article[2])`, doc)
+        return nodes.trim()
+}
 global.progressBar = (value, maxValue) => {
   size=15
   const percentage = value / maxValue; // Calculate the percentage of the bar
