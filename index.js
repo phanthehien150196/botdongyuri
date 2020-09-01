@@ -413,6 +413,7 @@ axios.get(link)
 		if(checkLinkBlt(message.content)==false) return false
     const link="https://m."+checkLinkBlt(message.content)
     const linkgoc="https://"+checkLinkBlt(message.content)
+    const id=checkLinkBlt(message.content).replace("blogtruyen.vn/","")
 		
     /*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
@@ -436,8 +437,8 @@ axios.get(link)
         console.log("Tên truyện: "+name)
         console.log("Ảnh bìa: "+cover.replace("thumb/400/",""))
        
-        await download_blt(cover,'./cover'+getPage(cover));
-        msgimg=await bot.channels.cache.get("694785359166308389").send("", {files: ['./cover'+getPage(cover)]});
+        await download_blt(cover,'./'+id+getPage(cover));
+        msgimg=await bot.channels.cache.get("694785359166308389").send("", {files: ['./'+id+getPage(cover)]});
         console.log(msgimg.attachments.first().url)
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
@@ -448,7 +449,7 @@ axios.get(link)
         .addField('Thể loại', getTheloaiBlt(data)+"\n", false)
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", false);
         await message.channel.send(exampleEmbed)
-        await fs.unlinkSync('./cover'+getPage(cover))
+        await fs.unlinkSync('./'+id+getPage(cover))
     })
   	
 	}
