@@ -437,12 +437,12 @@ axios.get(link)
         .setColor('#0099ff')
         .setTitle(name)
         .setURL(linkgoc)
-        //.attachFiles(['./cover'+getPage(cover)])
-        .setImage(cover)
+        
+        .setImage("https://img.blogtruyen.com/manga/20/20609/img20191105002539.jpg")
         .addField('Thể loại', getTheloaiBlt(data)+"\n", false)
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", false);
         await message.channel.send(exampleEmbed)
-        fs.unlinkSync('./cover'+getPage(cover))
+        //fs.unlinkSync('./cover'+getPage(cover))
     })
   	
 	}
