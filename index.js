@@ -407,8 +407,9 @@ axios.get(link)
 	else if(message.content.toLowerCase().indexOf("blogtruyen.vn/")>=0){
 		console.log(".re")
 		if(checkLinkBlt(message.content)==false) return false
-    link="htpps://m."+checkLinkBlt(message.content)
-		/*const re=message.content.slice(3).trim()
+    const link="htpps://m."+checkLinkBlt(message.content)
+		
+    /*const re=message.content.slice(3).trim()
 		await bot.channels.cache.get(`694785358952660998`).setName(re)
   		.catch(console.error);*/
       //link="https://m.blogtruyen.vn/24443"
