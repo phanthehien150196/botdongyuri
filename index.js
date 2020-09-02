@@ -438,7 +438,7 @@ axios.get(link)
         console.log("Ảnh bìa: "+cover.replace("thumb/400/",""))
        
         await download_blt(cover,'./'+id+getPage(cover));
-        msgimg=await bot.channels.cache.get("694785359166308389").send("", {files: ['./'+id+getPage(cover)]});
+        msgimg=bot.channels.cache.get("694785359166308389").send("", {files: ['./'+id+getPage(cover)]});
         console.log(msgimg.attachments.first().url)
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
@@ -449,7 +449,7 @@ axios.get(link)
         .addField('Thể loại', getTheloaiBlt(data)+"\n", false)
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", false);
         await message.channel.send(exampleEmbed)
-        await fs.unlinkSync('./'+id+getPage(cover))
+        fs.unlinkSync('./'+id+getPage(cover))
     })
   	
 	}
