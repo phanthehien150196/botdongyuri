@@ -441,7 +441,7 @@ axios.get(link)
         fs.mkdirSync(dir);
         }
         await download_blt(cover,dir+"/"+id+getPage(cover));
-        msgimg=bot.channels.cache.get("694785359166308389").send("", {files: ['./'+id+getPage(cover)]});
+        msgimg=bot.channels.cache.get("694785359166308389").send("", {files: [dir+"/"+id+getPage(cover)]});
         console.log(msgimg.attachments.first().url)
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
