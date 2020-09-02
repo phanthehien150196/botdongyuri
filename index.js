@@ -436,8 +436,11 @@ axios.get(link)
         var cover=getCoverBlogtruyen(data)
         console.log("Tên truyện: "+name)
         console.log("Ảnh bìa: "+cover.replace("thumb/400/",""))
-       
-        await download_blt(cover,'./'+id+getPage(cover));
+        var dir="./blt_"+id
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+        await download_blt(cover,dir+"/"+id+getPage(cover));
         msgimg=bot.channels.cache.get("694785359166308389").send("", {files: ['./'+id+getPage(cover)]});
         console.log(msgimg.attachments.first().url)
         const exampleEmbed = new Discord.MessageEmbed()
@@ -449,7 +452,7 @@ axios.get(link)
         .addField('Thể loại', getTheloaiBlt(data)+"\n", false)
         .addField('Sơ lược', getDesBlogtruyen(data)+"\n", false);
         await message.channel.send(exampleEmbed)
-        fs.unlinkSync('./'+id+getPage(cover))
+        rimraf(dir, function () { console.log('done'); });
     })
   	
 	}
