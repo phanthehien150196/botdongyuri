@@ -349,6 +349,13 @@ bot.on("message", async message => {
 		await message.delete({ timeout: 1 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
 	}
+  else if(message.content.indexOf(".trans") === 0){
+    let cau=message.content.slice(6).trim()
+    axios.get('https://api.mymemory.translated.net/get?q='+encodeURI(cau)+'&langpair=en|vi')
+      .then( response =>{
+        message.channel.send("<@"+message.author +"> "+response.data.responseData.translatedText)
+      } )
+  }
 	else if(message.content.indexOf("/") === 0){
 		await message.delete({ timeout: 60000 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Đã xoá tin nhắn tạm thời")
