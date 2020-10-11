@@ -349,6 +349,9 @@ bot.on("message", async message => {
 		await message.delete({ timeout: 1 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
 	}
+  else if(message.content.toLowerCase().indexOf("/xoa") === 0){
+    await message.delete({ timeout: 1 });
+  }
   else if(message.content.indexOf(".trans") === 0){
     let cau=message.content.slice(6).trim()
     axios.get('https://api.mymemory.translated.net/get?q='+encodeURI(cau)+'&langpair=en|vi')
