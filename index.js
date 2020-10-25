@@ -190,7 +190,7 @@ bot.on("message", async message => {
 		message.channel.send({ embed: exampleEmbed });
 
 	}
-	else if(message.content.toLowerCase().indexOf(".download")==0) 
+	else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id=="769575209518104636") 
 	{
 		var str=message.content.toLowerCase()
 		str=str.replace(".download",'').trim();
@@ -335,6 +335,9 @@ bot.on("message", async message => {
 
 
 	}
+  else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id!="769575209518104636") {
+    message.channel.send("Vui lòng thực hiện lệnh download manga ở kênh <#694785358746877970>")
+  }
 	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
