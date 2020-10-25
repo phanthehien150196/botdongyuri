@@ -325,7 +325,7 @@ bot.on("message", async message => {
    		authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
       msg.edit("<@"+message.author +"> Đang upload lên google drive\n"+progressBar(1, 1))
-      	uploadFile(msg,dir.replace("./","")+".zip",message.channel.id,"<@"+message.author +">",token)
+      	uploadFile(msg,dir.replace("./","")+".zip",message.channel.id,"> "+message.content+"\n<@"+message.author +">",token)
       	
     	});
     	});
