@@ -336,7 +336,11 @@ bot.on("message", async message => {
 
 	}
   else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id!="769575209518104636") {
-    message.channel.send("Vui lòng thực hiện lệnh download manga ở kênh <#694785358746877970>")
+    message.channel.send("<@"+message.author +"> Vui lòng thực hiện lệnh download manga ở kênh <#769575209518104636>")
+  }
+  if(message.channel.id=="769575209518104636"&&message.author.id!="578560798205673482")
+  {
+    await message.delete({ timeout: 4000 });
   }
 	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
