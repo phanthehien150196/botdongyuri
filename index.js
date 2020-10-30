@@ -163,7 +163,7 @@ bot.on('guildMemberAdd', async member => {
     const logChannel = member.guild.channels.cache.find(channel => channel.name === "testsv");
     // A real basic message with the information we need. 
     //const mem = member.user;
-	
+	 console.log("gia nhập qua lời mời https://discord.gg/${invite.code}")
     logChannel.send(`Thành viên ${member.user} gia nhập qua lời mời https://discord.gg/${invite.code} của <@${inviter.tag}>. thành viên thứ ${invite.uses} vào từ lời mời đó.`);
     
   });
@@ -574,10 +574,10 @@ axios.get(link)
     	//message.channel.send(memberCount + " members have this role!");
 		await bot.channels.cache.get(`745158887551795291`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	}
-    	else if(message.content.toLowerCase().indexOf("discord.gg") > -1)
+    /*	else if(message.content.toLowerCase().indexOf("discord.gg") > -1)
 		{
 			message.delete({ timeout: 1 });
-		}
+		}*/
     	
     	else if(message.content.indexOf("hS3RXkR") > -1)
 		{
