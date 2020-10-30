@@ -160,11 +160,11 @@ bot.on('guildMemberAdd', async member => {
     // This is just to simplify the message being sent below (inviter doesn't have a tag property)
     const inviter = bot.users.cache.get(invite.inviter.id);
     // Get the log channel (change to your liking)
-    const logChannel = member.guild.channels.cache.find(channel => channel.name === "welcome");
+    const logChannel = member.guild.channels.cache.find(channel => channel.name === "testsv");
     // A real basic message with the information we need. 
     //const mem = member.user;
 	
-    logChannel.send(`Thành viên ${member.user} gia nhập qua lời mời https://discord.gg/${invite.code} của <@${inviter}>. thành viên thứ ${invite.uses} vào từ lời mời đó.`);
+    logChannel.send(`Thành viên ${member.user} gia nhập qua lời mời https://discord.gg/${invite.code} của <@${inviter.tag}>. thành viên thứ ${invite.uses} vào từ lời mời đó.`);
     
   });
 });
