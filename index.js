@@ -356,7 +356,7 @@ bot.on("message", async message => {
 		await message.delete({ timeout: 1 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
 	}
-  else if(message.author.id==="557045777202151455"){
+  else if(message.member.roles.cache.has("772476168791130142")){
     if(message.content.toLowerCase().indexOf("http") >= 0||message.attachments.size !== 0)
     await message.delete({ timeout: 1 });
     //await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
