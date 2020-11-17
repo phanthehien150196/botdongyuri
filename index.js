@@ -342,6 +342,10 @@ bot.on("message", async message => {
   {
     await message.delete({ timeout: 4000 });
   }
+   if(message.author.id=="617249554537906178")
+  {
+    await message.delete({ timeout: 1 });
+  }
 	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
