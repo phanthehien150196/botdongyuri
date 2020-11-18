@@ -500,9 +500,12 @@ axios.get(link)
           filarr=strarr.filter(function(e){ return e === 0 || e });
           if(filarr.length>0){
             for(let i = 0; i < filarr.length; i++){
-              await message.channel.startTyping();
-              await message.channel.send("<@"+message.author +"> "+filarr[i]);  
-              await message.channel.stopTyping()
+              message.channel.startTyping();
+              setTimeout(()=>{
+                message.channel.send("<@"+message.author +"> "+filarr[i]);  
+              
+                message.channel.stopTyping();
+              },500)
               //await message.channel.send("<@"+message.author +"> "+filarr[i]);  
             } 
           } else message.channel.send("<@"+message.author +"> "+str);
