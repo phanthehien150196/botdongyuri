@@ -501,9 +501,9 @@ axios.get(link)
           if(filarr.length>0){
             for(let i = 0; i < filarr.length; i++){
               message.channel.startTyping();
-
+              message.channel.send("<@"+message.author +"> "+filarr[i]);  
               setTimeout(message.channel.stopTyping, 200);
-              await message.channel.send("<@"+message.author +"> "+filarr[i]);  
+              //await message.channel.send("<@"+message.author +"> "+filarr[i]);  
             } 
           } else message.channel.send("<@"+message.author +"> "+str);
           
