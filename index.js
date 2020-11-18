@@ -506,7 +506,7 @@ axios.get(link)
               
               //   message.channel.stopTyping();
               // },500)
-              await message.channel.send("<@"+message.author +"> "+filarr[i]);  
+              if(filarr[i].trim()!="") await message.channel.send("<@"+message.author +"> "+filarr[i]);  
             } 
           } else message.channel.send("<@"+message.author +"> "+str);
           
