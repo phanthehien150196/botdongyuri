@@ -496,8 +496,12 @@ axios.get(link)
       		str=str.replace("SimSimi","Mami")
       		str=str.replace("Sim","Mami")
       		str=str.replace("sim","Mami")
-
-      		message.channel.send("<@"+message.author +"> "+str);
+          strarr=str.split(/[.,!?;]/)
+          filarr=strarr.filter(function(e){ return e === 0 || e });
+          for(let i = 0; i < filarr.length; i++){
+            await message.channel.send("<@"+message.author +"> "+filarr[i]);  
+          }
+      		
       	}
       } )
 
