@@ -485,7 +485,7 @@ axios.get(link)
 	else if(message.content.indexOf(".") === 0){ 
 	
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
-      .then( response =>{
+      .then(async response =>{
       	if(response.data.success=="") {
       		message.channel.send("<@"+message.author +"> Không hiểu");
       	}
@@ -498,10 +498,13 @@ axios.get(link)
       		str=str.replace("sim","Mami")
           strarr=str.split(/[.,!?;]/)
           filarr=strarr.filter(function(e){ return e === 0 || e });
-          for(let i = 0; i < filarr.length; i++){
-            await message.channel.send("<@"+message.author +"> "+filarr[i]);  
-          }
-      		
+          if(filarr.length>0){
+            for(let i = 0; i < filarr.length; i++){
+              await message.channel.send("<@"+message.author +"> "+filarr[i]);  
+            } 
+          } else message.channel.send("<@"+message.author +"> "+str);
+          
+      		console.log(filarr.length)
       	}
       } )
 
