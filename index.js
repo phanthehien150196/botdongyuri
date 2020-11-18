@@ -500,6 +500,9 @@ axios.get(link)
           filarr=strarr.filter(function(e){ return e === 0 || e });
           if(filarr.length>0){
             for(let i = 0; i < filarr.length; i++){
+              message.channel.startTyping();
+
+              setTimeout(message.channel.stopTyping(), 900);
               await message.channel.send("<@"+message.author +"> "+filarr[i]);  
             } 
           } else message.channel.send("<@"+message.author +"> "+str);
