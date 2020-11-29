@@ -203,7 +203,7 @@ bot.on("message", async message => {
     var chap=""
     //mangadex
     if(str.indexOf("mangadex.org")>=0){
-      axios.get('https://mangadex.org/api/v2/chapter/'+getId(str))
+      await axios.get('https://mangadex.org/api/v2/chapter/'+getId(str))
       .then(async response =>{
         console.log(response.data.data.pages);
         var arr=response.data.data.pages
