@@ -203,7 +203,34 @@ bot.on("message", async message => {
     var chap=""
     //mangadex
     if(str.indexOf("mangadex.org")>=0){
-    	const chapter = await new api.Chapter(getId(str), true);
+      axios.get('https://mangadex.org/api/v2/chapter/'+getId(str))
+      .then( response =>{
+        console.log(response.data.data.pages);
+        var arr=response.data.data.pages
+        title =response.data.data.mangaTitle
+        chap=response.data.data.chapter+"_"+response.data.data.title
+        dir = './'+title+"_chap_"+chap;
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+
+        msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ")
+    //console.log(arr)    
+        for(let i = 0; i < arr.length; i++) {
+        await download_dex(arr[i], dir+'/'+i+getPage(arr[i]));
+        if(i%5==0) {
+            //var tientrinh=i/arr.length*100
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+            }
+          }
+
+     })
+
+    	/*const chapter = await new api.Chapter(getId(str), true);
     	var arr=chapter.pages
     	
       title=chapter.title
@@ -226,7 +253,7 @@ bot.on("message", async message => {
           }else if(i==(arr.length-1)){
             msg.edit("<@"+message.author +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
           }
-    }
+    }*/
   } 
   //mangakakalot
   else if(str.indexOf("mangakakalot.com")>=0){
