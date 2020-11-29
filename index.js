@@ -207,7 +207,7 @@ bot.on("message", async message => {
       .then(async response =>{
         console.log(response.data.data.pages);
         var arr=response.data.data.pages
-        var sv=response.data.data.server
+        var sv=response.data.data.server+response.data.data.hash+"/"
         title =response.data.data.mangaTitle
         chap=response.data.data.chapter+"_"+response.data.data.title
         dir = './'+title+"_chap_"+chap;
