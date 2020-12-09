@@ -424,7 +424,7 @@ bot.on("message", async message => {
         }
 
     await download_dis(message.attachments.first().url,dir+"/"+filed);
-        msgimg=bot.channels.cache.get("682113728551976982").send(message.guild.members.cache.get(user.id).displayName+" đã tải lên", {files: [dir+"/"+filed]});
+        msgimg=bot.channels.cache.get("786302361542852649").send(message.guild.members.cache.get(user.id).displayName+" đã tải lên ở <#"+message.channel.id+">", {files: [dir+"/"+filed]});
         console.log(msgimg.attachments.first().url)
 
   }
