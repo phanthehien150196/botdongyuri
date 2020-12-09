@@ -416,7 +416,7 @@ bot.on("message", async message => {
   if(message.attachments.size !== 0){
     let dir="./dis"
     let filed=getFilediscord(message.attachments.first().url)
-    let user = message.mentions.users.first();
+    let user = message.author;
     console.log(filed)
 
         if (!fs.existsSync(dir)){
