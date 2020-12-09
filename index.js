@@ -421,7 +421,7 @@ bot.on("message", async message => {
         fs.mkdirSync(dir);
         }
 
-    await download_blt(cover,dir+"/"+filed);
+    await download_dis(message.attachments.first().url,dir+"/"+filed);
         msgimg=bot.channels.cache.get("694785358746877971").send("", {files: [dir+"/"+filed]});
         console.log(msgimg.attachments.first().url)
 
