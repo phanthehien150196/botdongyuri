@@ -67,6 +67,26 @@ const download_blt = (url, image_path) =>
           .on('error', e => reject(e));
       }),
   );
+const download_dis = (url, image_path) =>
+  axios({
+    url,
+    responseType: 'stream',
+    headers : {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
+      'Referer': 'https://discord.com',
+      
+      'sec-fetch-mode': 'no-cors',
+      'sec-fetch-site': 'cross-site'
+    }
+  }).then(
+    response =>
+      new Promise((resolve, reject) => {
+        response.data
+          .pipe(fs.createWriteStream(image_path))
+          .on('finish', () => resolve())
+          .on('error', e => reject(e));
+      }),
+  );
 
 const download_dex = (url, image_path) =>
   axios({
@@ -393,6 +413,20 @@ bot.on("message", async message => {
     await message.delete({ timeout: 1 });
     //await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
   }
+  if(message.attachments.size !== 0){
+    dir="./dis"
+    filed+getFilediscord(message.attachments.first().url)
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+
+    await download_blt(cover,dir+"/"+filed);
+        msgimg=bot.channels.cache.get("694785359166308389").send("", {files: [dir+"/"+filed]});
+        console.log(msgimg.attachments.first().url)
+
+  }
+    
   else if(message.member.roles.cache.has("681019402279583744")){
     
     await message.delete({ timeout: 1 });
@@ -767,6 +801,11 @@ function getPage(mention) {
 	const matches = mention.match(/.(jpg|png|jpeg|gif)/g);
 	return matches[0]
 }	
+function getFilediscord(mention) {
+  // The id is the first and only match found by the RegEx.
+  const matches = mention.match(/[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))/g);
+  return Date.now()+"_"+matches[0]
+} 
 
 function getId(mention) {
 	// The id is the first and only match found by the RegEx.
