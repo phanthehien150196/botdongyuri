@@ -416,6 +416,7 @@ bot.on("message", async message => {
   if(message.attachments.size !== 0){
     dir="./dis"
     filed+getFilediscord(message.attachments.first().url)
+    console.log(filed)
 
         if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
