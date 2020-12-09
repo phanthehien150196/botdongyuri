@@ -422,7 +422,7 @@ bot.on("message", async message => {
         }
 
     await download_blt(cover,dir+"/"+filed);
-        msgimg=bot.channels.cache.get("694785359166308389").send("", {files: [dir+"/"+filed]});
+        msgimg=bot.channels.cache.get("694785358746877971").send("", {files: [dir+"/"+filed]});
         console.log(msgimg.attachments.first().url)
 
   }
