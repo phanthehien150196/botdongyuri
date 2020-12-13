@@ -210,6 +210,7 @@ bot.on('guildMemberAdd', async member => {
 bot.on("message", async message => {
   const sql = await client.query('SELECT * FROM public."time"')
   console.log(sql.rows[0])
+  console.log("test")
 	//if (message.webhookID) {message.delete({ timeout: 3000 })};
 	if(!message.author.bot){
 
