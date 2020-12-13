@@ -168,7 +168,11 @@ const exampleEmbed = {
 // Initialize the invite cache
 const invites = {};
 bot.on('ready', function(){		  
-	console.log("bot is now online");		
+	console.log("bot is now online");	
+  const sql = await client.query('SELECT * FROM public."time"')
+  console.log(sql.rows[0])
+  console.log("test")	
+  
 })		
 // A pretty useful method to create a delay without blocking the whole script.
 const wait = require('util').promisify(setTimeout);
@@ -208,9 +212,7 @@ bot.on('guildMemberAdd', async member => {
 
 
 bot.on("message", async message => {
-  const sql = await client.query('SELECT * FROM public."time"')
-  console.log(sql.rows[0])
-  console.log("test")
+
 	//if (message.webhookID) {message.delete({ timeout: 3000 })};
 	if(!message.author.bot){
 
