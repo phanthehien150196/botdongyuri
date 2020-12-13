@@ -167,12 +167,12 @@ const exampleEmbed = {
 };
 // Initialize the invite cache
 const invites = {};
-bot.on('ready', function(){		  
+bot.on('ready', async function(){		  
 	console.log("bot is now online");	
   const sql = await client.query('SELECT * FROM public."time"')
   console.log(sql.rows[0])
   console.log("test")	
-  
+
 })		
 // A pretty useful method to create a delay without blocking the whole script.
 const wait = require('util').promisify(setTimeout);
