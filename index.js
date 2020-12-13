@@ -180,7 +180,7 @@ bot.on('ready', async function(){
   date1=new Date(sql.rows[0].time_manga.trim())
   feed.items.forEach(item => {
     if(new Date(item.pubDate)>date1)
-    bot.channels.cache.get("744518226829901866").send(item.link);
+    bot.channels.cache.get("744518226829901866").send("Chap truyện mới "+item.link);
     
   });
 },ms('5m'))
@@ -720,7 +720,7 @@ axios.get(link)
 		await bot.channels.cache.get(`694785358952660998`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	})
     	}
-    	else if(message.attachments.size == 0&&message.content.indexOf("drive.google") === -1&&message.content!=""&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 60000 });
+    	else if(message.attachments.size == 0&&message.content.indexOf("drive.google") === -1&&message.content.indexOf("Chap truyện mới") === -1&&message.content!=""&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 60000 });
 	}
 })
 function getUserFromMention(mention) {
