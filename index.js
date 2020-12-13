@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { Client } = require('pg');
 const api = require("mangadex-full-api");
 const axios = require('axios');
 var archiver = require('archiver');
@@ -11,6 +12,16 @@ var xpath = require('xpath')
   , dom = require('xmldom').DOMParser
 require('events').EventEmitter.prototype._maxListeners = 1000;
 	
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+client.connect();
+
 var bot = new Discord.Client();	
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
@@ -385,6 +396,16 @@ bot.on("message", async message => {
 	}
   else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id!="769575209518104636") {
     message.channel.send("<@"+message.author +"> Vui lòng thực hiện lệnh download manga ở kênh <#769575209518104636>")
+  }
+  else if(message.content.toLowerCase().indexOf(".data")==0) {
+    client.query('SELECT * FROM public.manga;', (err, res) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+      console.log(JSON.stringify(row));
+    }
+    client.end();
+    });
+    //message.channel.send("<@"+message.author +"> Vui lòng thực hiện lệnh download manga ở kênh <#769575209518104636>")
   }
   if(message.channel.id=="769575209518104636"&&message.author.id!="578560798205673482")
   {
