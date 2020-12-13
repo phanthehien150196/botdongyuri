@@ -403,7 +403,7 @@ bot.on("message", async message => {
     for (let row of res.rows) {
       console.log(JSON.stringify(row));
     }
-    client.end();
+    //client.end();
     });
     //message.channel.send("<@"+message.author +"> Vui lòng thực hiện lệnh download manga ở kênh <#769575209518104636>")
   }
