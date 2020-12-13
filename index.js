@@ -284,13 +284,13 @@ bot.on("message", async message => {
           .then(res => {
             var embedlist = new Discord.MessageEmbed()
             .setColor('#0099ff')
-            .setTitle('DANH SÁCH TRUYỆN')
+            .setTitle('DANH SÁCH TRUYỆN CỦA '+message.guild.members.cache.get(message.author.id).displayName)
 
             res.rows.forEach(r =>{
               embedlist.addField(r.name_manga,"[Link](https://mangadex.org/title/"+r.id_manga+")")
               
             })
-            message.channel.send("<@"+message.author +"> "+embedlist)
+            message.channel.send(embedlist)
     
            })
   }
