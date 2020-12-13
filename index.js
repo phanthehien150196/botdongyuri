@@ -172,7 +172,8 @@ bot.on('ready', async function(){
   var sql = await client.query('SELECT * FROM public."time"')
 
   console.log(sql.rows[0])
-  var sqlupdate = await client.query("UPDATE public.time SET time_manga='Sun, 13 Dec 2020 05:50:48 +0000'")
+  var sqlupdate = await client.query("UPDATE public.time SET time_manga='Sun, 13 Dec 2020 05:51:48 +0000'")
+  sql = await client.query('SELECT * FROM public."time"')
   console.log(sql.rows[0])
 
 })		
