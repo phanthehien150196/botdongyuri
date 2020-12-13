@@ -262,16 +262,37 @@ bot.on("message", async message => {
         sqlcheck=await client.query("SELECT id_dis FROM public.manga where id_manga='"+id_manga+"' and id_dis='"+id_dis+"'")
         if(sqlcheck.rows.length>0) message.channel.send("<@"+message.author +"> Truyện này đã có trong danh sách")
         else {
-          sqladd=await client
-          .query("INSERT INTO public.manga(id_dis, id_manga) VALUES ('"+id_dis+"', '"+id_manga+"')")
-          .then(res => {
-            message.channel.send("<@"+message.author +"> Thêm truyện thành công vào danh sách theo dõi")
+          axios.get('https://mangadex.org/api/v2/manga/'+id_manga)
+              .then(async response =>{
+              sqladd=await client
+              .query("INSERT INTO public.manga(id_dis, id_manga, name_manga) VALUES ('"+id_dis+"', '"+id_manga+", '"+response.data.data.title+"')")
+              .then(res => {
+              message.channel.send("<@"+message.author +"> Thêm truyện thành công vào danh sách theo dõi")
     // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
-           })
+              })
+              //console.log(response.data.data.title);
+              })  
+          
         }
       
       }
 
+  }
+  else if(message.content.toLowerCase().trim()==".list"){
+    sqladd=await client
+          .query("SELECT id_manga FROM public.manga where id_dis='"+message.author.id+"'")
+          .then(res => {
+            var embedlist = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('DANH SÁCH TRUYỆN')
+
+            res.rows.forEach(r =>{
+
+              
+            })
+            
+    
+           })
   }
 	else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id=="769575209518104636") 
 	{
