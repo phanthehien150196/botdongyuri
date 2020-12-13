@@ -260,7 +260,7 @@ bot.on("message", async message => {
         var id_manga=getIdMd(str)
         var id_dis=message.author.id 
         sqlcheck=await client.query("SELECT id_dis FROM public.manga where id_manga='"+id_manga+"' and id_dis='"+id_dis+"'")
-        if(sqlcheck.rows.length<=0) message.channel.send("<@"+message.author +"> Truyện này đã có trong danh sách")
+        if(sqlcheck.rows.length>0) message.channel.send("<@"+message.author +"> Truyện này đã có trong danh sách")
         else {
           sqladd=await client
           .query("INSERT INTO public.manga(id_dis, id_manga) VALUES ('"+id_dis+"', '"+id_manga+"')")
