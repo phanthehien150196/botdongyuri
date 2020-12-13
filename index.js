@@ -178,7 +178,7 @@ bot.on('ready', async function(){
   feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
   sqlupdate = await client.query("UPDATE public.time SET time_manga='"+feed.items[0].pubDate+"'")
   date1=new Date(sql.rows[0].time_manga.trim())
-  feed.items.forEach(item => {
+  feed.items.forEach(async item => {
     if(new Date(item.pubDate)>date1){
       bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link);
       sqlno=await client.query("SELECT id_dis FROM public.manga where id_manga='"+getIdMd(item.mangaLink)+"'")
