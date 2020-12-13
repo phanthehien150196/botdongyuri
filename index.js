@@ -265,7 +265,7 @@ bot.on("message", async message => {
           axios.get('https://mangadex.org/api/v2/manga/'+id_manga)
               .then(async response =>{
               sqladd=await client
-              .query("INSERT INTO public.manga(id_dis, id_manga, name_manga) VALUES ('"+id_dis+"', '"+id_manga+"', '"+response.data.data.title+"')")
+              .query("INSERT INTO public.manga(id_dis, id_manga, name_manga) VALUES ('"+id_dis+"', '"+id_manga+"', '"+response.data.data.title.replace(/[^a-z0-9\s]/gi, '')+"')")
               .then(res => {
               message.channel.send("<@"+message.author +"> Thêm truyện thành công vào danh sách theo dõi")
     // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
