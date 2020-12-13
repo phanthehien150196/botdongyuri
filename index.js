@@ -179,9 +179,17 @@ bot.on('ready', async function(){
   sqlupdate = await client.query("UPDATE public.time SET time_manga='"+feed.items[0].pubDate+"'")
   date1=new Date(sql.rows[0].time_manga.trim())
   feed.items.forEach(item => {
-    if(new Date(item.pubDate)>date1)
-    bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link);
-    
+    if(new Date(item.pubDate)>date1){
+      bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link);
+      sqlno=await client.query("SELECT id_dis FROM public.manga where id_manga='"+getIdMd(item.mangaLink)+"'")
+      if(sqlno.rows.length>0){
+        tagno=""
+        sqlno.rows.forEach(r =>{
+          tagno=tagno+"<@"+r.id_dis+"> "
+        })
+        bot.channels.cache.get("787616644272357406").send(tagno+"Chap truyện mới "+item.link);
+      }
+    }
   });
 },ms('5m'))
 })		
@@ -858,6 +866,11 @@ function getId(mention) {
 	const matches = mention.match(/chapter\/!?([0-9]\d+)/g);
 	return matches[0].replace("chapter/",'')
 }	
+function getIdMd(mention) {
+  // The id is the first and only match found by the RegEx.
+  const matches = mention.match(/title\/!?([0-9]\d+)/g);
+  return matches[0].replace("title/",'')
+} 
 function getNameChapterMangakakalot(link){
   const matches = link.match(/chapter_([0-9]*)/gi);
   return matches[0]
