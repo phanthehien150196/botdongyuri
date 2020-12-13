@@ -13,12 +13,12 @@ var xpath = require('xpath')
   , dom = require('xmldom').DOMParser
 require('events').EventEmitter.prototype._maxListeners = 1000;
 	
+
 let parser = new Parser({
   customFields: {
     item: ['mangaLink']
   }
 });
-
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -177,27 +177,12 @@ bot.on('ready', () => {
   // "ready" isn't really ready. We need to wait a spell.
   wait(1000);
 
-  (async () => {
-  const sql = await client.query('SELECT * FROM public."time"')
-  console.log(sql.rows[0])
-  
-  /*var date1 = new Date('Sun, 13 Dec 2020 09:23:51 +0000');
-  setInterval(async function () {
-  let feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
-  console.log(feed.title);
-
-  feed.items.forEach(item => {
-    if(new Date(item.pubDate)>date1)
-    console.log(item.title + ':' +item.mangaLink+ ':' + item.link)
-    });
-  },5000)
-  })();
   // Load all invites for all guilds and save them to the cache.
   bot.guilds.cache.forEach(g => {
     g.fetchInvites().then(guildInvites => {
       invites[g.id] = guildInvites;
     });
-  });*/
+  });
 });
 
 bot.on('guildMemberAdd', async member => {
@@ -223,6 +208,8 @@ bot.on('guildMemberAdd', async member => {
 
 
 bot.on("message", async message => {
+  const sql = await client.query('SELECT * FROM public."time"')
+  console.log(sql.rows[0])
 	//if (message.webhookID) {message.delete({ timeout: 3000 })};
 	if(!message.author.bot){
 
