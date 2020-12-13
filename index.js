@@ -401,7 +401,7 @@ bot.on("message", async message => {
     client.query('SELECT * FROM public.manga;', (err, res) => {
     if (err) throw err;
     for (let row of res.rows) {
-      console.log(JSON.stringify(row));
+      message.channel.send(JSON.stringify(row));
     }
     //client.end();
     });
