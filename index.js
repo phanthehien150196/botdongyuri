@@ -169,12 +169,19 @@ const exampleEmbed = {
 const invites = {};
 bot.on('ready', async function(){		  
 	console.log("bot is now online");	
-  var sql = await client.query('SELECT * FROM public."time"')
+  //var sql = await client.query('SELECT * FROM public."time"')
 
-  console.log(sql.rows[0])
-  var sqlupdate = await client.query("UPDATE public.time SET time_manga='Sun, 13 Dec 2020 05:51:48 +0000'")
+  //console.log(sql.rows[0])
+  //var sqlupdate = await client.query("UPDATE public.time SET time_manga='Sun, 13 Dec 2020 05:51:48 +0000'")
   sql = await client.query('SELECT * FROM public."time"')
   console.log(sql.rows[0])
+
+  let feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
+  date1=new Date(sql.rows[0].time_manga.trim())
+  feed.items.forEach(item => {
+    if(new Date(item.pubDate)>date1)
+    console.log(item.title + ' : ' +item.pubDate)
+  });
 
 })		
 // A pretty useful method to create a delay without blocking the whole script.
