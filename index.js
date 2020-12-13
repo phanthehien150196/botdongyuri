@@ -169,9 +169,11 @@ const exampleEmbed = {
 const invites = {};
 bot.on('ready', async function(){		  
 	console.log("bot is now online");	
-  const sql = await client.query('SELECT * FROM public."time"')
+  var sql = await client.query('SELECT * FROM public."time"')
+
   console.log(sql.rows[0])
-  console.log("test")	
+  var sqlupdate = await client.query("UPDATE public.time SET time_manga='Sun, 13 Dec 2020 05:50:48 +0000'")
+  console.log(sql.rows[0])
 
 })		
 // A pretty useful method to create a delay without blocking the whole script.
