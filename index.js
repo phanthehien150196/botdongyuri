@@ -290,7 +290,7 @@ bot.on("message", async message => {
               embedlist.addField(r.name_manga,"[Link](https://mangadex.org/title/"+r.id_manga+")")
               
             })
-            message.channel.send(embedlist)
+            message.channel.send("<@"+message.author +"> "+embedlist)
     
            })
   }
