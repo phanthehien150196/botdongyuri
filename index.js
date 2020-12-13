@@ -280,17 +280,17 @@ bot.on("message", async message => {
   }
   else if(message.content.toLowerCase().trim()==".list"){
     sqladd=await client
-          .query("SELECT id_manga FROM public.manga where id_dis='"+message.author.id+"'")
+          .query("SELECT id_manga, name_manga FROM public.manga where id_dis='"+message.author.id+"'")
           .then(res => {
             var embedlist = new Discord.MessageEmbed()
             .setColor('#0099ff')
             .setTitle('DANH SÁCH TRUYỆN')
 
             res.rows.forEach(r =>{
-
+              embedlist.addField(r.name_manga,"[Link](https://mangadex.org/title/"+r.id_manga+")")
               
             })
-            
+            message.channel.send(embedlist)
     
            })
   }
