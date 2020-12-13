@@ -180,7 +180,7 @@ bot.on('ready', async function(){
   date1=new Date(sql.rows[0].time_manga.trim())
   feed.items.forEach(item => {
     if(new Date(item.pubDate)>date1)
-    bot.channels.cache.get("744518226829901866").send("Chap truyện mới "+item.link);
+    bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link);
     
   });
 },ms('5m'))
