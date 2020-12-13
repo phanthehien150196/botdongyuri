@@ -172,17 +172,18 @@ bot.on('ready', async function(){
   //var sql = await client.query('SELECT * FROM public."time"')
 
   //console.log(sql.rows[0])
-  //var sqlupdate = await client.query("UPDATE public.time SET time_manga='Sun, 13 Dec 2020 05:51:48 +0000'")
+ setInterval(async function () { 
   sql = await client.query('SELECT * FROM public."time"')
   console.log(sql.rows[0])
-
-  let feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
+  feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
+  sqlupdate = await client.query("UPDATE public.time SET time_manga='"+feed.items[0].pubDate+"'")
   date1=new Date(sql.rows[0].time_manga.trim())
   feed.items.forEach(item => {
     if(new Date(item.pubDate)>date1)
-    console.log(item.title + ' : ' +item.pubDate)
+    bot.channels.cache.get("744518226829901866").send(item.link);
+    
   });
-
+},ms('5m'))
 })		
 // A pretty useful method to create a delay without blocking the whole script.
 const wait = require('util').promisify(setTimeout);
