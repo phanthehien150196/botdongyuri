@@ -251,6 +251,28 @@ bot.on("message", async message => {
 		message.channel.send({ embed: exampleEmbed });
 
 	}
+  if(message.content.toLowerCase().indexOf(".add")==0) 
+  {
+    var str=message.content.toLowerCase();
+    str=str.replace(".add",'').trim();
+    if(str.indexOf("mangadex.org")==-1||str.indexOf("title/")==-1) message.channel.send("<@"+message.author +"> Phải là link truyện từ Mangadex.org")
+      else {
+        var id_manga=getIdMd(str)
+        var id_dis=message.author.id 
+        sqlcheck=await client.query("SELECT id_dis FROM public.manga where id_manga='"+id_manga+"' and id_dis='"+id_dis+"'")
+        if(sqlcheck.rows.length<=0) message.channel.send("<@"+message.author +"> Truyện này đã có trong danh sách")
+        else {
+          sqladd=await client
+          .query("INSERT INTO public.manga(id_dis, id_manga) VALUES ('"+id_dis+"', '"+id_manga+"')")
+          .then(res => {
+            message.channel.send("<@"+message.author +"> Thêm truyện thành công vào danh sách theo dõi")
+    // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+           })
+        }
+      
+      }
+
+  }
 	else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id=="769575209518104636") 
 	{
 		var str=message.content.toLowerCase()
