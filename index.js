@@ -278,6 +278,29 @@ bot.on("message", async message => {
       }
 
   }
+  else if(message.content.toLowerCase().indexOf(".remove")==0) 
+  {
+    var str=message.content.toLowerCase();
+    str=str.replace(".remove",'').trim();
+    if(str.indexOf("mangadex.org")==-1||str.indexOf("title/")==-1) message.channel.send("<@"+message.author +"> Phải là link truyện từ Mangadex.org")
+      else {
+        var id_manga=getIdMd(str)
+        var id_dis=message.author.id 
+        sqlcheck=await client.query("SELECT id_dis FROM public.manga where id_manga='"+id_manga+"' and id_dis='"+id_dis+"'")
+        if(sqlcheck.rows.length<=0) message.channel.send("<@"+message.author +"> Truyện không tồn tại trong danh sách")
+        else {
+          sqladd=await client
+              .query("DELETE FROM public.manga WHERE id_manga='"+id_manga+"' and id_dis='"+id_dis+"'")
+              .then(res => {
+              message.channel.send("<@"+message.author +"> Xoá thành công")
+    // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+              })  
+          
+        }
+      
+      }
+
+  }
   else if(message.content.toLowerCase().trim()==".list"){
     sqladd=await client
           .query("SELECT id_manga, name_manga FROM public.manga where id_dis='"+message.author.id+"'")
