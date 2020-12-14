@@ -320,6 +320,26 @@ bot.on("message", async message => {
     
            })
   }
+  else if(message.content.toLowerCase().indexOf(".list")==0){
+    let user=""
+    user = message.mentions.users.first();
+    if(user!=""){
+       sqladd=await client
+          .query("SELECT id_manga, name_manga FROM public.manga where id_dis='"+user.id+"'")
+          .then(res => {
+            var embedlist = new Discord.MessageEmbed()
+            .setColor('#0099ff')
+            .setTitle('DANH SÁCH TRUYỆN CỦA '+message.guild.members.cache.get(user.id).displayName)
+
+            res.rows.forEach(r =>{
+              embedlist.addField(r.name_manga,"[Link](https://mangadex.org/title/"+r.id_manga+")")
+              
+            })
+            message.channel.send(embedlist)
+    
+           })
+    }
+  }
 	else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id=="769575209518104636") 
 	{
 		var str=message.content.toLowerCase()
