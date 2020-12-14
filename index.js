@@ -181,8 +181,8 @@ bot.on('ready', async function(){
   feed.items.forEach(async item => {
     if(new Date(item.pubDate)>date1){
       bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link);
-      feednew=await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt/manga_id/'+getIdMd(item.mangaLink)+'?h=1');
-      if(feednew.items.length==1) bot.channels.cache.get("788037199433039873").send("truyện mới ra "+item.mangaLink);
+      // feednew=await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt/manga_id/'+getIdMd(item.mangaLink)+'?h=1');
+      // if(feednew.items.length==1) bot.channels.cache.get("788037199433039873").send("truyện mới ra "+item.mangaLink);
 
       sqlno=await client.query("SELECT id_dis FROM public.manga where id_manga='"+getIdMd(item.mangaLink)+"'")
       if(sqlno.rows.length>0){
