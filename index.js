@@ -181,6 +181,9 @@ bot.on('ready', async function(){
   feed.items.forEach(async item => {
     if(new Date(item.pubDate)>date1){
       bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link);
+      feednew=await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt/manga_id/'+getIdMd(item.mangaLink)+'?h=1');
+      if(feednew.items.length==1) bot.channels.cache.get("788037199433039873").send("truyện mới ra "+item.mangaLink);
+
       sqlno=await client.query("SELECT id_dis FROM public.manga where id_manga='"+getIdMd(item.mangaLink)+"'")
       if(sqlno.rows.length>0){
         tagno=""
@@ -493,16 +496,7 @@ bot.on("message", async message => {
   else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id!="769575209518104636") {
     message.channel.send("<@"+message.author +"> Vui lòng thực hiện lệnh download manga ở kênh <#769575209518104636>")
   }
-  else if(message.content.toLowerCase().indexOf(".data")==0) {
-    client.query('SELECT * FROM public.manga;', (err, res) => {
-    if (err) throw err;
-    for (let row of res.rows) {
-      message.channel.send(JSON.stringify(row));
-    }
-    //client.end();
-    });
-    //message.channel.send("<@"+message.author +"> Vui lòng thực hiện lệnh download manga ở kênh <#769575209518104636>")
-  }
+  
   else if(message.channel.id=="769575209518104636"&&message.author.id!="578560798205673482")
   {
     await message.delete({ timeout: 4000 });
@@ -794,7 +788,7 @@ axios.get(link)
 		await bot.channels.cache.get(`694785358952660998`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
     	})
     	}
-    	else if(message.attachments.size == 0&&message.content.indexOf("drive.google") === -1&&message.content.indexOf("Chap truyện mới") === -1&&message.content!=""&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 60000 });
+    	else if(message.attachments.size == 0&&message.content.indexOf("drive.google") === -1&&message.content.indexOf("truyện mới") === -1&&message.content!=""&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 60000 });
 	}
 })
 function getUserFromMention(mention) {
