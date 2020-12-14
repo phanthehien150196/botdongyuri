@@ -172,7 +172,7 @@ bot.on('ready', async function(){
   //var sql = await client.query('SELECT * FROM public."time"')
 
   //console.log(sql.rows[0])
- setInterval(async function () { 
+ /*setInterval(async function () { 
   sql = await client.query('SELECT * FROM public."time"')
   console.log(sql.rows[0])
   feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
@@ -194,7 +194,7 @@ bot.on('ready', async function(){
       }
     }
   });
-},ms('5m'))
+},ms('5m'))*/
 })		
 // A pretty useful method to create a delay without blocking the whole script.
 const wait = require('util').promisify(setTimeout);
