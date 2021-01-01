@@ -173,7 +173,7 @@ bot.on('ready', async function(){
 
   //console.log(sql.rows[0])
  setInterval(async function () { 
-  sql = await client.query('SELECT * FROM public."time"')
+  sql = await client.query("SELECT time_manga FROM time where name='mangadex'")
   console.log(sql.rows[0])
   feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
   sqlupdate = await client.query("UPDATE public.time SET time_manga='"+feed.items[0].pubDate+"'")
