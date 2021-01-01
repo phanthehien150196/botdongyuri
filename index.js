@@ -176,7 +176,7 @@ bot.on('ready', async function(){
   sql = await client.query("SELECT time_manga FROM time where name='mangadex'")
   console.log(sql.rows[0])
   feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
-  sqlupdate = await client.query("UPDATE public.time SET time_manga='"+feed.items[0].pubDate+"'")
+  sqlupdate = await client.query("UPDATE public.time SET time_manga='"+feed.items[0].pubDate+"' where name='mangadex'")
   date1=new Date(sql.rows[0].time_manga.trim())
   feed.items.forEach(async item => {
     if(new Date(item.pubDate)>date1){
@@ -194,6 +194,10 @@ bot.on('ready', async function(){
       }
     }
   });
+
+
+
+
 },ms('5m'))
 })		
 // A pretty useful method to create a delay without blocking the whole script.
