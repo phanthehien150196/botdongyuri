@@ -190,7 +190,7 @@ bot.on('ready', async function(){
         sqlno.rows.forEach(r =>{
           tagno=tagno+"<@"+r.id_dis+"> "
         })
-        bot.channels.cache.get("787616644272357406").send(tagno+"Chap truyện mới "+item.link);
+        bot.channels.cache.get("787616644272357406").send(tagno+"Chap truyện mới "+item.link+"\n Bấm 👌 để tải chap truyện này xuống");
       }
     }
   });
@@ -394,7 +394,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
       authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
       msg.edit("<@"+user.id +"> Đang upload lên google drive\n"+progressBar(1, 1))
-        uploadFile(msg,dir.replace("./","")+".zip",reaction.message.channel.id,"> "+reaction.message.content+"\n<@"+user.id +">",token)
+        uploadFile(msg,dir.replace("./","")+".zip",'769575209518104636',"> "+reaction.message.content+"\n<@"+user.id +"> ",token)
         
       });
       });
