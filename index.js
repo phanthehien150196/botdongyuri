@@ -240,6 +240,9 @@ bot.on('guildMemberAdd', async member => {
 bot.on("message", async message => {
 
 	//if (message.webhookID) {message.delete({ timeout: 3000 })};
+  if(message.author.id=="578560798205673482"&&message.channel.id=="744518226829901866"){
+    message.react(':ok_hand:');
+  }
 	if(!message.author.bot){
 
 		bot.on('messageUpdate', (oldMessage, newMessage) => {
