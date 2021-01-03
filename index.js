@@ -28,7 +28,7 @@ const client = new Client({
 
 client.connect();
 
-var bot = new Discord.Client();	
+var bot = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });	
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 const TOKEN_PATH = 'token.json';	
