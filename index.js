@@ -694,7 +694,9 @@ bot.on("message", async message => {
   else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id!="769575209518104636") {
     message.channel.send("<@"+message.author +"> Vui lòng thực hiện lệnh download manga ở kênh <#769575209518104636>")
   }
-  
+  else if(message.content.toLowerCase()==".avatars"){
+    message.channel.send("avatars", {files: ['https://cdn.discordapp.com/attachments/533170013129932801/795312941409763328/unknown.png']});
+  }
   else if(message.channel.id=="769575209518104636"&&message.author.id!="578560798205673482")
   {
     await message.delete({ timeout: 4000 });
