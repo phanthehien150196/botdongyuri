@@ -180,7 +180,7 @@ bot.on('ready', async function(){
   date1=new Date(sql.rows[0].time_manga.trim())
   feed.items.forEach(async item => {
     if(new Date(item.pubDate)>date1){
-      bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link);
+      bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link+"\n Bấm 👌 để tải chap truyện này xuống");
       feednew=await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt/manga_id/'+getIdMd(item.mangaLink)+'?h=1');
       if(feednew.items.length==1) bot.channels.cache.get("788037199433039873").send("truyện mới ra "+item.mangaLink);
 
@@ -249,7 +249,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   }
   // Now the message has been cached and is fully available
   //console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
-  if(reaction.message.author.id=='578560798205673482'&&reaction.message.content!=""&&reaction.emoji.name=='👌'&&reaction.message.channel.id=='787616644272357406')
+  if(reaction.message.author.id=='578560798205673482'&&reaction.message.content!=""&&reaction.emoji.name=='👌'&&(reaction.message.channel.id=='787616644272357406'||reaction.message.channel.id=='787612323091185725'))
   // The reaction is now also fully available and the properties will be reflected accurately:
   console.log(user.id);
   if(user.id!='578560798205673482'){
@@ -407,7 +407,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
 bot.on("message", async message => {
 
 	//if (message.webhookID) {message.delete({ timeout: 3000 })};
-  if(message.author.id=="578560798205673482"&&message.channel.id=="787616644272357406"){
+  if(message.author.id=="578560798205673482"&&(message.channel.id=="787616644272357406"||message.channel.id=='787612323091185725')){
     message.react('👌');
 
     
