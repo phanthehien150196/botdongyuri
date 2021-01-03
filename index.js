@@ -255,6 +255,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   if(user.id!='578560798205673482'){
     //
     var str=reaction.message.content.toLowerCase();
+    console.log(str)
     str=getLink(str);
 
     (async function() {
