@@ -250,7 +250,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   // Now the message has been cached and is fully available
   //console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
   if(reaction.message.author.id=='578560798205673482'&&reaction.message.content!=""&&reaction.emoji.name=='👌'&&(reaction.message.channel.id=='787616644272357406'||reaction.message.channel.id=='787612323091185725'))
-  // The reaction is now also fully available and the properties will be reflected accurately:
+  {
   console.log(user.id);
   if(user.id!='578560798205673482'){
     //
@@ -383,7 +383,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
         }
     })
 
-  } else {msg.edit("<@"+user.id +"> Sai link truyện. Nhập đúng đường dẫn chapter của 1 trong những web truyện sau\nMangadex.org\nMangakakalot.com\nManganelo.com\nNhentai.net");return false}
+  } else {return false}
     
 
     msg.edit("<@"+user.id +"> Đang nén ảnh\n"+progressBar(1, 1))
@@ -403,6 +403,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
 
 
   }
+}
 });
 bot.on("message", async message => {
 
