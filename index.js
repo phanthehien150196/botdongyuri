@@ -694,9 +694,9 @@ bot.on("message", async message => {
   else if(message.content.toLowerCase().indexOf(".download")==0&&message.channel.id!="769575209518104636") {
     message.channel.send("<@"+message.author +"> Vui lòng thực hiện lệnh download manga ở kênh <#769575209518104636>")
   }
-  else if(message.content.toLowerCase()==".avatars"){
+  /*else if(message.content.toLowerCase()==".avatars"){
     message.channel.send("avatars", {files: ['https://cdn.discordapp.com/attachments/533170013129932801/795312941409763328/unknown.png']});
-  }
+  }*/
   else if(message.channel.id=="769575209518104636"&&message.author.id!="578560798205673482")
   {
     await message.delete({ timeout: 4000 });
@@ -707,7 +707,7 @@ bot.on("message", async message => {
   // }
 	else if(message.content.toLowerCase().indexOf("avatar")!=-1&&getUserFromMention(message.content)!=false){
 		let user = message.mentions.users.first();
-		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là "+ user.displayAvatarURL({ dynamic:true,format:"png",size:4096 }))
+		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
 	else if(getGame(change_alias(message.content)) !=false&&message.author.id!="574602677929902080"&&message.channel.id =="533170013129932801"&&message.member.roles.cache.some(r => r.name === "Mod")==false){
 		 //console.log(change_alias(message.content))
