@@ -394,7 +394,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
       authorize(JSON.parse(content), function(token) {
       //console.log("Got Token"); 
       msg.edit("<@"+user.id +"> Đang upload lên google drive\n"+progressBar(1, 1))
-        uploadFile(msg,dir.replace("./","")+".zip",'769575209518104636',"> "+reaction.message.content+"\n<@"+user.id +"> ",token)
+        uploadFile(msg,dir.replace("./","")+".zip",'769575209518104636',"> "+str+"\n<@"+user.id +"> ",token)
         
       });
       });
