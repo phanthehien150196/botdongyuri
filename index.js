@@ -236,14 +236,7 @@ bot.on('guildMemberAdd', async member => {
   });
 });
 
-
-bot.on("message", async message => {
-
-	//if (message.webhookID) {message.delete({ timeout: 3000 })};
-  if(message.author.id=="578560798205673482"&&message.channel.id=="744518226829901866"){
-    message.react('👌');
-
-    bot.on('messageReactionAdd', async (reaction, user) => {
+bot.on('messageReactionAdd', async (reaction, user) => {
   // When we receive a reaction we check if the reaction is partial or not
   if (reaction.partial) {
     // If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
@@ -257,8 +250,15 @@ bot.on("message", async message => {
   // Now the message has been cached and is fully available
   console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
   // The reaction is now also fully available and the properties will be reflected accurately:
-  console.log(`${reaction.count} user(s) have given the same reaction to this message!`);
+  console.log(reaction.emoji.name);
 });
+bot.on("message", async message => {
+
+	//if (message.webhookID) {message.delete({ timeout: 3000 })};
+  if(message.author.id=="578560798205673482"&&message.channel.id=="744518226829901866"){
+    message.react('👌');
+
+    
 
   }
 	if(!message.author.bot){
