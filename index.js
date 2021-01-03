@@ -248,9 +248,10 @@ bot.on('messageReactionAdd', async (reaction, user) => {
     }
   }
   // Now the message has been cached and is fully available
-  console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
+  //console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
+  if(reaction.message.author.id=='578560798205673482'&&reaction.message.content!=""&&reaction.emoji.name=='👌')
   // The reaction is now also fully available and the properties will be reflected accurately:
-  console.log(reaction.emoji.name);
+  console.log(user.id);
 });
 bot.on("message", async message => {
 
