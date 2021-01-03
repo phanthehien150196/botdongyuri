@@ -1108,7 +1108,7 @@ axios.get(link)
     })
 }
 function getLink(a){
-  const matches = mention.match(/(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/g);
+  const matches = a.match(/(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/g);
   return matches[0]
 }
 
