@@ -249,14 +249,164 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   }
   // Now the message has been cached and is fully available
   //console.log(`${reaction.message.author}'s message "${reaction.message.content}" gained a reaction!`);
-  if(reaction.message.author.id=='578560798205673482'&&reaction.message.content!=""&&reaction.emoji.name=='👌')
+  if(reaction.message.author.id=='578560798205673482'&&reaction.message.content!=""&&reaction.emoji.name=='👌'&&reaction.message.channel.id=='787616644272357406')
   // The reaction is now also fully available and the properties will be reflected accurately:
   console.log(user.id);
+  if(user.id!='578560798205673482'){
+    //
+    var str=reaction.message.content.toLowerCase();
+    str=getLink(str);
+
+    (async function() {
+    
+    msg = await bot.channels.cache.get(`769575209518104636`).send("<@"+user.id +"> Đang lấy thông tin chap truyện")
+
+    var dir="Chapter"
+    //var arr
+    var title="_"
+    var chap=""
+    //mangadex
+    if(str.indexOf("mangadex.org")>=0){
+      await axios.get('https://mangadex.org/api/v2/chapter/'+getId(str))
+      .then(async response =>{
+        console.log(response.data.data.pages);
+        var arr=response.data.data.pages
+        var sv=response.data.data.server+response.data.data.hash+"/"
+        title =response.data.data.mangaTitle
+        chap=response.data.data.chapter+"_"+response.data.data.title
+        dir = './'+title+"_chap_"+chap;
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+
+        msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ")
+    //console.log(arr)    
+        for(let i = 0; i < arr.length; i++) {
+        await download_dex(sv+arr[i], dir+'/'+i+getPage(sv+arr[i]));
+        if(i%5==0) {
+            //var tientrinh=i/arr.length*100
+            msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+            }
+          }
+
+     })
+
+  } 
+  //mangakakalot
+  else if(str.indexOf("mangakakalot.com")>=0){
+    await axios.get(str)
+    .then(async res => {
+        const data = res.data
+        var arr=getArrMangakakalot(data)
+        var name=getNameChapterMangakakalot(str)
+        console.log("tên chapter là: "+name)
+        console.log("Chapter có số trang là: "+arr[0].value)
+        dir = './'+name;
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+        msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ")
+        for(let i = 0; i < arr.length; i++) {
+        await download_image(arr[i].value, dir+'/'+i+getPage(arr[i].value));
+        if(i%5==0) {
+            
+            msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+          }
+        }
+    })
+
+  }
+  //manganelo.com
+  else if(str.indexOf("manganelo.com")>=0){
+    await axios.get(str)
+    .then(async res => {
+        const data = res.data
+        var arr=getArrManganelo(data)
+        var name=getNameChapterMangakakalot(str)
+        console.log("tên chapter là: "+name)
+        console.log("Chapter có số trang là: "+arr[0].value)
+        dir = './'+name;
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+        msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ")
+        for(let i = 0; i < arr.length; i++) {
+        await download_image(arr[i].value, dir+'/'+i+getPage(arr[i].value));
+        if(i%5==0) {
+            //var tientrinh=i/arr.length*100
+            msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+          }
+        }
+    })
+
+  }
+  //nhentai.net
+  else if(str.indexOf("nhentai.net")>=0){
+    await axios.get(str)
+    .then(async res => {
+        const data = res.data
+        var arr=getArrNhentai(data)
+        var name=getNameNhentai(str)
+        console.log("tên chapter là: "+name)
+        console.log("Chapter có số trang là: "+arr[0].value)
+        dir = './nhentai_'+name;
+
+        if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+        }
+        msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ")
+        for(let i = 0; i < arr.length; i++) {
+        var v=arr[i].value.replace("t.nhentai","i.nhentai")
+        v=v.replace("t.",".")
+        
+        await download_nhentai(v, dir+'/'+i+getPage(arr[i].value));
+          if(i%5==0) {
+            //var tientrinh=i/arr.length*100
+            msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+
+          }else if(i==(arr.length-1)){
+            msg.edit("<@"+user.id +"> Đang tải ảnh về máy chủ\n"+progressBar(i, arr.length))
+          }
+        }
+    })
+
+  } else {msg.edit("<@"+user.id +"> Sai link truyện. Nhập đúng đường dẫn chapter của 1 trong những web truyện sau\nMangadex.org\nMangakakalot.com\nManganelo.com\nNhentai.net");return false}
+    
+
+    msg.edit("<@"+user.id +"> Đang nén ảnh\n"+progressBar(1, 1))
+      await zipDirectory(dir, dir+".zip")
+      await fs.readFile('credentials.json', (err, content) => {
+      if (err) return console.log('Error loading client secret file:', err);
+  // Authorize a client with credentials, then call the Google Drive API.
+      authorize(JSON.parse(content), function(token) {
+      //console.log("Got Token"); 
+      msg.edit("<@"+user.id +"> Đang upload lên google drive\n"+progressBar(1, 1))
+        uploadFile(msg,dir.replace("./","")+".zip",reaction.message.channel.id,"> "+reaction.message.content+"\n<@"+user.id +">",token)
+        
+      });
+      });
+
+  })();
+
+
+  }
 });
 bot.on("message", async message => {
 
 	//if (message.webhookID) {message.delete({ timeout: 3000 })};
-  if(message.author.id=="578560798205673482"&&message.channel.id=="744518226829901866"){
+  if(message.author.id=="578560798205673482"&&message.channel.id=="787616644272357406"){
     message.react('👌');
 
     
@@ -956,6 +1106,11 @@ axios.get(link)
         return diem
     })
 }
+function getLink(a){
+  const matches = mention.match(/(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/g);
+  return matches[0]
+}
+
 function getPage(mention) {
 	// The id is the first and only match found by the RegEx.
 	const matches = mention.match(/.(jpg|png|jpeg|gif)/g);
