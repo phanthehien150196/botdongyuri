@@ -174,7 +174,7 @@ bot.on('ready', async function(){
   //console.log(sql.rows[0])
 setInterval(async function () { 
    msg = await bot.channels.cache.get(`533170013129932801`).send("Trải nghiệm tính năng theo dõi tuyện, download truyện của Mami. Xem hướng dẫn tại https://forum.blogtruyen.vn/tool/bot-discord-ho-tro-tai-truyen-va-theo-doi-truyen-54703")
-   await msg.delete({ timeout: 10000 });
+   await msg.delete({ timeout: 30000 });
 },ms('60m'))
 
 
