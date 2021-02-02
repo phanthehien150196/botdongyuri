@@ -1347,7 +1347,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	fs.unlinkSync('./'+name)
     //console.error("thành công")
     
-    bot.channels.cache.get(messid).send(author+" Link tải truyện https://drive.google.com/uc?export=download&id="+fileId);
+    bot.channels.cache.get(messid).send(author);
     driveEmbed = new Discord.MessageEmbed().addField("Link tải","["+name+"](https://drive.google.com/uc?export=download&id="+fileId+" )")
     bot.channels.cache.get(messid).send(driveEmbed)
    	msg.delete({ timeout: 1 });
