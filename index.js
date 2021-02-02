@@ -1345,7 +1345,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	fs.unlinkSync('./'+name)
     //console.error("thành công")
     
-    bot.channels.cache.get(messid).send(author+" Link tải truyện https://drive.google.com/file/d/"+fileId+"/view");
+    bot.channels.cache.get(messid).send(author+" Link tải truyện https://drive.google.com/uc?export=download&id="+fileId);
    	msg.delete({ timeout: 1 });
    /* setTimeout(function(){
     drive.files.delete({
