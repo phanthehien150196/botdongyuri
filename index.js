@@ -716,7 +716,7 @@ bot.on("message", async message => {
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
 	else if(message.content.toLowerCase().indexOf(".test")==0){
-    var driveEmbed = new Discord.MessageEmbed().addField("","[Link xem](https://forum.blogtruyen.vn/huong-dan/mod-huong-dan-to-mau-manga-48596 )")
+    var driveEmbed = new Discord.MessageEmbed().addField("Tải truyện","[Link xem](https://forum.blogtruyen.vn/huong-dan/mod-huong-dan-to-mau-manga-48596 )")
     message.channel.send(driveEmbed)
 		 //console.log(change_alias(message.content))
 		// message.delete({ timeout: 1 });
