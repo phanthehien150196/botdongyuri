@@ -715,7 +715,8 @@ bot.on("message", async message => {
 		let user = message.mentions.users.first();
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
-	else if(getGame(change_alias(message.content)) !=false&&message.author.id!="574602677929902080"&&message.channel.id =="533170013129932801"&&message.member.roles.cache.some(r => r.name === "Mod")==false){
+	else if(message.content.toLowerCase().indexOf(".test")==0){
+    message.channel.send("[Link xem](https://forum.blogtruyen.vn/huong-dan/mod-huong-dan-to-mau-manga-48596 )")
 		 //console.log(change_alias(message.content))
 		// message.delete({ timeout: 1 });
 		//await bot.channels.cache.get(`543459440691642408`).send("<@"+message.author +"> Nếu bạn đang nói về game thì xin hãy thảo luận ở phòng này")
