@@ -968,35 +968,7 @@ axios.get(link)
 	}*/
 	} else if(message.author=="578560798205673482"){
 		
-    //console.log(message.content)
-		//rau cải đắng
-		if(message.content.indexOf("cKhwHV3") > -1)
-		{
-		let role = message.guild.roles.cache.find(role => role.name === 'Rau Cải Đắng');
-    	const mem = message.mentions.members.first();
-    	mem.roles.add(role);
-    	//let guild = await message.guild.members.fetch();
-    	let memberCount = message.guild.roles.cache.get("745158403399221278").members.size+1;
-    	//message.channel.send(memberCount + " members have this role!");
-		await bot.channels.cache.get(`745158887551795291`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
-    	}
-    /*	else if(message.content.toLowerCase().indexOf("discord.gg") > -1)
-		{
-			message.delete({ timeout: 1 });
-		}*/
-    	
-    	else if(message.content.indexOf("hS3RXkR") > -1)
-		{
-		let role = message.guild.roles.cache.find(role => role.name === 'Trap');
-    	const mem = message.mentions.members.first();
-    	mem.roles.add(role);
-    	message.guild.members.fetch().then(async fetchedMembers => {
-    	let memberCount = message.guild.roles.cache.get("694785358742945816").members.size;
-    	//message.channel.send(memberCount + " members have this role!");
-		await bot.channels.cache.get(`694785358952660998`).setName(`Rau Cải Đắng (`+memberCount+` thành viên)`)
-    	})
-    	}
-    	else if(message.attachments.size == 0&&message.content.indexOf("drive.google") === -1&&message.content.indexOf("truyện mới") === -1&&message.content!=""&&message.content.indexOf("Toán") === -1&&message.content.indexOf("Đang") === -1&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 60000 });
+  if(message.channel.id!="787612323091185725"&&message.channel.id!="787616644272357406"&&message.channel.id!="788037199433039873"&&message.channel.id!="769575209518104636"&&message.attachments.size == 0&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 60000 });
 	}
 })
 function getUserFromMention(mention) {
