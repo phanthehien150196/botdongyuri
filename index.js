@@ -1277,14 +1277,14 @@ function uploadFile(msg,name,messid,author,auth) {
   	supportsAllDrives: true,
     resource: fileMetadata,
     media: media,
-    fields: 'id'
+    fields: 'id, size'
   }, (err, file) => {
     if (err) {
       // Handle error
       msg.edit("<@"+message.author +"> Lỗi! Xin hãy thử lại")
     } else {
       var fileId = file.data.id;  
-      var fileSize=file.data;
+      var fileSize=file.data.size;
       console.log(fileSize)
       console.log(fileId)
         var permissions = [
