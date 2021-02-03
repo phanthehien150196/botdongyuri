@@ -1300,7 +1300,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	supportsAllDrives: true,
     resource: permission,
     fileId: fileId,
-    fields: 'files(id, size)',
+    fields: 'id, size',
   }, function (err, file) {
     if (err) {
       // Handle error...
