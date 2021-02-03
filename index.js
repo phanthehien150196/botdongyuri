@@ -438,7 +438,7 @@ bot.on("message", async message => {
 		message.channel.send({ embed: exampleEmbed });
 
 	}
-  if(message.content.toLowerCase().indexOf(".add")==0) 
+  else if(message.content.toLowerCase().indexOf(".add")==0) 
   {
     var str=message.content.toLowerCase();
     str=str.replace(".add",'').trim();
@@ -742,7 +742,7 @@ bot.on("message", async message => {
         }
 
     await download_dis(message.attachments.first().url,dir+"/"+filed);
-        msgimg=bot.channels.cache.get("786302361542852649").send(message.guild.members.cache.get(user.id).displayName+" đã tải lên ở <#"+message.channel.id+">", {files: [dir+"/"+filed]});
+        msgimg=bot.channels.cache.get("786302361542852649").send(message.guild.members.cache.get(user.id).displayName+" đã tải lên ở <#"+message.channel.id+">\nLink tin nhắn "+message.url, {files: [dir+"/"+filed]});
         console.log(msgimg.attachments.first().url)
         await fs.unlinkSync(dir+"/"+filed)
 
