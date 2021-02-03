@@ -1284,6 +1284,8 @@ function uploadFile(msg,name,messid,author,auth) {
       msg.edit("<@"+message.author +"> Lỗi! Xin hãy thử lại")
     } else {
       var fileId = file.data.id;  
+      var fileSize=file.data.size/1024/1024;
+      console.log(fileSize)
       console.log(fileId)
         var permissions = [
   {
