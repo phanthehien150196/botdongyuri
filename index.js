@@ -1284,7 +1284,7 @@ function uploadFile(msg,name,messid,author,auth) {
       msg.edit("<@"+message.author +"> Lỗi! Xin hãy thử lại")
     } else {
       var fileId = file.data.id;  
-      var fileSize=file.data.size;
+      var fileSize=Math.round10(file.data.size/1024/1024,-2);
       console.log(fileSize)
       console.log(fileId)
         var permissions = [
@@ -1307,7 +1307,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
       msg.edit("<@"+message.author +"> Lỗi! Xin hãy thử lại")
       permissionCallback(err);
     } else {
-      console.log(file.size)
+      //console.log(file.size)
       permissionCallback();
     }
   });
@@ -1321,7 +1321,7 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
     //console.error("thành công")
     
     bot.channels.cache.get(messid).send(author);
-    driveEmbed = new Discord.MessageEmbed().addField("Link tải","["+name+"](https://drive.google.com/uc?export=download&id="+fileId+" )")
+    driveEmbed = new Discord.MessageEmbed().addField("Link tải","["+name+" ("+fileSize+"MB)](https://drive.google.com/uc?export=download&id="+fileId+" )")
     bot.channels.cache.get(messid).send(driveEmbed)
    	msg.delete({ timeout: 1 });
    /* setTimeout(function(){
