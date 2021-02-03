@@ -1277,7 +1277,7 @@ function uploadFile(msg,name,messid,author,auth) {
   	supportsAllDrives: true,
     resource: fileMetadata,
     media: media,
-    fields: 'files(id, size)'
+    fields: 'id'
   }, (err, file) => {
     if (err) {
       // Handle error
@@ -1300,14 +1300,14 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
   	supportsAllDrives: true,
     resource: permission,
     fileId: fileId,
-    fields: 'id',
-  }, function (err, res) {
+    fields: 'files(id, size)',
+  }, function (err, file) {
     if (err) {
       // Handle error...
       msg.edit("<@"+message.author +"> Lỗi! Xin hãy thử lại")
       permissionCallback(err);
     } else {
-      //console.log('Permission ID: ', res.id)
+      console.log(file.size)
       permissionCallback();
     }
   });
