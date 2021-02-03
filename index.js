@@ -1277,7 +1277,7 @@ function uploadFile(msg,name,messid,author,auth) {
   	supportsAllDrives: true,
     resource: fileMetadata,
     media: media,
-    fields: 'id'
+    fields: 'files(id, size)'
   }, (err, file) => {
     if (err) {
       // Handle error
