@@ -716,7 +716,7 @@ bot.on("message", async message => {
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
 	else if(message.content.toLowerCase().indexOf(".test")==0){
-    message.channel.send(message.channel.url)
+    message.channel.send(message.url)
 		 //console.log(change_alias(message.content))
 		// message.delete({ timeout: 1 });
 		//await bot.channels.cache.get(`543459440691642408`).send("<@"+message.author +"> Nếu bạn đang nói về game thì xin hãy thảo luận ở phòng này")
