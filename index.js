@@ -1137,7 +1137,7 @@ function getArrMangakakalot(data){
         fatalError: function (e) { console.error(e) } }
         }).parseFromString(data);
 
-        var nodes = xpath.select(`//*[@id="vungdoc"]/img/@src`, doc)
+        var nodes = xpath.select(`//div[contains(@class, 'container-chapter-reader')]/img/@src`, doc)
         return nodes
 }
 function getArrManganelo(data){
