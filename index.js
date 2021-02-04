@@ -200,7 +200,7 @@ setInterval(async function () {
         })
         bot.channels.cache.get("787616644272357406").send(tagno+"Chap truyện mới "+item.link+"\n Bấm 👌 để tải chap truyện này xuống");
       }
-    } else break;
+    } else throw Error();
   });
 
 
