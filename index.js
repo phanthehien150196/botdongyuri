@@ -718,11 +718,14 @@ bot.on("message", async message => {
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
 	else if(message.content.toLowerCase().indexOf(".test")==0){
-    message.channel.send(message.url)
-		 //console.log(change_alias(message.content))
-		// message.delete({ timeout: 1 });
-		//await bot.channels.cache.get(`543459440691642408`).send("<@"+message.author +"> Nếu bạn đang nói về game thì xin hãy thảo luận ở phòng này")
-
+    await axios.get('https://mangadex.org/api/v2/manga/28688')
+      .then(async response =>{
+        
+        title =response.data.data.title
+        des=response.data.data.description
+        cover=response.data.data.mainCover
+        message.channel.send("tên truyện: "+title+"\nSơ lược: "+des+"\nLink ảnh bìa: "+cover)
+     })
 	}
 	else if(message.content.indexOf("$") === 0&&message.content.toLowerCase().indexOf("$xp") === -1&&message.content.toLowerCase().indexOf("$mute") === -1&&message.channel.id =="533170013129932801"){
 		await message.delete({ timeout: 1 });
