@@ -724,7 +724,8 @@ bot.on("message", async message => {
         title =response.data.data.title
         des=response.data.data.description
         cover=response.data.data.mainCover
-        message.channel.send("tên truyện: "+title+"\nSơ lược: "+des+"\nLink ảnh bìa: "+cover)
+        message.channel.send(embedMD(title,cover,des,"https://google.com"))
+
      })
 	}
 	else if(message.content.indexOf("$") === 0&&message.content.toLowerCase().indexOf("$xp") === -1&&message.content.toLowerCase().indexOf("$mute") === -1&&message.channel.id =="533170013129932801"){
@@ -1093,6 +1094,48 @@ axios.get(link)
         console.log(diem)
         return diem
     })
+}
+function embedMD(title, image, des, chap){
+  var embed = {
+  "username": "",
+  "avatar_url": "",
+  "content": "",
+  "embeds": [
+    {
+      "title": "I Can't Tell Which Twin is Which Sex",
+      "color": 405559,
+      "description": des,
+      "timestamp": "",
+      "url": title,
+      "author": {
+        "name": "",
+        "url": ""
+      },
+      "image": {
+        "url": image
+      },
+      "thumbnail": {},
+      "footer": {},
+      "fields": [
+        {
+          "name": "Đọc chương đầu",
+          "value": "[Ấn vào đây](${chap})"
+        }
+      ]
+    },
+    {
+      "color": 0,
+      "timestamp": "",
+      "author": {},
+      "image": {},
+      "thumbnail": {},
+      "footer": {},
+      "fields": []
+    }
+  ]
+}
+
+return embed;
 }
 function getLink(a){
   const matches = a.match(/(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/g);
