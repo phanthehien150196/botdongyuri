@@ -422,9 +422,7 @@ bot.on("message", async message => {
     
 
   }
-  if(message.author.id=="408173258966433793"){
-    message.delete({ timeout: 1 });
-  }
+  
 	if(!message.author.bot){
 
 		bot.on('messageUpdate', (oldMessage, newMessage) => {
