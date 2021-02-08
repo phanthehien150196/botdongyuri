@@ -884,8 +884,8 @@ axios.get(link)
     if(str.indexOf("|")===0) message.channel.send("<@"+message.author +"> Lệnh không hợp lệ")
     else if(str.indexOf("|")>0){
       strarr=str.split("|")
-      name=str.split[0]
-      link=str.split[1]
+      name=str.strarr[0]
+      link=str.strarr[1]
       sqlchat=await client.query("SELECT * FROM public.botchat where id_dis='"+message.author.id+"'")
       if(sqlchat.rows.length>0){
         sqlupdate = await client.query("UPDATE public.botchat SET link_image='"+link+"', name='"+name+"' where id_dis='"+message.author.id+"'")
