@@ -891,7 +891,7 @@ axios.get(link)
         sqlupdate = await client.query("UPDATE public.botchat SET link_image='"+link+"', name='"+name+"' where id_dis='"+message.author.id+"'")
         message.channel.send("<@"+message.author +"> Cài đặt thành công")
       }else sqladd=await client
-              .query("INSERT INTO public.manga(id_dis, name, link_image) VALUES ('"+message.author.id+"', '"+name+"', '"+link+"')")
+              .query("INSERT INTO public.botchat(id_dis, name, link_image) VALUES ('"+message.author.id+"', '"+name+"', '"+link+"')")
               .then(res => {
               message.channel.send("<@"+message.author +"> Cài đặt thành công")
     // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
