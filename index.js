@@ -1040,7 +1040,7 @@ axios.get(link)
 	}*/
 	} else if(message.author=="578560798205673482"){
 		
-  if(message.channel.id!="787612323091185725"&&message.channel.id!="787616644272357406"&&message.channel.id!="788037199433039873"&&message.channel.id!="769575209518104636"&&message.attachments.size == 0&&message.content.indexOf("có avatar là") === -1) await message.delete({ timeout: 60000 });
+  if(message.channel.id!="787612323091185725"&&message.channel.id!="787616644272357406"&&message.channel.id!="788037199433039873"&&message.channel.id!="769575209518104636"&&message.attachments.size == 0&&message.content.indexOf("có avatar là") === -1&&message.content.toLowerCase().indexOf(".waifu") == 0) await message.delete({ timeout: 60000 });
 	}
 })
 function getUserFromMention(mention) {
