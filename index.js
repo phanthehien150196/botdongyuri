@@ -881,33 +881,77 @@ axios.get(link)
 	
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
       .then(async response =>{
-      	if(response.data.success=="") {
-      		message.channel.send("<@"+message.author +"> Không hiểu");
-      	}
-      	else{
-      		var str=response.data.success
-      		str=str.replace("simsimi","Mami")
-      		str=str.replace("Simsimi","Mami")
-      		str=str.replace("SimSimi","Mami")
-      		str=str.replace("Sim","Mami")
-      		str=str.replace("sim","Mami")
+        sqlchat=await client.query("SELECT * FROM public.botchat where id_dis='"+message.author.id+"'")
+        if(sqlchat.rows.length>0){
+          name=sqlchat.rows[0].name
+          image=sqlchat.rows[0].link_image
+          const channel = bot.channels.cache.get(message.channel.id);
+          try {
+            const webhooks = await channel.fetchWebhooks();
+            const webhook = webhooks.first();
+              if(response.data.success=="") {
+                await webhook.send("<@"+message.author +"> Không hiểu", {
+                username: name,
+                avatarURL: image,
+                });          
+          }
+          else{
+          var str=response.data.success
+          str=str.replace(/simsimi|Simsimi|SimSimi/g,name)
+          str=str.replace("Sim",name)
+          str=str.replace("sim",name)
           strarr=str.split(/[.,!?;]/)
           filarr=strarr.filter(function(e){ return e === 0 || e });
           if(filarr.length>0){
             for(let i = 0; i < filarr.length; i++){
-              // message.channel.startTyping();
-              // setTimeout(()=>{
-              //   message.channel.send("<@"+message.author +"> "+filarr[i]);  
               
-              //   message.channel.stopTyping();
-              // },500)
+              if(filarr[i].trim()!="") {
+                await webhook.send("<@"+message.author +"> "+filarr[i], {
+                username: name,
+                avatarURL: image,
+                });
+                
+              }  
+            } 
+          } else {
+                await webhook.send("<@"+message.author +"> "+str, {
+                username: name,
+                avatarURL: image,
+                });
+                
+              }
+          
+          console.log(filarr.length)
+          }
+            
+            } catch (error) {
+            console.error('Lỗi: ', error);
+            }
+        } else if(response.data.success=="") {
+          message.channel.send("<@"+message.author +"> Không hiểu");
+          }
+          else{
+          var str=response.data.success
+
+
+          str=str.replace("simsimi","Mami")
+          str=str.replace("Simsimi","Mami")
+          str=str.replace("SimSimi","Mami")
+          str=str.replace("Sim","Mami")
+          str=str.replace("sim","Mami")
+          strarr=str.split(/[.,!?;]/)
+          filarr=strarr.filter(function(e){ return e === 0 || e });
+          if(filarr.length>0){
+            for(let i = 0; i < filarr.length; i++){
+              
               if(filarr[i].trim()!="") await message.channel.send("<@"+message.author +"> "+filarr[i]);  
             } 
           } else message.channel.send("<@"+message.author +"> "+str);
           
-      		console.log(filarr.length)
-      	}
-      } )
+          console.log(filarr.length)
+          }
+      	
+      })
 
 	//	message.channel.send("pong");		  
 	}		
