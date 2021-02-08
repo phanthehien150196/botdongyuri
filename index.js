@@ -877,6 +877,28 @@ axios.get(link)
     })
   	
 	}
+  else if(message.content.toLowerCase().indexOf(".waifu") === 0){
+    str=message.content.slice(6).trim()
+    name=""
+    link=""
+    if(str.indexOf("|")===0) message.channel.send("<@"+message.author +"> Lệnh không hợp lệ")
+    else if(str.indexOf("|")>0){
+      strarr=str.split("|")
+      name=str.split[0]
+      link=str.split[1]
+      sqlchat=await client.query("SELECT * FROM public.botchat where id_dis='"+message.author.id+"'")
+      if(sqlchat.rows.length>0){
+        sqlupdate = await client.query("UPDATE public.botchat SET link_image='"+link+"', name='"+name+"' where id_dis='"+message.author.id+"'")
+        message.channel.send("<@"+message.author +"> Cài đặt thành công")
+      }else sqladd=await client
+              .query("INSERT INTO public.manga(id_dis, name, link_image) VALUES ('"+message.author.id+"', '"+name+"', '"+link+"')")
+              .then(res => {
+              message.channel.send("<@"+message.author +"> Cài đặt thành công")
+    // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+              })
+    }else message.channel.send("<@"+message.author +"> Lệnh không hợp lệ")
+
+  }
 	else if(message.content.indexOf(".") === 0){ 
 	
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi')
