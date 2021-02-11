@@ -1042,6 +1042,9 @@ axios.get(link)
 		
   if(message.channel.id!="787612323091185725"&&message.channel.id!="787616644272357406"&&message.channel.id!="788037199433039873"&&message.channel.id!="769575209518104636"&&message.attachments.size == 0&&message.content.indexOf("có avatar là") === -1&&message.content.toLowerCase().indexOf(".waifu") == 0) await message.delete({ timeout: 60000 });
 	}
+  if(message.attachments.size == 0&&message.channel.id=="809366876119498752"){
+    await message.delete({ timeout: 1 });
+  }
 })
 function getUserFromMention(mention) {
 	// The id is the first and only match found by the RegEx.
