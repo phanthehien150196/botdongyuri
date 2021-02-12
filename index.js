@@ -919,9 +919,7 @@ axios.get(link)
           }
           else{
           var str=response.data.msg
-          str=str.replace(/simsimi|Simsimi|SimSimi/g,name)
-          str=str.replace("Sim",name)
-          str=str.replace("sim",name)
+          str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,name)
           strarr=str.split(/[.,!?;]/)
           filarr=strarr.filter(function(e){ return e === 0 || e });
           if(filarr.length>0){
