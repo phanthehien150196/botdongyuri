@@ -901,7 +901,7 @@ axios.get(link)
   }
 	else if(message.content.indexOf(".") === 0){ 
 	
-	axios.get('https://api.simsimi.net/v1/?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi_VN')
+	axios.get('https://api.simsimi.net/v1/?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi_VN&cf=false')
       .then(async response =>{
         sqlchat=await client.query("SELECT * FROM public.botchat where id_dis='"+message.author.id+"'")
         if(sqlchat.rows.length>0){
@@ -911,14 +911,14 @@ axios.get(link)
           try {
             const webhooks = await channel.fetchWebhooks();
             const webhook = webhooks.first();
-              if(response.data.messages[0].response=="") {
+              if(response.data.msg=="") {
                 await webhook.send("<@"+message.author +"> Không hiểu", {
                 username: name,
                 avatarURL: image,
                 });          
           }
           else{
-          var str=response.data.messages[0].response
+          var str=response.data.msg
           str=str.replace(/simsimi|Simsimi|SimSimi/g,name)
           str=str.replace("Sim",name)
           str=str.replace("sim",name)
@@ -949,11 +949,11 @@ axios.get(link)
             } catch (error) {
             console.error('Lỗi: ', error);
             }
-        } else if(response.data.messages[0].response=="") {
+        } else if(response.data.msg=="") {
           message.channel.send("<@"+message.author +"> Không hiểu");
           }
           else{
-          var str=response.data.messages[0].response
+          var str=response.data.msg
 
 
           str=str.replace("simsimi","Mami")
@@ -987,7 +987,7 @@ axios.get(link)
 	stro =message.content.replace(/<@!?(\d+)>/gi, '');
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(stro.trim())+'&lang=vi')
       .then( async response =>{
-      	if(response.data.messages[0].response=="") {
+      	if(response.data.msg=="") {
       		channel.createWebhook('Mami', {
  			avatar: 'https://i.imgur.com/mI8XcpG.jpg',
   			reason: 'Webhook of Afang'
@@ -1008,7 +1008,7 @@ axios.get(link)
 		}	
       	}
       	else{
-      		var str=response.data.messages[0].response
+      		var str=response.data.msg
       		str=str.replace("simsimi",nick)
       		str=str.replace("Simsimi",nick)
       		str=str.replace("SimSimi",nick)
