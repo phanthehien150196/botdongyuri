@@ -203,7 +203,7 @@ setInterval(async function () {
           .setColor('#0099ff')
           .setTitle("[TRUYỆN MỚI RA] "+title)
           .setURL(item.mangaLink)
-          .setDescription(des)
+          .setDescription(des.replace("&quot;",""))
           .setImage(cover)
         
         bot.channels.cache.get("788037199433039873").send(embedmd)
