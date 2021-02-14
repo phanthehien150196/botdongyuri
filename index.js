@@ -190,7 +190,24 @@ setInterval(async function () {
     if(new Date(item.pubDate)>date1){
       bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link+"\n Bấm 👌 để tải chap truyện này xuống");
       feednew=await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt/manga_id/'+getIdMd(item.mangaLink)+'?h=1');
-      if(feednew.items.length==1) bot.channels.cache.get("788037199433039873").send("truyện mới ra "+item.mangaLink);
+      if(feednew.items.length==1) 
+        {
+          //bot.channels.cache.get("788037199433039873").send("truyện mới ra "+item.mangaLink);
+          await axios.get('https://mangadex.org/api/v2/manga/'+getIdMd(item.mangaLink))
+          .then(async response =>{
+        
+          title =response.data.data.title
+          des=response.data.data.description
+          cover=response.data.data.mainCover
+          var embedmd = new Discord.MessageEmbed()
+          .setColor('#0099ff')
+          .setTitle("[TRUYỆN MỚI RA] "+title)
+          .setURL(item.mangaLink)
+          .setDescription(des)
+          .setImage(cover)
+        
+        bot.channels.cache.get("788037199433039873").send(embedmd)
+        }
 
       sqlno=await client.query("SELECT id_dis FROM public.manga where id_manga='"+getIdMd(item.mangaLink)+"'")
       if(sqlno.rows.length>0){
