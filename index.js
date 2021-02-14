@@ -207,7 +207,7 @@ setInterval(async function () {
           .setImage(cover)
         
         bot.channels.cache.get("788037199433039873").send(embedmd)
-        }
+        })
         }
 
       sqlno=await client.query("SELECT id_dis FROM public.manga where id_manga='"+getIdMd(item.mangaLink)+"'")
