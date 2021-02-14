@@ -919,7 +919,7 @@ axios.get(link)
           }
           else{
           var str=response.data.msg
-          str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,name)
+          str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,name.trim())
           strarr=str.split(/[.,!?;]/)
           filarr=strarr.filter(function(e){ return e === 0 || e });
           if(filarr.length>0){
@@ -954,11 +954,7 @@ axios.get(link)
           var str=response.data.msg
 
 
-          str=str.replace("simsimi","Mami")
-          str=str.replace("Simsimi","Mami")
-          str=str.replace("SimSimi","Mami")
-          str=str.replace("Sim","Mami")
-          str=str.replace("sim","Mami")
+          str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,"Mami")
           strarr=str.split(/[.,!?;]/)
           filarr=strarr.filter(function(e){ return e === 0 || e });
           if(filarr.length>0){
@@ -1170,11 +1166,11 @@ function embedMD(title, image, des, chap){
   "content": "",
   "embeds": [
     {
-      "title": "I Can't Tell Which Twin is Which Sex",
+      "title": title,
       "color": 405559,
       "description": des,
       "timestamp": "",
-      "url": title,
+      "url": chap,
       "author": {
         "name": "",
         "url": ""
