@@ -725,7 +725,7 @@ bot.on("message", async message => {
         title =response.data.data.title
         des=response.data.data.description
         cover=response.data.data.mainCover
-        message.channel.send(embedMD(title,cover,des,"https://google.com"))
+        message.channel.send({embed: embedMD(title,cover,des,"https://google.com")})
 
      })
 	}
