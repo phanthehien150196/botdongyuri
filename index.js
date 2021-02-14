@@ -725,7 +725,14 @@ bot.on("message", async message => {
         title =response.data.data.title
         des=response.data.data.description
         cover=response.data.data.mainCover
-        message.channel.send({embed: embedMD(title,cover,des,"https://google.com")})
+        var embedmd = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle(title)
+        .setURL('https://discord.js.org/')
+        .setDescription(des)
+        .setImage(cover)
+        
+        message.channel.send(embedmd)
 
      })
 	}
