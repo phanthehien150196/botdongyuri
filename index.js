@@ -223,6 +223,7 @@ setInterval(async function () {
             else embedmd.addField("Thể loại",tag+res.data.data[r].name)
               
             })
+        embedmd.addField("Đọc chương đầu","["+item.title+"]("+item.link+")")
         bot.channels.cache.get("788037199433039873").send(embedmd)
         })
         })
