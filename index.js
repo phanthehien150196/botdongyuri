@@ -207,8 +207,23 @@ setInterval(async function () {
           .setImage(cover)
         await axios.get('https://mangadex.org/api/v2/tag')
         .then(async res =>{
-          
-        bot.channels.cache.get("788037199433039873").send(embedmd)
+          var tags=[]
+          tags=response.data.data.tags
+          demo=response.data.data.publication.demographic
+          if(demo==1) tag="Shounen, "
+          else if(demo==2) tag="Shoujo, "
+          else if(demo==3) tag="Seinen, "
+          else if(demo==4) tag="Josei, "
+          else tag=""
+          num=0
+          console.log(tags)
+          tags.forEach(r =>{
+            num=num+1
+            if(num<tags.length) tag=tag+res.data.data[r].name+", "
+            else embedmd.addField("Thể loại",tag+res.data.data[r].name)
+              
+            })
+        message.channel.send(embedmd)
         })
         })
         }
@@ -757,7 +772,12 @@ bot.on("message", async message => {
         .then(async res =>{
           var tags=[]
           tags=response.data.data.tags
-          tag=""
+          demo=response.data.data.publication.demographic
+          if(demo==1) tag="Shounen, "
+          else if(demo==2) tag="Shoujo, "
+          else if(demo==3) tag="Seinen, "
+          else if(demo==4) tag="Josei, "
+          else tag=""
           num=0
           console.log(tags)
           tags.forEach(r =>{
