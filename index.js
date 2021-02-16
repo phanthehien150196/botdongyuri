@@ -205,8 +205,11 @@ setInterval(async function () {
           .setURL(item.mangaLink)
           .setDescription(des.replace("&quot;",""))
           .setImage(cover)
-        
+        await axios.get('https://mangadex.org/api/v2/tag')
+        .then(async res =>{
+          
         bot.channels.cache.get("788037199433039873").send(embedmd)
+        })
         })
         }
 
@@ -750,7 +753,19 @@ bot.on("message", async message => {
         .setDescription(des)
         .setImage(cover)
         
+        await axios.get('https://mangadex.org/api/v2/tag')
+        .then(async res =>{
+          tags=res.data.data.tags
+          tag=""
+          num=0
+          tags.forEach(r =>{
+            num=num+1
+            if(num<tags.length) tag=tag+res.data.data[r].name+", "
+            else embedmd.addField("Thể loại",tag+res.data.data[r].name)
+              
+            })
         message.channel.send(embedmd)
+        })
 
      })
 	}
