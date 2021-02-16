@@ -756,7 +756,7 @@ bot.on("message", async message => {
         await axios.get('https://mangadex.org/api/v2/tag')
         .then(async res =>{
           var tags=[]
-          tags=res.data.data.tags
+          tags=response.data.data.tags
           tag=""
           num=0
           console.log(tags)
