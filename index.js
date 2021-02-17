@@ -756,41 +756,8 @@ bot.on("message", async message => {
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
 	else if(message.content.toLowerCase().indexOf(".test")==0){
-    await axios.get('https://mangadex.org/api/v2/manga/28688')
-      .then(async response =>{
-        
-        title =response.data.data.title
-        des=response.data.data.description
-        cover=response.data.data.mainCover
-        var embedmd = new Discord.MessageEmbed()
-        .setColor('#0099ff')
-        .setTitle(title)
-        .setURL('https://discord.js.org/')
-        .setDescription(des)
-        .setImage(cover)
-        
-        await axios.get('https://mangadex.org/api/v2/tag')
-        .then(async res =>{
-          var tags=[]
-          tags=response.data.data.tags
-          demo=response.data.data.publication.demographic
-          if(demo==1) tag="Shounen, "
-          else if(demo==2) tag="Shoujo, "
-          else if(demo==3) tag="Seinen, "
-          else if(demo==4) tag="Josei, "
-          else tag=""
-          num=0
-          console.log(tags)
-          tags.forEach(r =>{
-            num=num+1
-            if(num<tags.length) tag=tag+res.data.data[r].name+", "
-            else embedmd.addField("Thể loại",tag+res.data.data[r].name)
-              
-            })
-        message.channel.send(embedmd)
-        })
-
-     })
+    const webhooks = await channel.fetchWebhooks();
+    console.log(webhooks.length)
 	}
 	else if(message.content.indexOf("$") === 0&&message.content.toLowerCase().indexOf("$xp") === -1&&message.content.toLowerCase().indexOf("$mute") === -1&&message.channel.id =="533170013129932801"){
 		await message.delete({ timeout: 1 });
