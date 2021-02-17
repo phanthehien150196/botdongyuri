@@ -943,8 +943,16 @@ axios.get(link)
           image=sqlchat.rows[0].link_image
           const channel = bot.channels.cache.get(message.channel.id);
           try {
-            const webhooks = await channel.fetchWebhooks();
-            const webhook = webhooks.first();
+            webhooks = await channel.fetchWebhooks();
+            if(webhooks.array().length==0){
+              channel.createWebhook('Mami', {
+              avatar: 'https://cdn.discordapp.com/attachments/694785358952660996/811692996537614346/7fa863c13cc6ef9352576ad5050f75f3.png',
+              })
+              .then(web => console.log("tạo thành công webhook"))
+              .catch(console.error);
+              
+            }
+            webhook = webhooks.first();
               if(response.data.msg=="") {
                 await webhook.send("<@"+message.author +"> Không hiểu", {
                 username: name,
