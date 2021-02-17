@@ -950,9 +950,10 @@ axios.get(link)
               })
               .then(web => console.log("tạo thành công webhook"))
               .catch(console.error);
-              
+              webhooks = await channel.fetchWebhooks();
+              webhook = webhooks.first();
             }
-            webhook = webhooks.first();
+            else webhook = webhooks.first();
               if(response.data.msg=="") {
                 await webhook.send("<@"+message.author +"> Không hiểu", {
                 username: name,
