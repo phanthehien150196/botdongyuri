@@ -756,7 +756,8 @@ bot.on("message", async message => {
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
 	else if(message.content.toLowerCase().indexOf(".test")==0){
-    const webhooks = await message.channel.fetchWebhooks();
+    channel = bot.channels.cache.get(message.channel.id);
+    const webhooks = await channel.fetchWebhooks();
     console.log(webhooks.length)
 	}
 	else if(message.content.indexOf("$") === 0&&message.content.toLowerCase().indexOf("$xp") === -1&&message.content.toLowerCase().indexOf("$mute") === -1&&message.channel.id =="533170013129932801"){
