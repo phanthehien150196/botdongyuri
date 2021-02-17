@@ -758,10 +758,10 @@ bot.on("message", async message => {
 	else if(message.content.toLowerCase().indexOf(".test")==0){
     channel = bot.channels.cache.get(message.channel.id);
     const webhooks = await channel.fetchWebhooks();
-    console.log(webhooks.countDocuments())
-    mang=[]
-    mang=webhooks
-    console.log(mang.length)
+    
+    //mang=[]
+    //mang=webhooks
+    console.log(webhooks.array().length)
 	}
 	else if(message.content.indexOf("$") === 0&&message.content.toLowerCase().indexOf("$xp") === -1&&message.content.toLowerCase().indexOf("$mute") === -1&&message.channel.id =="533170013129932801"){
 		await message.delete({ timeout: 1 });
