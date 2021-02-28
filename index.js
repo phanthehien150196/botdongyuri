@@ -757,7 +757,9 @@ bot.on("message", async message => {
 		let user = message.mentions.users.first();
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
-	else if(message.content.toLowerCase().indexOf(".voice")==0){
+  
+	else if(message.member.voice.channel&&message.content.toLowerCase().indexOf(".voice")==0){
+    const connection = await message.member.voice.channel.join();
     let cau=message.content.slice(6).trim()
     var headers = {
     'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
@@ -776,7 +778,8 @@ bot.on("message", async message => {
 
     request(options,async function (error, response, body) {
     await delay(2000);
-    await message.channel.send("Nghe nè", {files: [JSON.parse(body).async]})
+    //await message.channel.send("Nghe nè", {files: [JSON.parse(body).async]})
+    await connection.play(JSON.parse(body).async);
     console.log(JSON.parse(body).async); 
     });
   }
