@@ -12,7 +12,6 @@
     "archiver": "^5.0.0",
     "async": "^3.2.0",
     "axios": "^0.21.1",
-    "bcrypt": "^5.0.1",
     "delay": "^5.0.0",
     "discord.js": "^12.2.0",
     "ffmpeg-static": "^4.2.7",
