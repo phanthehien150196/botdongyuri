@@ -775,7 +775,7 @@ bot.on("message", async message => {
     };
 
     request(options,async function (error, response, body) {
-    await delay(500);
+    await delay(1000);
     await message.channel.send("Nghe nè", {files: [JSON.parse(body).async]})
     console.log(JSON.parse(body).async); 
     });
