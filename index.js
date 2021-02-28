@@ -756,23 +756,45 @@ bot.on("message", async message => {
 		let user = message.mentions.users.first();
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
-	else if(message.content.toLowerCase().indexOf(".test")==0){
+	else if(message.content.toLowerCase().indexOf(".voice")==0){
+    let cau=message.content.slice(6).trim()
     var headers = {
     'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
     'speed': '0',
     'voice': 'linhsan'
     };
 
-  var dataString = 'chào';
+    var dataString = cau;
 
-  var options = {
+    var options = {
     url: 'https://api.fpt.ai/hmi/tts/v5',
     method: 'POST',
     headers: headers,
     body: dataString
-  };
+    };
 
-  request(options,async function (error, response, body) {
+    request(options,async function (error, response, body) {
+    message.channel.send("Nghe nè", {files: [JSON.parse(body).async]})
+    console.log(JSON.parse(body).async); 
+    });
+  }
+  else if(message.content.toLowerCase().indexOf(".test")==0){
+    var headers = {
+    'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
+    'speed': '0',
+    'voice': 'linhsan'
+    };
+
+    var dataString = 'chào';
+
+    var options = {
+    url: 'https://api.fpt.ai/hmi/tts/v5',
+    method: 'POST',
+    headers: headers,
+    body: dataString
+    };
+
+    request(options,async function (error, response, body) {
     message.channel.send("file âm thanh", {files: [JSON.parse(body).async]})
     console.log(JSON.parse(body).async); 
     });
