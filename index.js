@@ -761,7 +761,7 @@ bot.on("message", async message => {
     let cau=message.content.slice(6).trim()
     var headers = {
     'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
-    'speed': '0',
+    'speed': '-0.5',
     'voice': 'thuminh'
     };
 
