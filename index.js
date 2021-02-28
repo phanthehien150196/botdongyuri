@@ -2,6 +2,7 @@ const fs = require('fs');
 const { Client } = require('pg');
 let Parser = require('rss-parser');
 const api = require("mangadex-full-api");
+const request = require('request');
 const axios = require('axios');
 var archiver = require('archiver');
 var rimraf = require('rimraf');
@@ -756,12 +757,25 @@ bot.on("message", async message => {
 		message.channel.send(message.guild.members.cache.get(user.id).displayName+" có avatar là ", {files: [user.displayAvatarURL({ dynamic:true,format:"png",size:4096 })]})
 	}
 	else if(message.content.toLowerCase().indexOf(".test")==0){
-    channel = bot.channels.cache.get(message.channel.id);
-    const webhooks = await channel.fetchWebhooks();
-    
-    //mang=[]
-    //mang=webhooks
-    console.log(webhooks.array().length)
+    var headers = {
+    'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
+    'speed': '0',
+    'voice': 'linhsan'
+    };
+
+  var dataString = 'chào';
+
+  var options = {
+    url: 'https://api.fpt.ai/hmi/tts/v5',
+    method: 'POST',
+    headers: headers,
+    body: dataString
+  };
+
+  request(options,async function (error, response, body) {
+    message.channel.send("file âm thanh", {files: [JSON.parse(body).async]})
+    console.log(JSON.parse(body).async); 
+    });
 	}
 	else if(message.content.indexOf("$") === 0&&message.content.toLowerCase().indexOf("$xp") === -1&&message.content.toLowerCase().indexOf("$mute") === -1&&message.channel.id =="533170013129932801"){
 		await message.delete({ timeout: 1 });
