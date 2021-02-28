@@ -1,4 +1,5 @@
 const fs = require('fs');
+const delay = require('delay');
 const { Client } = require('pg');
 let Parser = require('rss-parser');
 const api = require("mangadex-full-api");
@@ -774,7 +775,8 @@ bot.on("message", async message => {
     };
 
     request(options,async function (error, response, body) {
-    message.channel.send("Nghe nè", {files: [JSON.parse(body).async]})
+    await delay(500);
+    await message.channel.send("Nghe nè", {files: [JSON.parse(body).async]})
     console.log(JSON.parse(body).async); 
     });
   }

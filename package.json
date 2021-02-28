@@ -12,6 +12,7 @@
     "archiver": "^5.0.0",
     "async": "^3.2.0",
     "axios": "^0.19.2",
+    "delay": "^5.0.0",
     "discord.js": "^12.2.0",
     "googleapis": "^39.2.0",
     "mangadex-full-api": "^3.10.0",
