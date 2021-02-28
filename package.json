@@ -19,6 +19,7 @@
     "googleapis": "^39.2.0",
     "mangadex-full-api": "^3.10.0",
     "ms": "^2.1.2",
+    "node-pre-gyp": "^0.17.0",
     "pg": "^8.5.1",
     "request": "^2.88.2",
     "rimraf": "^3.0.2",
