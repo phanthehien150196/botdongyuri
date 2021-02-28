@@ -836,6 +836,9 @@ bot.on("message", async message => {
 
       })
   }
+  else if(message.content.indexOf(".talk") == 0||message.content.indexOf(".voice") == 0){
+    message.channel.send("<@"+message.author +"> Vui lòng vào kênh voice bất kỳ để thực hiện chức năng này")
+  }
 	else if(message.content.indexOf("$") === 0&&message.content.toLowerCase().indexOf("$xp") === -1&&message.content.toLowerCase().indexOf("$mute") === -1&&message.channel.id =="533170013129932801"){
 		await message.delete({ timeout: 1 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
