@@ -814,8 +814,8 @@ bot.on("message", async message => {
           str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,"em")
           var headers = {
           'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
-          'speed': '0',
-          'voice': 'linhsan'
+          'speed': '-0.5',
+          'voice': 'thuminh'
           };
 
           var dataString = str;
