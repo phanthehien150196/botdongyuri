@@ -760,6 +760,7 @@ bot.on("message", async message => {
   
 	else if(message.member.voice.channel&&message.content.toLowerCase().indexOf(".voice")==0){
     const connection = await message.member.voice.channel.join();
+    
     let cau=message.content.slice(6).trim()
     var headers = {
     'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
@@ -775,8 +776,8 @@ bot.on("message", async message => {
     headers: headers,
     body: dataString
     };
-
-    request(options,async function (error, response, body) {
+    if(message.content.slice(6).trim()=="dis") connection.disconnect();
+    else request(options,async function (error, response, body) {
     await delay(2000);
     //await message.channel.send("Nghe nè", {files: [JSON.parse(body).async]})
     await connection.play(JSON.parse(body).async);
@@ -786,8 +787,8 @@ bot.on("message", async message => {
   else if(message.content.toLowerCase().indexOf(".test")==0){
     var headers = {
     'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
-    'speed': '0',
-    'voice': 'linhsan'
+    'speed': '-0.5',
+    'voice': 'thuminh'
     };
 
     var dataString = 'chào';
@@ -804,6 +805,37 @@ bot.on("message", async message => {
     console.log(JSON.parse(body).async); 
     });
 	}
+  else if(message.content.indexOf(".talk") == 0&&message.member.voice.channel){
+    const connection = await message.member.voice.channel.join();
+    if(message.content.slice(5).trim()=="dis") connection.disconnect();
+    else axios.get('https://api.simsimi.net/v1/?text='+encodeURI(message.content.slice(5).trim())+'&lang=vi_VN&cf=false')
+      .then(async response =>{
+        var str=response.data.msg
+          str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,"em")
+          var headers = {
+          'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
+          'speed': '0',
+          'voice': 'linhsan'
+          };
+
+          var dataString = str;
+
+          var options = {
+          url: 'https://api.fpt.ai/hmi/tts/v5',
+          method: 'POST',
+          headers: headers,
+          body: dataString
+          };
+
+          request(options,async function (error, response, body) {
+          await delay(2000);
+          //await message.channel.send("Nghe nè", {files: [JSON.parse(body).async]})
+          await connection.play(JSON.parse(body).async);
+          console.log(JSON.parse(body).async); 
+          });
+
+      })
+  }
 	else if(message.content.indexOf("$") === 0&&message.content.toLowerCase().indexOf("$xp") === -1&&message.content.toLowerCase().indexOf("$mute") === -1&&message.channel.id =="533170013129932801"){
 		await message.delete({ timeout: 1 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
