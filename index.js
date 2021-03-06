@@ -880,6 +880,13 @@ bot.on("message", async message => {
         message.channel.send("<@"+message.author +"> "+response.data.responseData.translatedText)
       } )
   }
+  else if(message.content.toLowerCase().indexOf(".meme") === 0){
+    
+    axios.get('https://api.berver.tech/meme')
+      .then( response =>{
+        message.channel.send({files: [response.data.data]})
+      } )
+  }
 	else if(message.content.indexOf("/") === 0){
 		await message.delete({ timeout: 60000 });
 		await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Đã xoá tin nhắn tạm thời")
