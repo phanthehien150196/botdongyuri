@@ -785,25 +785,12 @@ bot.on("message", async message => {
     });
   }
   else if(message.content.toLowerCase().indexOf(".test")==0){
-    var headers = {
-    'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
-    'speed': '-0.5',
-    'voice': 'thuminh'
-    };
+   let cau=message.content.slice(5).trim()
+   let guild = bot.guilds.cache.get('533169283375693844')
+   if(guild.member(cau))
+    message.channel.send("Có tồn tại")
+  else message.channel.send("Không tồn tại")
 
-    var dataString = 'chào';
-
-    var options = {
-    url: 'https://api.fpt.ai/hmi/tts/v5',
-    method: 'POST',
-    headers: headers,
-    body: dataString
-    };
-
-    request(options,async function (error, response, body) {
-    message.channel.send("file âm thanh", {files: [JSON.parse(body).async]})
-    console.log(JSON.parse(body).async); 
-    });
 	}
   else if(message.content.indexOf(".talk") == 0&&message.member.voice.channel){
     const connection = await message.member.voice.channel.join();
