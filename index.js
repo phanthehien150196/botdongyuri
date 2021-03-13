@@ -785,8 +785,9 @@ bot.on("message", async message => {
     });
   }
   else if(message.content.toLowerCase().indexOf(".test")==0){
-   let cau=message.content.slice(5).trim()
-   let guild = message.guild.members.cache.get('533169283375693844')
+   mem=message.content.slice(5).trim()
+   client = new Discord.Client();
+   let guild = client.guilds.cache.get('533169283375693844')
    if(guild.member(cau))
     message.channel.send("Có tồn tại")
   else message.channel.send("Không tồn tại")
