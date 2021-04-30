@@ -11,6 +11,7 @@ var rimraf = require('rimraf');
 var ms = require('ms');
 const { google } = require('googleapis');
 const async = require("async");
+var stream = require('stream');
 const Discord = require("discord.js");	
 var xpath = require('xpath')
   , dom = require('xmldom').DOMParser
