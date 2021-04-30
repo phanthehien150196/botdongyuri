@@ -1012,17 +1012,16 @@ axios.get(link)
     if (!fs.existsSync('./'+id)){
         fs.mkdirSync('./'+id);
         }
-    await fs.createReadStream(id+'.zip')
-    .pipe(unzipper.Parse())
-    .on('entry', async function (entry) {
+    const zip = fs.createReadStream(id+'.zip').pipe(unzipper.Parse({forceStream: true}));
+    //await fs.createReadStream(id+'.zip')
+    //.pipe(unzipper.Parse())
+    for await (const entry of zip) {
     const fileName = entry.path;
     const type = entry.type; // 'Directory' or 'File'
     const size = entry.vars.uncompressedSize; // There is also compressedSize;
     if (checkImg(fileName)) {
       await entry.pipe(fs.createWriteStream(id+'/'+fileName))
-      .on('done', async function(done){
-        await bot.channels.cache.get("694785358952661000").send('img', {files: [id+'/'+fileName]});  
-      })
+      await bot.channels.cache.get("694785358952661000").send('img', {files: [id+'/'+fileName]}); 
       
 
     } else {
@@ -1030,7 +1029,7 @@ axios.get(link)
     }
     await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
-  })
+  }
     
   }
 	else if(message.content.indexOf(".") === 0){ 
