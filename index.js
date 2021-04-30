@@ -185,14 +185,14 @@ setInterval(async function () {
   sql = await client.query("SELECT time_manga FROM time where name='mangadex'")
   console.log(sql.rows[0])
   date1=new Date(sql.rows[0].time_manga.trim())
-  feed = await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt?h=0');
+  feed = await parser.parseURL('https://mangadex.org/rss/SzlrWI3TLRHE1l5iBgSzZnzjO4VyRUNq?h=0');
   if(new Date(feed.items[0].pubDate)>date1)
   sqlupdate = await client.query("UPDATE public.time SET time_manga='"+feed.items[0].pubDate+"' where name='mangadex'")
   
   feed.items.forEach(async item => {
     if(new Date(item.pubDate)>date1){
       bot.channels.cache.get("787612323091185725").send("Chap truyện mới "+item.link+"\n Bấm 👌 để tải chap truyện này xuống");
-      feednew=await parser.parseURL('https://mangadex.org/rss/hsqn9pkCxfSNX57YTHvEZdBec8DWR2gt/manga_id/'+getIdMd(item.mangaLink)+'?h=1');
+      feednew=await parser.parseURL('https://mangadex.org/rss/SzlrWI3TLRHE1l5iBgSzZnzjO4VyRUNq/manga_id/'+getIdMd(item.mangaLink)+'?h=1');
       if(feednew.items.length==1) 
         {
           //bot.channels.cache.get("788037199433039873").send("truyện mới ra "+item.mangaLink);
