@@ -1543,7 +1543,7 @@ function authorize(credentials, callback) {
 * Describe with given media and metaData and upload it using google.drive.create method()
 */ 
 function uploadFile(msg,name,messid,author,auth) {
-  const drive = google.drive({version: 'v3', 'AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs'});
+  const drive = google.drive({version: 'v3', auth});
   var folderId = '1xk9ySRbR7aRp-Zd7oPlFiOgyHuqPz9P3';
   const fileMetadata = {
     'name': name,
