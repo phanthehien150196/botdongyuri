@@ -1020,7 +1020,7 @@ axios.get(link)
     const size = entry.vars.uncompressedSize; // There is also compressedSize;
     if (checkImg(fileName)) {
       await entry.pipe(fs.createWriteStream(id+'/'+fileName));
-      await msgimg=bot.channels.cache.get("694785358952661000").send('img', {files: [id+'/'+fileName]});
+      msgimg=bot.channels.cache.get("694785358952661000").send('img', {files: [id+'/'+fileName]});
 
     } else {
       entry.autodrain();
