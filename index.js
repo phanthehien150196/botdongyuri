@@ -1025,7 +1025,7 @@ fs.createReadStream(id+'.zip')
       const size = entry.vars.uncompressedSize; // There is also compressedSize;
       if (checkImg(fileName)) {
         entry.pipe(fs.createWriteStream(id+"/"+fileName))
-          .on('finish',function(finish){
+          .on('finish',()=>{
           msgimg=bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+fileName]});
 
           });
