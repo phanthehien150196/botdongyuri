@@ -5,6 +5,7 @@ let Parser = require('rss-parser');
 const api = require("mangadex-full-api");
 const request = require('request');
 const axios = require('axios');
+var unzipper = require('unzipper')
 var archiver = require('archiver');
 var rimraf = require('rimraf');
 var ms = require('ms');
@@ -1004,6 +1005,30 @@ axios.get(link)
     }else message.channel.send("<@"+message.author +"> Lệnh không hợp lệ")
 
   }
+  else if(message.content.toLowerCase().indexOf(".link") === 0){
+    str=message.content.slice(5).trim()
+    id = getIdDrive(str)
+    await download_drive('https://www.googleapis.com/drive/v3/files/'+id+'?alt=media&key=AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs',id+'.zip')
+    if (!fs.existsSync('./'+id)){
+        fs.mkdirSync('./'+id);
+        }
+    await fs.createReadStream(id+'.zip')
+    .pipe(unzipper.Parse())
+    .on('entry', async function (entry) {
+    const fileName = entry.path;
+    const type = entry.type; // 'Directory' or 'File'
+    const size = entry.vars.uncompressedSize; // There is also compressedSize;
+    if (checkImg(fileName)) {
+      await entry.pipe(fs.createWriteStream(id+'/'+fileName));
+      msgimg=bot.channels.cache.get("694785358952661000").send('img', {files: [id+'/'+fileName]});
+
+    } else {
+      entry.autodrain();
+    }
+  })
+    await rimraf('./'+id, function () { console.log('done'); });
+    await fs.unlinkSync(id+'.zip')
+  }
 	else if(message.content.indexOf(".") === 0){ 
 	
 	axios.get('https://api.simsimi.net/v1/c3c/?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi_VN&cf=false&key=API-TEST-WEB')
@@ -1444,6 +1469,35 @@ function getTheloaiBlt(data){
         }
         return str
 }
+function getIdDrive(link){
+  const matches = link.match(/d\/!?(\S+)\//gi);
+  str = matches[0].replace('d/','')
+  return str.replace('/','')
+}
+const download_drive = (url, path) =>
+  axios({
+    url,
+    responseType: 'stream',
+    headers : {
+      'Referer': 'https://drive.google.com'
+    }
+  }).then(
+    response =>
+      new Promise((resolve, reject) => {
+        console.log(response.data)
+        response.data
+          .pipe(fs.createWriteStream(path))
+          .on('finish', () => resolve())
+          .on('error', e => reject(e));
+      }),
+  );
+function checkImg(mention) {
+  // The id is the first and only match found by the RegEx.
+  const matches = mention.match(/.(jpg|png|jpeg|gif)/g);
+  if (matches==null) return false 
+    else return true
+} 
+
 global.progressBar = (value, maxValue) => {
   size=15
   const percentage = value / maxValue; // Calculate the percentage of the bar
@@ -1489,7 +1543,7 @@ function authorize(credentials, callback) {
 * Describe with given media and metaData and upload it using google.drive.create method()
 */ 
 function uploadFile(msg,name,messid,author,auth) {
-  const drive = google.drive({version: 'v3', auth});
+  const drive = google.drive({version: 'v3', 'AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs'});
   var folderId = '1xk9ySRbR7aRp-Zd7oPlFiOgyHuqPz9P3';
   const fileMetadata = {
     'name': name,

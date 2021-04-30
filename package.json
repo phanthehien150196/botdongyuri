@@ -24,6 +24,7 @@
     "request": "^2.88.2",
     "rimraf": "^3.0.2",
     "rss-parser": "^3.10.0",
+    "unzipper": "^0.10.11",
     "xmldom": "^0.3.0",
     "xpath": "0.0.29"
   }
