@@ -1007,10 +1007,15 @@ axios.get(link)
   }
   else if(message.content.toLowerCase().indexOf(".link") === 0){
     str=message.content.slice(5).trim()
+    if (fs.existsSync('./'+down)) await rimraf('./'+down, function () { console.log('done'); });
+    
     id = getIdDrive(str)
+    if (!fs.existsSync('./'+down)){
+        fs.mkdirSync('./'+down);
+        }
     await download_drive('https://www.googleapis.com/drive/v3/files/'+id+'?alt=media&key=AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs',id+'.zip')
-    if (!fs.existsSync('./'+id)){
-        fs.mkdirSync('./'+id);
+    if (!fs.existsSync('./'+down+'/'+id)){
+        fs.mkdirSync('./'+down+'/'+id);
         }
     const zip = fs.createReadStream(id+'.zip').pipe(unzipper.Parse({forceStream: true}));
     //await fs.createReadStream(id+'.zip')
@@ -1021,13 +1026,13 @@ axios.get(link)
     const size = entry.vars.uncompressedSize; // There is also compressedSize;
     if (checkImg(fileName)) {
       await entry.pipe(fs.createWriteStream(id+'/'+fileName))
-      await bot.channels.cache.get("694785358952661000").send('img', {files: [id+'/'+fileName]}); 
+      await bot.channels.cache.get("694785358952661000").send('img', {files: ['./'+down+'/'+id+'/'+fileName]}); 
       
 
     } else {
       entry.autodrain();
     }
-    await rimraf('./'+id, function () { console.log('done'); });
+    //await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
   }
     
