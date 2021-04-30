@@ -1025,7 +1025,7 @@ axios.get(link)
     const type = entry.type; // 'Directory' or 'File'
     const size = entry.vars.uncompressedSize; // There is also compressedSize;
     if (checkImg(fileName)) {
-      await entry.pipe(fs.createWriteStream(id+'/'+fileName))
+      await entry.pipe(fs.createWriteStream('./'+down+'/'+id+'/'+fileName))
       await bot.channels.cache.get("694785358952661000").send('img', {files: ['./'+down+'/'+id+'/'+fileName]}); 
       
 
