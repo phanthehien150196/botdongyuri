@@ -1020,14 +1020,15 @@ axios.get(link)
     const size = entry.vars.uncompressedSize; // There is also compressedSize;
     if (checkImg(fileName)) {
       await entry.pipe(fs.createWriteStream(id+'/'+fileName));
-      msgimg=bot.channels.cache.get("694785358952661000").send('img', {files: [id+'/'+fileName]});
+      await msgimg=bot.channels.cache.get("694785358952661000").send('img', {files: [id+'/'+fileName]});
 
     } else {
       entry.autodrain();
     }
-  })
     await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
+  })
+    
   }
 	else if(message.content.indexOf(".") === 0){ 
 	
@@ -1484,7 +1485,7 @@ const download_drive = (url, path) =>
   }).then(
     response =>
       new Promise((resolve, reject) => {
-        console.log(response.data)
+        
         response.data
           .pipe(fs.createWriteStream(path))
           .on('finish', () => resolve())
