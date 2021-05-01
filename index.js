@@ -1053,7 +1053,7 @@ await fs.createReadStream(id+'.zip')
 
 
     });
-    await bot.channels.cache.get("694785358952661000").send(chuoi+'```');
+    //await bot.channels.cache.get("694785358952661000").send(chuoi+'```');
       
     await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
