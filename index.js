@@ -1035,6 +1035,7 @@ await fs.createReadStream(id+'.zip')
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
     var chuoi='```css\n'
     var dem=0
+    var arrlist= new Array()
     var countfile=fs.readdirSync('./'+id).length
     console.log(countfile)
     await fs.readdirSync('./'+id).forEach(async file => {
@@ -1042,17 +1043,12 @@ await fs.createReadStream(id+'.zip')
       await bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
       .then(async img=> {
         console.log(img.attachments.first().url)
-        if(dem==countfile)
-        {
-        await bot.channels.cache.get("694785358952661000").send(chuoi+img.attachments.first().url+'\n```');
-        await rimraf('./'+id, function () { console.log('done'); });
-        await fs.unlinkSync(id+'.zip')
-        dem=0
-        }
-        else {
+        await arrlist.push(img.attachments.first().url)
+        //await bot.channels.cache.get("694785358952661000").send(chuoi+img.attachments.first().url+'\n```');
+        
           chuoi=chuoi+img.attachments.first().url+'\n'
           dem++
-          } 
+          
 
       })
       //console.log(file);
@@ -1061,7 +1057,9 @@ await fs.createReadStream(id+'.zip')
 
     });
     //await bot.channels.cache.get("694785358952661000").send(chuoi+'```');
-      
+      await rimraf('./'+id, function () { console.log('done'); });
+      await fs.unlinkSync(id+'.zip')
+      console.log(JSON.parse(arrlist))
     
   });
 
