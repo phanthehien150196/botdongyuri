@@ -1009,13 +1009,12 @@ axios.get(link)
   else if(message.content.toLowerCase().indexOf(".link") === 0){
     str=message.content.slice(5).trim()
     id = getIdDrive(str)
-    var msglink=message.channel.send("<@"+message.author +"> Đang xử lý file nén từ Google drive...")
+    message.channel.send("<@"+message.author +"> Đang xử lý file nén từ Google drive...")
+    .then(async mess =>{
     await download_drive('https://www.googleapis.com/drive/v3/files/'+id+'?alt=media&key=AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs',id+'.zip')
     if (!fs.existsSync('./'+id)){
         fs.mkdirSync('./'+id);
         }
-    
-    await msglink.delete({ timeout: 1 });
 await fs.createReadStream(id+'.zip')
   .pipe(unzipper.Parse())
   .on('entry', async function (entry) {
@@ -1034,7 +1033,7 @@ await fs.createReadStream(id+'.zip')
   })
   .promise()
   .then( async () => {
-    var msglink=message.channel.send("<@"+message.author +"> Đang giải nén và up ảnh...")
+    mess.edit("<@"+message.author +"> Đang giải nén và up ảnh...")
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
     var chuoi=''
     var dem=0
@@ -1052,7 +1051,7 @@ await fs.createReadStream(id+'.zip')
         //await arrlist.push(img.attachments.first().url)
         {
         fs.writeFileSync(id+".txt", chuoi);
-        await msglink.edit("<@"+message.author +">", {files: [id+".txt"]})
+        await mess.edit("<@"+message.author +">", {files: [id+".txt"]})
         await rimraf('./'+id, function () { console.log('done'); });
         await fs.unlinkSync(id+'.zip')
         await fs.unlinkSync(id+'.txt')
@@ -1070,7 +1069,7 @@ await fs.createReadStream(id+'.zip')
     
   });
 
-    
+    })
   }
 	else if(message.content.indexOf(".") === 0){ 
 	
