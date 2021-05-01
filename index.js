@@ -1015,7 +1015,7 @@ axios.get(link)
         fs.mkdirSync('./'+id);
         }
     
-      msglink.delete({ timeout: 1 });
+    await msglink.delete({ timeout: 1 });
 await fs.createReadStream(id+'.zip')
   .pipe(unzipper.Parse())
   .on('entry', async function (entry) {
