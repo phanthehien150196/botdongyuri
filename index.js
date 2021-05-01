@@ -1033,7 +1033,7 @@ await fs.createReadStream(id+'.zip')
   .promise()
   .then( async () => {
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
-    var chuoi='```\n'
+    var chuoi=''
     var dem=0
     //var arrlist= new Array()
     var countfile=fs.readdirSync('./'+id).length
@@ -1048,9 +1048,12 @@ await fs.createReadStream(id+'.zip')
         if(dem==countfile)
         //await arrlist.push(img.attachments.first().url)
         {
-        bot.channels.cache.get("694785358952661000").send(chuoi+'```');
+        fs.writeFileSync(id+".txt", chuoi);
+        await message.channel.send("", {files: [id+".txt"]})
         await rimraf('./'+id, function () { console.log('done'); });
         await fs.unlinkSync(id+'.zip')
+        await fs.unlinkSync(id+'.txt')
+        
         }
 
       })
