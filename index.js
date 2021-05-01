@@ -835,7 +835,7 @@ bot.on("message", async message => {
     await message.delete({ timeout: 1 });
     //await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
   }
-  else if(message.attachments.size !== 0){
+  else if(message.attachments.size !== 0&&message.content.toLowerCase().indexOf(".link")<0){
     console.log(message.content)
     let dir="./dis"
     let filed=getFilediscord(message.attachments.first().url)
