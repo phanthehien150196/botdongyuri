@@ -1038,11 +1038,13 @@ await fs.createReadStream(id+'.zip')
     await fs.readdirSync('./'+id).forEach(file => {
       dem++
       bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
-      .then(img=> {
+      .then(async img=> {
         console.log(img.attachments.first().url)
         if(dem==fs.readdirSync('./'+id).length)
         {
-        bot.channels.cache.get("694785358952661000").send(chuoi+img.attachments.first().url+'\n```');
+        await bot.channels.cache.get("694785358952661000").send(chuoi+img.attachments.first().url+'\n```');
+        await rimraf('./'+id, function () { console.log('done'); });
+        await fs.unlinkSync(id+'.zip')
         dem=0
         }
         else chuoi=chuoi+img.attachments.first().url+'\n' 
@@ -1055,8 +1057,7 @@ await fs.createReadStream(id+'.zip')
     });
     //await bot.channels.cache.get("694785358952661000").send(chuoi+'```');
       
-    await rimraf('./'+id, function () { console.log('done'); });
-    await fs.unlinkSync(id+'.zip')
+    
   });
 
     
