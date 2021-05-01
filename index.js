@@ -1008,10 +1008,21 @@ axios.get(link)
   }
   else if(message.content.toLowerCase().indexOf(".link") === 0){
     str=message.content.slice(5).trim()
-    id = getIdDrive(str)
-    message.channel.send("<@"+message.author +"> Đang xử lý file nén từ Google drive...")
+    var id=""
+    var link=""
+    if(message.attachments.size!=0) {
+      if(checkZip(message.attachments.first().url)){
+        id=getIdFileDis(message.attachments.first().url)
+        link=message.attachments.first().url
+      }
+    } else if(str.indexOf("drive.google.com") >= 0){ 
+        id = getIdDrive(str)
+        link='https://www.googleapis.com/drive/v3/files/'+id+'?alt=media&key=AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs'
+      }
+    if(id!=""&&link!="") message.channel.send("<@"+message.author +"> Đang xử lý file nén từ Google drive...")
     .then(async mess =>{
-    await download_drive('https://www.googleapis.com/drive/v3/files/'+id+'?alt=media&key=AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs',id+'.zip')
+    if(str.indexOf("drive.google.com") >= 0) await download_drive(link,id+'.zip')
+    else await download_dis(link,id+'.zip')
     if (!fs.existsSync('./'+id)){
         fs.mkdirSync('./'+id);
         }
@@ -1520,6 +1531,11 @@ function getIdDrive(link){
   str = matches[0].replace('d/','')
   return str.replace('/','')
 }
+function getIdFileDis(link){
+  const matches = link.match(/!?([0-9])(\S+).zip/gi);
+  return matches[0].replace('/','_')
+  
+}
 const download_drive = (url, path) =>
   axios({
     url,
@@ -1540,6 +1556,12 @@ const download_drive = (url, path) =>
 function checkImg(mention) {
   // The id is the first and only match found by the RegEx.
   const matches = mention.match(/.(jpg|png|jpeg|gif)/g);
+  if (matches==null) return false 
+    else return true
+} 
+function checkZip(mention) {
+  // The id is the first and only match found by the RegEx.
+  const matches = mention.match(/.(zip)/g);
   if (matches==null) return false 
     else return true
 } 
