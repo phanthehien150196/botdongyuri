@@ -1021,19 +1021,21 @@ await fs.createReadStream(id+'.zip')
     const fileName = entry.path;
     const type = entry.type; // 'Directory' or 'File'
     const size = entry.vars.uncompressedSize; // There is also compressedSize;
-    var arrimg= new Array()
+    //var arrimg= new Array()
     if (checkImg(fileName)) {
-      await arrimg.push(fileName)
-      console.log(fileName)
+      //await arrimg.push(fileName)
+      //console.log(fileName)
       await entry.pipe(fs.createWriteStream(id+"/"+fileName));
     } else {
       entry.autodrain();
     }
   })
   .promise()
-  .then( async (arrimg) => {
-    await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
-
+  .then( async () => {
+    //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
+    fs.readdirSync('./'+id).forEach(file => {
+      console.log(file);
+    });
     await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
   });
