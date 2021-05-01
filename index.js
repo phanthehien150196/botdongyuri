@@ -1051,7 +1051,8 @@ await fs.createReadStream(id+'.zip')
         //await arrlist.push(img.attachments.first().url)
         {
         fs.writeFileSync(id+".txt", chuoi);
-        await mess.edit("<@"+message.author +">", {files: [id+".txt"]})
+        await mess.delete({ timeout: 1 });
+        await message.channel.send("<@"+message.author +">", {files: [id+".txt"]})
         await rimraf('./'+id, function () { console.log('done'); });
         await fs.unlinkSync(id+'.zip')
         await fs.unlinkSync(id+'.txt')
