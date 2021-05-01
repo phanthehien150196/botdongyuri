@@ -1038,18 +1038,21 @@ await fs.createReadStream(id+'.zip')
     var countfile=fs.readdirSync('./'+id).length
     console.log(countfile)
     await fs.readdirSync('./'+id).forEach(async file => {
-      dem++
+      
       await bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
       .then(async img=> {
         console.log(img.attachments.first().url)
-        if(dem==countfile)
+        await if(dem==countfile)
         {
         await bot.channels.cache.get("694785358952661000").send(chuoi+img.attachments.first().url+'\n```');
         await rimraf('./'+id, function () { console.log('done'); });
         await fs.unlinkSync(id+'.zip')
         dem=0
         }
-        else chuoi=chuoi+img.attachments.first().url+'\n' 
+        else {
+          chuoi=chuoi+img.attachments.first().url+'\n'
+          dem++
+          } 
 
       })
       //console.log(file);
