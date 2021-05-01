@@ -1010,7 +1010,7 @@ axios.get(link)
     str=message.content.slice(5).trim()
     var id=""
     var link=""
-    if(message.attachments.size!=0) {
+    if(message.attachments.size!==0) {
       console.log('file discord | '+message.attachments.first().url)
       if(checkZip(message.attachments.first().url)){
         id=getIdFileDis(message.attachments.first().url)
