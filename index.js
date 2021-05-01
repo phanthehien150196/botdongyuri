@@ -1033,7 +1033,7 @@ await fs.createReadStream(id+'.zip')
   .promise()
   .then( async () => {
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
-    var chuoi='```css\n'
+    var chuoi='```\n'
     var dem=0
     //var arrlist= new Array()
     var countfile=fs.readdirSync('./'+id).length
