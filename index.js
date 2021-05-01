@@ -1030,7 +1030,7 @@ await fs.createReadStream(id+'.zip')
         
         await entry.pipe(fs.createWriteStream(id+"/"+fileName))
           .on('finish',async ()=>{
-          bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[0]]});
+          bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
 
           });
       } else {
