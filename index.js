@@ -1017,31 +1017,23 @@ axios.get(link)
 
 await fs.createReadStream(id+'.zip')
   .pipe(unzipper.Parse())
-  .pipe(stream.Transform({
-    objectMode: true,
-    transform: async function(entry,e,cb) {
-      const fileName = entry.path;
-      const type = entry.type; // 'Directory' or 'File'
-      const size = entry.vars.uncompressedSize; // There is also compressedSize;
-      var arrimg= new Array()
-      
-      if (checkImg(fileName)) {
-        await arrimg.push(fileName)
-        console.log(fileName)
-        await entry.pipe(fs.createWriteStream(id+"/"+fileName))
-          .on('finish',async ()=>{
-          bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
-
-          });
-      } else {
-        entry.autodrain();
-        cb();
-      }
+  .on('entry', async function (entry) {
+    const fileName = entry.path;
+    const type = entry.type; // 'Directory' or 'File'
+    const size = entry.vars.uncompressedSize; // There is also compressedSize;
+    var arrimg= new Array()
+    if (checkImg(fileName)) {
+      await arrimg.push(fileName)
+      console.log(fileName)
+      await entry.pipe(fs.createWriteStream(id+"/"+fileName));
+    } else {
+      entry.autodrain();
     }
-  
-  }))
+  })
   .promise()
   .then( async () => {
+    await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
+
     await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
   });
