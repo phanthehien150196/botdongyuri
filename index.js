@@ -1036,6 +1036,7 @@ await fs.createReadStream(id+'.zip')
     mess.edit("<@"+message.author +"> Đang giải nén và up ảnh...")
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
     var chuoi=''
+    var chuoihtml=""
     var dem=0
     //var arrlist= new Array()
     var countfile=fs.readdirSync('./'+id).length
@@ -1046,11 +1047,13 @@ await fs.createReadStream(id+'.zip')
       .then(async img=> {
         console.log(img.attachments.first().url)
         chuoi=chuoi+img.attachments.first().url+'\n'
+        chuoihtml=chuoihtml+'<img src="'+img.attachments.first().url+'">'+'\n'
+        
         dem++
         if(dem==countfile)
         //await arrlist.push(img.attachments.first().url)
         {
-        fs.writeFileSync(id+".txt", chuoi);
+        fs.writeFileSync(id+".txt", chuoi+"\n\n<<<HTML>>>\n\n"+chuoihtml);
         await mess.delete({ timeout: 1 });
         await message.channel.send("<@"+message.author +">", {files: [id+".txt"]})
         await rimraf('./'+id, function () { console.log('done'); });
