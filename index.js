@@ -1538,8 +1538,8 @@ function getIdDrive(link){
 }
 function getIdFileDis(link){
   const matches = link.match(/!?([0-9])(\S+).zip/gi);
-  return matches[0].replace('/','_')
-  
+  str= matches[0].replace('/','_')
+  str=str.replace('.zip','')
 }
 const download_drive = (url, path) =>
   axios({
