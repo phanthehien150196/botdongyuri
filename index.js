@@ -1042,7 +1042,7 @@ await fs.createReadStream(id+'.zip')
       await bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
       .then(async img=> {
         console.log(img.attachments.first().url)
-        await if(dem==countfile)
+        if(dem==countfile)
         {
         await bot.channels.cache.get("694785358952661000").send(chuoi+img.attachments.first().url+'\n```');
         await rimraf('./'+id, function () { console.log('done'); });
