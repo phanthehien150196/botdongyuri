@@ -1537,7 +1537,7 @@ function getIdDrive(link){
   return str.replace('/','')
 }
 function getIdFileDis(link){
-   const matches = mention.match(/[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))/g);
+   const matches = link.match(/[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))/g);
   return Date.now()+"_"+matches[0].replace('.zip','')
   
 }
