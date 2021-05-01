@@ -1014,6 +1014,7 @@ axios.get(link)
       if(checkZip(message.attachments.first().url)){
         id=getIdFileDis(message.attachments.first().url)
         link=message.attachments.first().url
+        console.log('file discord')
       }
     } else if(str.indexOf("drive.google.com") >= 0){ 
         id = getIdDrive(str)
