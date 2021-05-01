@@ -1034,11 +1034,19 @@ await fs.createReadStream(id+'.zip')
   .then( async () => {
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
     var chuoi='```css\n'
+    var dem=0
     await fs.readdirSync('./'+id).forEach(file => {
+      dem++
       bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
       .then(img=> {
         console.log(img.attachments.first().url)
-        chuoi=chuoi+img.attachments.first().url+'\n'  
+        if(dem==fs.readdirSync('./'+id).length)
+        {
+        bot.channels.cache.get("694785358952661000").send(chuoi+img.attachments.first().url+'\n```');
+        dem=0
+        }
+        else chuoi=chuoi+img.attachments.first().url+'\n' 
+
       })
       //console.log(file);
       
