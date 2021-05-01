@@ -1009,6 +1009,7 @@ axios.get(link)
   else if(message.content.toLowerCase().indexOf(".link") === 0){
     str=message.content.slice(5).trim()
     id = getIdDrive(str)
+    var msglink=message.channel.send("<@"+message.author +">Đang xử lý ảnh từ Google drive...")
     await download_drive('https://www.googleapis.com/drive/v3/files/'+id+'?alt=media&key=AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs',id+'.zip')
     if (!fs.existsSync('./'+id)){
         fs.mkdirSync('./'+id);
@@ -1032,6 +1033,7 @@ await fs.createReadStream(id+'.zip')
   })
   .promise()
   .then( async () => {
+    msglink.edit("<@"+message.author +"> Đang giải nén và up ảnh lên Discord...")
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
     var chuoi=''
     var dem=0
@@ -1049,7 +1051,7 @@ await fs.createReadStream(id+'.zip')
         //await arrlist.push(img.attachments.first().url)
         {
         fs.writeFileSync(id+".txt", chuoi);
-        await message.channel.send("", {files: [id+".txt"]})
+        await msg.edit("<@"+message.author +">", {files: [id+".txt"]})
         await rimraf('./'+id, function () { console.log('done'); });
         await fs.unlinkSync(id+'.zip')
         await fs.unlinkSync(id+'.txt')
