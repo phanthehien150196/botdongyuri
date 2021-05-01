@@ -1045,7 +1045,7 @@ await fs.createReadStream(id+'.zip')
         console.log(img.attachments.first().url)
         chuoi=chuoi+img.attachments.first().url+'\n'
         dem++
-        if(den==countfile)
+        if(dem==countfile)
         //await arrlist.push(img.attachments.first().url)
         {
         bot.channels.cache.get("694785358952661000").send(chuoi+'```');
