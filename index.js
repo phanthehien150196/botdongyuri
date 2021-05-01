@@ -1030,10 +1030,11 @@ await fs.createReadStream(id+'.zip')
     } else {
       entry.autodrain();
     }
+    msglink.delete({ timeout: 1 });
   })
   .promise()
   .then( async () => {
-    msglink.edit("<@"+message.author +"> Đang giải nén và up ảnh...")
+    var msglink=message.channel.send("<@"+message.author +"> Đang giải nén và up ảnh...")
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
     var chuoi=''
     var dem=0
