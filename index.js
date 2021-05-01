@@ -1031,7 +1031,7 @@ await fs.createReadStream(id+'.zip')
     }
   })
   .promise()
-  .then( async () => {
+  .then( async (arrimg) => {
     await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
 
     await rimraf('./'+id, function () { console.log('done'); });
