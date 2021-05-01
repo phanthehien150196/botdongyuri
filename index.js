@@ -1037,6 +1037,7 @@ await fs.createReadStream(id+'.zip')
     await fs.readdirSync('./'+id).forEach(file => {
       bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
       .then(img=> {
+        console.log(img.attachments.first().url)
         chuoi=chuoi+img.attachments.first().url+'\n'  
       })
       //console.log(file);
