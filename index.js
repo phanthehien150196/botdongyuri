@@ -1034,7 +1034,7 @@ await fs.createReadStream(id+'.zip')
   .then( async () => {
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
     var chuoi='```css\n'
-    fs.readdirSync('./'+id).forEach(file => {
+    await fs.readdirSync('./'+id).forEach(file => {
       bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
       .then(img=> {
         chuoi=chuoi+img.attachments.first().url+'\n'  
