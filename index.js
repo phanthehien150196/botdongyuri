@@ -836,6 +836,7 @@ bot.on("message", async message => {
     //await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
   }
   else if(message.attachments.size !== 0){
+    console.log(message.content)
     let dir="./dis"
     let filed=getFilediscord(message.attachments.first().url)
     let user = message.author;
@@ -1010,6 +1011,7 @@ axios.get(link)
     str=message.content.slice(5).trim()
     var id=""
     var link=""
+
     console.log(message.content)
     if(message.attachments.size!==0) {
       console.log('file discord | '+message.attachments.first().url)
