@@ -1037,7 +1037,7 @@ await fs.createReadStream(id+'.zip')
   
   }))
   .promise()
-  .then( () => {
+  .then( async () => {
     await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
   });
