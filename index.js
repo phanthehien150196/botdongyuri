@@ -1033,15 +1033,15 @@ await fs.createReadStream(id+'.zip')
   .promise()
   .then( async () => {
     //await bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[1]]});
-    var chuoi=""
+    var chuoi='```css\n'
     fs.readdirSync('./'+id).forEach(async file => {
-      await img= bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+file]});
+      img= bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+file]});
       //console.log(file);
-      chuoi=chuoi+'```css\n'+img.attachments.first().url+'\n```'
+      chuoi=chuoi+img.attachments.first().url+'\n'
 
 
     });
-    await bot.channels.cache.get("694785358952661000").send(chuoi);
+    await bot.channels.cache.get("694785358952661000").send(chuoi+'```');
       
     await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
