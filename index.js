@@ -1035,10 +1035,14 @@ await fs.createReadStream(id+'.zip')
       }
     }
   
-  }));
-
+  }))
+  .promise()
+  .then( () => {
     await rimraf('./'+id, function () { console.log('done'); });
     await fs.unlinkSync(id+'.zip')
+  });
+
+    
   }
 	else if(message.content.indexOf(".") === 0){ 
 	
