@@ -1015,7 +1015,7 @@ axios.get(link)
         }
     
 
-fs.createReadStream(id+'.zip')
+await fs.createReadStream(id+'.zip')
   .pipe(unzipper.Parse())
   .pipe(stream.Transform({
     objectMode: true,
@@ -1025,8 +1025,8 @@ fs.createReadStream(id+'.zip')
       const size = entry.vars.uncompressedSize; // There is also compressedSize;
       if (checkImg(fileName)) {
         entry.pipe(fs.createWriteStream(id+"/"+fileName))
-          .on('finish',()=>{
-          msgimg=bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+fileName]});
+          .on('finish',async ()=>{
+          await msgimg=bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+fileName]});
 
           });
       } else {
