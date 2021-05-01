@@ -1019,14 +1019,18 @@ await fs.createReadStream(id+'.zip')
   .pipe(unzipper.Parse())
   .pipe(stream.Transform({
     objectMode: true,
-    transform: function(entry,e,cb) {
+    transform: async function(entry,e,cb) {
       const fileName = entry.path;
       const type = entry.type; // 'Directory' or 'File'
       const size = entry.vars.uncompressedSize; // There is also compressedSize;
+      var arrimg= new Array()
+      
       if (checkImg(fileName)) {
-        entry.pipe(fs.createWriteStream(id+"/"+fileName))
-          .on('end',async ()=>{
-          bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+fileName]});
+        await arrimg.push(fileName)
+        
+        await entry.pipe(fs.createWriteStream(id+"/"+fileName))
+          .on('finish',async ()=>{
+          bot.channels.cache.get("694785358952661000").send("im", {files: [id+"/"+arrimg[0]]});
 
           });
       } else {
