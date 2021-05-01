@@ -1037,9 +1037,9 @@ await fs.createReadStream(id+'.zip')
     var dem=0
     var countfile=fs.readdirSync('./'+id).length
     console.log(countfile)
-    await fs.readdirSync('./'+id).forEach(file => {
+    await fs.readdirSync('./'+id).forEach(async file => {
       dem++
-      bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
+      await bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
       .then(async img=> {
         console.log(img.attachments.first().url)
         if(dem==countfile)
