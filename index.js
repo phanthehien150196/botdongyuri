@@ -1022,6 +1022,7 @@ axios.get(link)
       }
     } else if(str.indexOf("drive.google.com") >= 0){ 
         id = getIdDrive(str)
+        linkcheck='https://www.googleapis.com/drive/v3/files/'+id+'?key=AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs'
         link='https://www.googleapis.com/drive/v3/files/'+id+'?alt=media&key=AIzaSyA_VcZ9AM9gXj1pmr__tv_AsGWTG7jHzcs'
       }
     if(id!=""&&link!="") message.channel.send("<@"+message.author +"> Đang xử lý file nén từ Google drive...")
@@ -1057,7 +1058,11 @@ await fs.createReadStream(id+'.zip')
     //var arrlist= new Array()
     var countfile=fs.readdirSync('./'+id).length
     console.log(countfile)
-    await fs.readdirSync('./'+id).forEach(async file => {
+    await fs.readdirSync('./'+id)
+    .sort(function(a, b) {
+    return parseFloat(a.replace(/!?([^0-9])/gi,'')) - parseFloat(b.replace(/!?([^0-9])/gi,''));
+    })
+    .forEach(async file => {
       
       await bot.channels.cache.get("694785358952661000").send("", {files: [id+"/"+file]})
       .then(async img=> {
