@@ -1071,7 +1071,7 @@ await fs.createReadStream(id+'.zip')
         chuoihtml=chuoihtml+'<img src="'+img.attachments.first().url+'">'+'\n'
         
         dem++
-        if(dem%4==0) mess.edit("<@"+message.author +"> Đang up ảnh lên Discord\n"+progressBar(dem, countfile))
+        if(dem%2==0) mess.edit("<@"+message.author +"> Đang up ảnh lên Discord\n"+progressBar(dem, countfile))
         if(dem==countfile)
         //await arrlist.push(img.attachments.first().url)
         {
