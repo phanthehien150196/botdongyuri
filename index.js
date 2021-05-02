@@ -1071,9 +1071,11 @@ await fs.createReadStream(id+'.zip')
         chuoihtml=chuoihtml+'<img src="'+img.attachments.first().url+'">'+'\n'
         
         dem++
+        mess.edit("<@"+message.author +"> Đang up ảnh lên Discord\n"+progressBar(dem, countfile))
         if(dem==countfile)
         //await arrlist.push(img.attachments.first().url)
         {
+        mess.edit("<@"+message.author +"> Đang up ảnh lên Discord\n"+progressBar(1, 1))
         fs.writeFileSync(id+".txt", chuoi+"\n\n<<<HTML>>>\n\n"+chuoihtml);
         await mess.delete({ timeout: 1 });
         await message.channel.send("<@"+message.author +">", {files: [id+".txt"]})
