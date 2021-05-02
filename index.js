@@ -1041,7 +1041,7 @@ await fs.createReadStream(id+'.zip')
     if (checkImg(fileName)) {
       //await arrimg.push(fileName)
       //console.log(fileName)
-      await entry.pipe(fs.createWriteStream(id+"/"+fileName));
+      await entry.pipe(fs.createWriteStream(id+"/"+fileName.replace(/\//gi,'_')));
     } else {
       entry.autodrain();
     }
