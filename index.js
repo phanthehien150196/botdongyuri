@@ -858,9 +858,7 @@ bot.on("message", async message => {
     await message.delete({ timeout: 1 });
     //await bot.channels.cache.get(`533212850919964683`).send("<@"+message.author +"> Các lệnh liên quan đến waifu xin mời thực hiện ở đây")
   }
-  else if(message.author =='679932553968484352' ){
-    await message.delete({ timeout: 1 });
-  }
+  
   else if(message.content.toLowerCase().indexOf("/xoa") === 0){
     await message.delete({ timeout: 1 });
   }
