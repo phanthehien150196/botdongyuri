@@ -484,7 +484,7 @@ bot.on("message", async message => {
         // Looping through the role and checking which role was removed.
         oldMember.roles.cache.forEach(role => {
             if (!newMember.roles.cache.has(role.id)) {
-                console.log("Role Removed", role);
+                console.log("Role Removed: "+ role);
             }
         });
 
@@ -494,7 +494,7 @@ bot.on("message", async message => {
         // Looping through the role and checking which role was added.
         newMember.roles.cache.forEach(role => {
             if (!oldMember.roles.cache.has(role.id)) {
-                console.log("Role Added", role);
+                console.log("Role Added: " role);
             }
         });
         //bot.channels.cache.get("694785358746877970").send(Embed);
