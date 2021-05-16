@@ -480,30 +480,24 @@ bot.on("message", async message => {
     // Old roles Collection is higher in size than the new one. A role has been removed.
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
         // Creating an embed message.
-        const Embed = new Discord.MessageEmbed();
-        Embed.setColor("RED");
-        Embed.setAuthor(newMember.user.tag, newMember.user.avatarURL());
         
         // Looping through the role and checking which role was removed.
         oldMember.roles.cache.forEach(role => {
             if (!newMember.roles.cache.has(role.id)) {
-                Embed.addField("Role Removed", role);
+                console.log("Role Removed", role);
             }
         });
 
-        bot.channels.cache.get("694785358746877970").send(Embed);
+        //bot.channels.cache.get("694785358746877970").send(Embed);
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
-        const Embed = new Discord.MessageEmbed();
-        Embed.setColor("GREEN");
-        Embed.setAuthor(newMember.user.tag, newMember.user.avatarURL());
         
         // Looping through the role and checking which role was added.
         newMember.roles.cache.forEach(role => {
             if (!oldMember.roles.cache.has(role.id)) {
-                Embed.addField("Role Added", role);
+                console.log("Role Added", role);
             }
         });
-        bot.channels.cache.get("694785358746877970").send(Embed);
+        //bot.channels.cache.get("694785358746877970").send(Embed);
     }
 });
 	if(message.content.toLowerCase().indexOf(".edit")==0) 
