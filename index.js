@@ -491,7 +491,7 @@ bot.on("message", async message => {
             }
         });
 
-        client.channels.cache.get("ChannelID").send(Embed);
+        bot.channels.cache.get("694785358746877970").send(Embed);
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         const Embed = new discord.MessageEmbed();
         Embed.setColor("GREEN");
