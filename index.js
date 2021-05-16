@@ -484,11 +484,11 @@ bot.on("message", async message => {
         // Looping through the role and checking which role was removed.
         oldMember.roles.cache.forEach(async role => {
             if (!newMember.roles.cache.has(role.id)) {
-                await check=role
+                check=role
             }
         })
       
-        if(check!=-1) await bot.channels.cache.get("694785358746877970").send(check);
+        await bot.channels.cache.get("694785358746877970").send(check);
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         var check=-1
         // Looping through the role and checking which role was added.
