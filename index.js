@@ -480,7 +480,7 @@ bot.on("message", async message => {
     // Old roles Collection is higher in size than the new one. A role has been removed.
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
         // Creating an embed message.
-        const Embed = new discord.MessageEmbed();
+        const Embed = new Discord.MessageEmbed();
         Embed.setColor("RED");
         Embed.setAuthor(newMember.user.tag, newMember.user.avatarURL());
         
