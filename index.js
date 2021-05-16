@@ -480,15 +480,19 @@ bot.on("message", async message => {
     // Old roles Collection is higher in size than the new one. A role has been removed.
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
         // Creating an embed message.
-        var check=-1
         // Looping through the role and checking which role was removed.
-        oldMember.roles.cache.forEach(async role => {
+         for (let i = 0; i < oldMember.roles.cache.length; i++) {
+            if (!newMember.roles.cache.has(oldMember.roles.cache[i].id)) {
+                await bot.channels.cache.get("694785358746877970").send("gỡ role: "+oldMember.roles.cache[i]);
+            }
+         }
+        /*oldMember.roles.cache.forEach(async role => {
             if (!newMember.roles.cache.has(role.id)) {
                 check=role
             }
         })
-      
-        await bot.channels.cache.get("694785358746877970").send(check);
+      */
+        
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         var check=-1
         // Looping through the role and checking which role was added.
