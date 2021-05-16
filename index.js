@@ -480,24 +480,24 @@ bot.on("message", async message => {
     // Old roles Collection is higher in size than the new one. A role has been removed.
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
         // Creating an embed message.
-        
+        var check=-1
         // Looping through the role and checking which role was removed.
         oldMember.roles.cache.forEach(role => {
             if (!newMember.roles.cache.has(role.id)) {
-                console.log("Role Removed: "+ role);
+                check=role
             }
         });
 
-        //bot.channels.cache.get("694785358746877970").send(Embed);
+        if(check!=-1) bot.channels.cache.get("694785358746877970").send(check);
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
-        
+        var check=-1
         // Looping through the role and checking which role was added.
         newMember.roles.cache.forEach(role => {
             if (!oldMember.roles.cache.has(role.id)) {
-                console.log("Role Added: "+ role);
+                check=role
             }
         });
-        //bot.channels.cache.get("694785358746877970").send(Embed);
+        if(check!=-1) bot.channels.cache.get("694785358746877970").send(check);
     }
 });
 	if(message.content.toLowerCase().indexOf(".edit")==0) 
