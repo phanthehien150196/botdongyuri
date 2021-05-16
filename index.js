@@ -476,19 +476,19 @@ bot.on("message", async message => {
 			}
 
 		});
-    bot.on("guildMemberUpdate", (oldMember, newMember) => {
+    bot.on("guildMemberUpdate", async (oldMember, newMember) => {
     // Old roles Collection is higher in size than the new one. A role has been removed.
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
         // Creating an embed message.
         var check=-1
         // Looping through the role and checking which role was removed.
-        oldMember.roles.cache.forEach(role => {
+        oldMember.roles.cache.forEach(async role => {
             if (!newMember.roles.cache.has(role.id)) {
-                check=role
+                await check=role
             }
-        });
-
-        if(check!=-1) bot.channels.cache.get("694785358746877970").send(check);
+        })
+      
+        if(check!=-1) await bot.channels.cache.get("694785358746877970").send(check);
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         var check=-1
         // Looping through the role and checking which role was added.
