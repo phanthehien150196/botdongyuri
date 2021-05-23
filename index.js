@@ -481,7 +481,7 @@ bot.on("message", async message => {
     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
         // Creating an embed message.
         // Looping through the role and checking which role was removed.
-         for (let i = 0; i < oldMember.roles.cache.length; i++) {
+         for (let i = 0; i < oldMember.roles.cache.size; i++) {
             if (!newMember.roles.cache.has(oldMember.roles.cache[i].id)) {
                 await bot.channels.cache.get("694785358746877970").send("gỡ role: "+oldMember.roles.cache[i]);
             }
