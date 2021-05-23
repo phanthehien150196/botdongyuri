@@ -25,6 +25,8 @@ let parser = new Parser({
 });
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
+  //'postgres://evcqnbppvmuhsz:ebcf4b0f8346f8ca448907848fc74f2deb215950158d9e64755a7fd23e24c877@ec2-54-159-107-189.compute-1.amazonaws.com:5432/dats6ijl22bv25',
+  //process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
@@ -247,7 +249,7 @@ setInterval(async function () {
 
 
 
-},ms('5m'))
+},ms('100m'))
 })		
 // A pretty useful method to create a delay without blocking the whole script.
 const wait = require('util').promisify(setTimeout);
@@ -454,6 +456,30 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   }
 }
 });
+bot.on("guildMemberUpdate", (oldMember, newMember) => {
+    // Old roles Collection is higher in size than the new one. A role has been removed.
+    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
+        // Creating an embed message.
+        
+        // Looping through the role and checking which role was removed.
+        oldMember.roles.cache.forEach(role => {
+            if (!newMember.roles.cache.has(role.id)) {
+            bot.channels.cache.get("694785358746877970").send("Role Removed: "+ role);
+                console.log("Role Removed: "+ role);
+            }
+        });
+
+        //client.channels.cache.get("ChannelID").send(Embed);
+    } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
+        newMember.roles.cache.forEach(role => {
+            if (!oldMember.roles.cache.has(role.id)) {
+              bot.channels.cache.get("694785358746877970").send("Role Add: "+ role);
+                console.log("Role Added: "+ role);
+            }
+        });
+        //client.channels.cache.get("ChannelID").send(Embed);
+    }
+});
 bot.on("message", async message => {
 
 	//if (message.webhookID) {message.delete({ timeout: 3000 })};
@@ -476,36 +502,7 @@ bot.on("message", async message => {
 			}
 
 		});
-    bot.on("guildMemberUpdate", async (oldMember, newMember) => {
-    // Old roles Collection is higher in size than the new one. A role has been removed.
-    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
-        // Creating an embed message.
-        // Looping through the role and checking which role was removed.
-         for (let i = 0; i < oldMember.roles.cache.size; i++) {
-          console.log(oldMember.roles.cache[i])
-            if (!newMember.roles.cache.has(oldMember.roles.cache[i].id)) {
-              
-                await bot.channels.cache.get("694785358746877970").send("gỡ role: "+oldMember.roles.cache[i]);
-            }
-         }
-        /*oldMember.roles.cache.forEach(async role => {
-            if (!newMember.roles.cache.has(role.id)) {
-                check=role
-            }
-        })
-      */
-        
-    } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
-        var check=-1
-        // Looping through the role and checking which role was added.
-        newMember.roles.cache.forEach(role => {
-            if (!oldMember.roles.cache.has(role.id)) {
-                check=role
-            }
-        });
-        if(check!=-1) bot.channels.cache.get("694785358746877970").send(check);
-    }
-});
+
 	if(message.content.toLowerCase().indexOf(".edit")==0) 
 	{
 
@@ -1787,4 +1784,4 @@ async.eachSeries(permissions, function (permission, permissionCallback) {
 
 
 
-bot.login(process.env.token);//
+bot.login(process.env.token);
