@@ -504,8 +504,8 @@ bot.on("message", async message => {
 			}
 
 		});
-  if(message.author.roles.cache.has('847189257835380747')&&message.channel.id=='533170013129932801'){
-    message.author.remove('847189257835380747').catch(console.error);
+  if(message.member.roles.cache.has('847189257835380747')&&message.channel.id=='533170013129932801'){
+    message.member.remove('847189257835380747').catch(console.error);
   }
 	if(message.content.toLowerCase().indexOf(".edit")==0) 
 	{
