@@ -187,7 +187,8 @@ setInterval(async function () {
 },ms('63h'))
 
 setInterval(async function () { 
-   await bot.channels.cache.get(`533170013129932801`).send("Sử dụng lệnh **.waifu tên | link ảnh trực tiếp** để tạo waifu chat chit cho riêng mình nhé")
+   msg = await bot.channels.cache.get(`533170013129932801`).send("Sử dụng lệnh **.waifu tên | link ảnh trực tiếp** để tạo waifu chat chit cho riêng mình nhé")
+   await msg.delete({ timeout: 30000 });
 },ms('65m'))
 
  setInterval(async function () { 
