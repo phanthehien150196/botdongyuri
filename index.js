@@ -188,7 +188,7 @@ setInterval(async function () {
 
 setInterval(async function () { 
    await bot.channels.cache.get(`533170013129932801`).send("Sử dụng lệnh **.waifu tên | link ảnh trực tiếp** để tạo waifu chat chit cho riêng mình nhé")
-},ms('63h'))
+},ms('65m'))
 
  setInterval(async function () { 
   sql = await client.query("SELECT time_manga FROM time where name='mangadex'")
