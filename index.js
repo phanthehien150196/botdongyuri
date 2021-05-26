@@ -464,8 +464,10 @@ bot.on("guildMemberUpdate", (oldMember, newMember) => {
         // Looping through the role and checking which role was removed.
         oldMember.roles.cache.forEach(role => {
             if (!newMember.roles.cache.has(role.id)) {
-            if(role=="740621818464960512") bot.channels.cache.get("533170013129932801").send("<@"+newMember.user.id +"> Chào mừng bạn đến với Server này, hãy cùng tán gẫu với mọi người ở đây nhé");
-                //console.log("Role Removed: "+ role);
+            if(role=="740621818464960512") {
+              bot.channels.cache.get("533170013129932801").send("<@"+newMember.user.id +"> Chào mừng bạn đến với Server này, hãy cùng tán gẫu với mọi người ở đây nhé");
+              newMember.roles.add('847189257835380747').catch(console.error)
+              }
             }
         });
 
@@ -502,7 +504,9 @@ bot.on("message", async message => {
 			}
 
 		});
-
+  if(message.author.roles.cache.has('847189257835380747')&&message.channel.id=='533170013129932801'){
+    message.author.remove('847189257835380747').catch(console.error);
+  }
 	if(message.content.toLowerCase().indexOf(".edit")==0) 
 	{
 
