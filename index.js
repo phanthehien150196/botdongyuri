@@ -182,7 +182,13 @@ setInterval(async function () {
    msg = await bot.channels.cache.get(`533170013129932801`).send("Trải nghiệm tính năng theo dõi tuyện, download truyện của Mami. Xem hướng dẫn tại https://forum.blogtruyen.vn/tool/bot-discord-ho-tro-tai-truyen-va-theo-doi-truyen-54703")
    await msg.delete({ timeout: 30000 });
 },ms('60m'))
+setInterval(async function () { 
+   await bot.channels.cache.get(`533170013129932801`).send("<@&847189257835380747> hãy từ bỏ kiếp ninja và tham gia tán gẫu cùng mọi người nào!")
+},ms('63h'))
 
+setInterval(async function () { 
+   await bot.channels.cache.get(`533170013129932801`).send("Sử dụng lệnh **.waifu tên | link ảnh trực tiếp** để tạo waifu chat chit cho riêng mình nhé")
+},ms('63h'))
 
  setInterval(async function () { 
   sql = await client.query("SELECT time_manga FROM time where name='mangadex'")
