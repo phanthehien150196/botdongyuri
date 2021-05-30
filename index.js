@@ -1132,11 +1132,11 @@ await fs.createReadStream(id+'.zip')
     })
   else message.channel.send("<@"+message.author +"> Lệnh lỗi\n- Chỉ nhận link file nén .zip\n- Chỉ nhận link Google Drive hoặc up file trực tiếp\n- Link Google Drive phải được công khai và không phải link folder")
   }
-	else if(message.content.indexOf(".") === 0||message.content.toLowerCase().indexOf("bot")>=0){
+	else if(message.content.indexOf(".") === 0||message.content.toLowerCase().indexOf("bot")>=0||message.mentions.users.first().id=="578560798205673482"){
 
   var txt=""
   if(message.content.indexOf(".") === 0) txt=encodeURI(message.content.slice(1).trim())
-    else txt=encodeURI(message.content.trim())
+    else txt=encodeURI(message.content.replace("<@578560798205673482>","").trim())
 	
 	axios.get('https://api.simsimi.net/v1/c3c/?text='+txt+'&lang=vi_VN&cf=false&key=API-TEST-WEB')
       .then(async response =>{
