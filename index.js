@@ -1177,7 +1177,7 @@ await fs.createReadStream(id+'.zip')
           str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,name.trim())
           strarr=str.split(/[.,!?;]/)
           filarr=strarr.filter(function(e){ return e === 0 || e });
-          if(filarr.length>0){
+          if(filarr.length>0&&filarr.length<=4){
             for(let i = 0; i < filarr.length; i++){
               
               if(filarr[i].trim()!="") {
@@ -1212,7 +1212,7 @@ await fs.createReadStream(id+'.zip')
           str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,"Mami")
           strarr=str.split(/[.,!?;]/)
           filarr=strarr.filter(function(e){ return e === 0 || e });
-          if(filarr.length>0){
+          if(filarr.length>0&&filarr.length<=4){
             for(let i = 0; i < filarr.length; i++){
               
               if(filarr[i].trim()!="") await message.channel.send("<@"+message.author +"> "+filarr[i]);  
