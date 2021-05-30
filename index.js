@@ -13,6 +13,7 @@ const { google } = require('googleapis');
 const async = require("async");
 var stream = require('stream');
 const Discord = require("discord.js");	
+require('discord-reply');
 var xpath = require('xpath')
   , dom = require('xmldom').DOMParser
 require('events').EventEmitter.prototype._maxListeners = 1000;
@@ -183,8 +184,8 @@ setInterval(async function () {
    await msg.delete({ timeout: 30000 });
 },ms('60m'))
 setInterval(async function () { 
-   await bot.channels.cache.get(`533170013129932801`).send("<@&847189257835380747> hãy từ bỏ kiếp ninja và tham gia tán gẫu cùng mọi người nào!")
-},ms('63h'))
+   bot.channels.cache.get(`533170013129932801`).send("<@&847189257835380747> hãy từ bỏ kiếp ninja và tham gia tán gẫu cùng mọi người nào!")
+},ms('48h'))
 
 setInterval(async function () { 
    msg = await bot.channels.cache.get(`533170013129932801`).send("Sử dụng lệnh **.waifu tên | link ảnh trực tiếp** để tạo waifu chat chit cho riêng mình nhé")
@@ -826,12 +827,7 @@ bot.on("message", async message => {
     });
   }
   else if(message.content.toLowerCase().indexOf(".test")==0){
-   mem=message.content.slice(5).trim()
-   const client = new Discord.Client();
-   let guild = client.guilds.cache.get('533169283375693844')
-   if(guild.member(cau))
-    message.channel.send("Có tồn tại")
-  else message.channel.send("Không tồn tại")
+   message.lineReply('Hey');
 
 	}
   else if(message.content.indexOf(".talk") == 0&&message.member.voice.channel){
@@ -1136,9 +1132,13 @@ await fs.createReadStream(id+'.zip')
     })
   else message.channel.send("<@"+message.author +"> Lệnh lỗi\n- Chỉ nhận link file nén .zip\n- Chỉ nhận link Google Drive hoặc up file trực tiếp\n- Link Google Drive phải được công khai và không phải link folder")
   }
-	else if(message.content.indexOf(".") === 0){ 
+	else if(message.content.indexOf(".") === 0||message.content.toLowerCase().indexOf("bot")>=0){
+
+  var txt=""
+  if(message.content.indexOf(".") === 0) txt=encodeURI(message.content.slice(1).trim())
+    else txt=encodeURI(message.content.trim())
 	
-	axios.get('https://api.simsimi.net/v1/c3c/?text='+encodeURI(message.content.slice(1).trim())+'&lang=vi_VN&cf=false&key=API-TEST-WEB')
+	axios.get('https://api.simsimi.net/v1/c3c/?text='+txt+'&lang=vi_VN&cf=false&key=API-TEST-WEB')
       .then(async response =>{
         sqlchat=await client.query("SELECT * FROM public.botchat where id_dis='"+message.author.id+"'")
         if(sqlchat.rows.length>0){
