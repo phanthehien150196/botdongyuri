@@ -826,8 +826,9 @@ bot.on("message", async message => {
     console.log(JSON.parse(body).async); 
     });
   }
-  else if(message.content.toLowerCase().indexOf(".test")==0){
-   message.lineReply('Hey');
+  else if(message.content.toLowerCase().indexOf(".test")==0||message.author.id=="441789446342574090"){
+   console.log(message.content)
+   //message.lineReply('Hey');
 
 	}
   else if(message.content.indexOf(".talk") == 0&&message.member.voice.channel){
