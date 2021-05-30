@@ -1138,7 +1138,11 @@ await fs.createReadStream(id+'.zip')
   if(message.content.indexOf(".") === 0) txt=encodeURI(message.content.slice(1).trim())
     else if(message.mentions.users.first()){
       let tag=message.mentions.users.first().id
-      if(tag=="578560798205673482") txt=encodeURI(message.content.replace("<@578560798205673482>","").trim())
+      if(tag=="578560798205673482"){ 
+        console.log(message.content)
+        txt=encodeURI(message.content.replace("<@578560798205673482>","").trim())
+        }
+
     }
     else txt=encodeURI(message.content.trim())
 	
