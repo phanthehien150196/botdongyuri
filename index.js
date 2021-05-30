@@ -826,7 +826,7 @@ bot.on("message", async message => {
     console.log(JSON.parse(body).async); 
     });
   }
-  else if(message.content.toLowerCase().indexOf(".test")==0||message.author.id=="441789446342574090"){
+  else if(message.content.toLowerCase().indexOf(".test")==0){
    console.log(message.content)
    //message.lineReply('Hey');
 
