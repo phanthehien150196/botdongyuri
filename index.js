@@ -1133,7 +1133,7 @@ await fs.createReadStream(id+'.zip')
     })
   else message.channel.send("<@"+message.author +"> Lệnh lỗi\n- Chỉ nhận link file nén .zip\n- Chỉ nhận link Google Drive hoặc up file trực tiếp\n- Link Google Drive phải được công khai và không phải link folder")
   }
-	else if(message.content.indexOf(".") === 0||message.content.toLowerCase().indexOf("bot")>=0||message.mentions.users.first()){
+	else if(message.content.indexOf(".") === 0||message.mentions.users.first()){
 
   var txt=""
   if(message.content.indexOf(".") === 0) txt=encodeURI(message.content.slice(1).trim())
