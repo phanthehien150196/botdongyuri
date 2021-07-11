@@ -834,9 +834,9 @@ bot.on("message", async message => {
   else if(message.content.indexOf(".talk") == 0&&message.member.voice.channel){
     const connection = await message.member.voice.channel.join();
     if(message.content.slice(5).trim()=="dis") connection.disconnect();
-    else axios.get('https://api.simsimi.net/v1/c3c/?text='+encodeURI(message.content.slice(5).trim())+'&lang=vi_VN&cf=false&key=API-TEST-WEB')
+    else axios.get('https://api.simsimi.net/v1/?text='+encodeURI(message.content.slice(5).trim())+'&lang=vi&key=API-TEST-WEB')
       .then(async response =>{
-        var str=response.data.response
+        var str=response.data.success
           str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,"em")
           var headers = {
           'api-key': 'zsoyHPPJipd0Dg74Y4tE40rQY4jVHZxP',
@@ -1147,7 +1147,7 @@ await fs.createReadStream(id+'.zip')
     }
     else txt=encodeURI(message.content.trim())
 	
-	if(txt != "") axios.get('https://api.simsimi.net/v1/c3c/?text='+txt+'&lang=vi_VN&cf=false&key=API-TEST-WEB')
+	if(txt != "") axios.get('https://api.simsimi.net/v1/?text='+txt+'&lang=vi&key=API-TEST-WEB')
       .then(async response =>{
         sqlchat=await client.query("SELECT * FROM public.botchat where id_dis='"+message.author.id+"'")
         if(sqlchat.rows.length>0){
@@ -1166,14 +1166,14 @@ await fs.createReadStream(id+'.zip')
               webhook = webhooks.first();
             }
             else webhook = webhooks.first();
-              if(response.data.response=="") {
+              if(response.data.success=="") {
                 await webhook.send("<@"+message.author +"> Không hiểu", {
                 username: name,
                 avatarURL: image,
                 });          
           }
           else{
-          var str=response.data.response
+          var str=response.data.success
           str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,name.trim())
           strarr=str.split(/[.,!?;]/)
           filarr=strarr.filter(function(e){ return e === 0 || e });
@@ -1202,11 +1202,11 @@ await fs.createReadStream(id+'.zip')
             } catch (error) {
             console.error('Lỗi: ', error);
             }
-        } else if(response.data.response=="") {
+        } else if(response.data.success=="") {
           message.channel.send("<@"+message.author +"> Không hiểu");
           }
           else{
-          var str=response.data.response
+          var str=response.data.success
 
 
           str=str.replace(/simsimi|Simsimi|SimSimi|Sim|sim/g,"Mami")
@@ -1236,7 +1236,7 @@ await fs.createReadStream(id+'.zip')
 	stro =message.content.replace(/<@!?(\d+)>/gi, '');
 	axios.get('https://simsumi.herokuapp.com/api?text='+encodeURI(stro.trim())+'&lang=vi')
       .then( async response =>{
-      	if(response.data.response=="") {
+      	if(response.data.success=="") {
       		channel.createWebhook('Mami', {
  			avatar: 'https://i.imgur.com/mI8XcpG.jpg',
   			reason: 'Webhook of Afang'
@@ -1257,7 +1257,7 @@ await fs.createReadStream(id+'.zip')
 		}	
       	}
       	else{
-      		var str=response.data.response
+      		var str=response.data.success
       		str=str.replace("simsimi",nick)
       		str=str.replace("Simsimi",nick)
       		str=str.replace("SimSimi",nick)
